@@ -1,0 +1,61 @@
+.background {
+    background-color: rgb(12, 12, 12);
+    height: 100vh;
+    display: flex;
+  }
+  
+  .contTile {
+    margin-top: 390px;
+    padding: 2rem;
+
+  }
+  
+  .CardTitle {
+    display: flex;
+    flex-direction: column;
+    margin-left: -260px;
+    /* gap: 1rem; */
+  }
+  
+  .contGlobo {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ece910;
+  }
+
+  .img{
+    margin-top: 0px;
+    width: 400px;
+
+  }
+
+
+  .contimg{
+    width: -14rem
+  }
+
+  .Title {
+    font-size: clamp(1rem, 1rem + 8vw, 3rem);
+    font-weight: 50;
+    font-family: "Rubik", sans-serif;
+    color: #f0eaea;
+  }
+  
+  .button {
+    font-family: "Rubik", sans-serif;
+    color: rgb(255, 255, 255);
+    background-color: #3d0fe4;
+    font-weight: 700;
+    min-height: 40px;
+    min-width: 120px;
+    border-radius: 2rem;
+    cursor: pointer;
+    border: none;
+  }
+  .button:hover {
+    background-color: #15f077;
+  }
+
+  
