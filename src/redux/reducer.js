@@ -1,7 +1,7 @@
 import {} from './Actions/actions'
 
 const initialState = {
-  
+  // platos : "platos"
 }
 
 const rootReducer = (state = initialState, action) => {
