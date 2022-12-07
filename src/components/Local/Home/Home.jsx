@@ -4,7 +4,7 @@ import Menus from "../../Utils/Menus/Menus"
 import NavBar from "../../Utils/NavBar/NavBar"
 import Pagination from "../../Utils/Pagination/Pagination"
 
-
+// https://github.com/bradtraversy/simple_react_pagination
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [posts] = useState([{
