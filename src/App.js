@@ -5,7 +5,9 @@ import Landing from './components/Landing/Landing';
 import RegisterMenus from './components/Dashboard/RegisterMenus/RegisterMenus';
 import RegisterDishes from './components/Dashboard/RegisterDishes/RegisterDishes';
 import Register from './components/Register/Register'
+
 import Login from './components/Login/Login'
+
 
 function App() {
   return (
