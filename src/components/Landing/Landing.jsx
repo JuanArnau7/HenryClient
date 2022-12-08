@@ -10,6 +10,11 @@ const Landing = () => {
     <div className={s.contenedor}>
         <h1> HENRY </h1>
         <p> FOOD RESTAURANT SINCE 1882 </p>
+        <div>
+            <Link to="/local/home">
+                <button>Local Home</button>
+            </Link>
+        </div>
         <div className={s.login}>
             <Link to='/login' >
                 <button> Login </button>
