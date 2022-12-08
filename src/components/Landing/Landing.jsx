@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 const Landing = () => {
   return (
     <div className={s.contenedor}>
+        <h1> HENRY </h1>
+        <p> FOOD RESTAURANT SINCE 1882 </p>
         <div>
             <Link to="/local/home">
                 <button>Local Home</button>
