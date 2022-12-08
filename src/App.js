@@ -4,6 +4,7 @@ import Landing from './components/Landing/Landing';
 import RegisterMenus from './components/RegisterMenus/RegisterMenus';
 import RegisterDishes from './components/RegisterDishes/RegisterDishes';
 import Register from './components/Register/Register'
+import PerfilUsuario from './components/PerfilUsuario/PerfilUsuario';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <Routes>
         <Route exact path="/" element={<Landing/>}></Route>
         <Route exact path="/Home" element={<Home/>} />
+        <Route exact path="/PerfilUsuario" element={<PerfilUsuario/>} />
         <Route exact path='/RegisterMenus' element={<RegisterMenus/>} />
         <Route exact path='/RegisterDishes' element={<RegisterDishes/>} />
         <Route exact path='/Register' element={<Register/>} />
