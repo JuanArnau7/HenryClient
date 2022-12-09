@@ -1,1 +1,2 @@
 export const POST_USER_CREATE = 'POST_USER_CREATE'
+export const LOGIN_USER_JWT = 'LOGIN_USER_JWT'
