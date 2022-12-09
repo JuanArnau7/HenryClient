@@ -6,11 +6,13 @@ import Landing from './components/Landing/Landing';
 import RegisterMenus from './components/Dashboard/RegisterMenus/RegisterMenus';
 import RegisterDishes from './components/Dashboard/RegisterDishes/RegisterDishes';
 import Register from './components/Register/Register'
+
 import CardFood from './components/CardFood/CardFood';
 import { useDispatch } from 'react-redux';
 import { getAllDishes } from "./redux/Actions/actions";
 import AlterHome from "./components/Local/Home/AlterHome";
 import Login from './components/Login/Login';
+
 
 function App() {
 	const dispatch = useDispatch()
