@@ -10,6 +10,7 @@ import CardFood from './components/CardFood/CardFood';
 import { useDispatch } from 'react-redux';
 import { getAllDishes } from "./redux/Actions/actions";
 import AlterHome from "./components/Local/Home/AlterHome";
+import Login from './components/Login/Login';
 
 function App() {
 	const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function App() {
         <Route exact path='/dashboard/dishes' element={<RegisterDishes/>} />
         <Route exact path='/detailDish/:id' element={<CardFood/>} />
         <Route exact path='/register' element={<Register/>} />
+        <Route exact path='/login' element={<Login/>} />
     </Routes>
     </BrowserRouter>
 

@@ -1,4 +1,4 @@
-import { DETAILS_DISH, GET_ALL_DISHES } from './Actions/actionsTypes';
+import { DETAILS_DISH, GET_ALL_DISHES, POST_USER_CREATE } from './Actions/actionsTypes';
 
 const initialState = {
   // platos : "platos"
@@ -18,6 +18,10 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				detailDish: state.allDishes.find(dish => dish._id === action.payload.id)
 			}
+    case POST_USER_CREATE:
+      return{
+        ...state,
+      }
     default:
       return { ...state };
   }
