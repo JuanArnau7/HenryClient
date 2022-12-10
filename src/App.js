@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux';
 import { getAllDishes } from "./redux/Actions/actions";
 import AlterHome from "./components/Local/Home/AlterHome";
 import Login from './components/Login/Login';
+import CreateFood from './components/CreateFood/CreateFood';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
     <Routes>
         <Route exact path="/" element={<Landing/>}></Route>
         <Route exact path="/local/home" element={<LocalHome/>} />
+        <Route exact path="/createFood" element={<CreateFood/>} />
         <Route exact path="/local/alterHome" element={<AlterHome/>} />
         <Route exact path="/deliver/home" element={<DeliveryHome/>} />
         <Route exact path='/dashboard/menus' element={<RegisterMenus/>} />
