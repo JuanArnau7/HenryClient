@@ -1,2 +1,6 @@
+
+export const GET_ALL_DISHES = 'GET_ALL_DISHES';
+export const DETAILS_DISH = 'DETAILS_DISH';
 export const POST_USER_CREATE = 'POST_USER_CREATE'
 export const LOGIN_USER_JWT = 'LOGIN_USER_JWT'
+
