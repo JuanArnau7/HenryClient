@@ -40,7 +40,7 @@ const Cart = () => {
 												<p className="text-sm font-semibold text-gray-900 truncate">
 													Sub-total
 												</p>
-												${ el.cant ? el.price * el.cant : el.price}
+												${ el.price }
 											</div>
 										</div>
 									</li>
