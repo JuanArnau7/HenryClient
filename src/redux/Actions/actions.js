@@ -1,5 +1,5 @@
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE  } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT } from './actionsTypes'
 
 import axios from 'axios'
 const URL = process.env.REACT_APP_URL || "http://localhost:3001/";
@@ -20,7 +20,7 @@ export const loginUserJWT = (data)=>{
     return async(dispatch) =>{
         try {
             const userJWT = await axios.post('http://localhost:3001/auth/login',data);
-            console.log(userJWT.data.token)
+           // console.log(userJWT.data.token)
             return dispatch({
                 type: LOGIN_USER_JWT,
                 payload: userJWT.data.token
@@ -72,4 +72,18 @@ export const detailsDish = (id) => {
     }
 }
 
+export const validarUserJWT = (token)=>{
+    return async(dispatch)=>{
 
+        try {
+            const user = await axios.post('http://localhost:3001/auth', token)
+            return dispatch({
+                type: GET_USER_WITH_JWT,
+                payload: user.data.data
+            })
+            //console.log(user.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

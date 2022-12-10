@@ -1,25 +1,31 @@
-import { loginUserJWT } from "../../redux/Actions/actions";
+import { loginUserJWT, validarUserJWT } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import LoginGoogle from "./LoginGoogle";
+
 
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+    user: "",
+  });
 
   const handleChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
-    })
+    });
   };
 
-  const handleSubmit = () => {
-  
-    dispatch(loginUserJWT(user));
+  const handleSubmit = async() => {
+    await dispatch(loginUserJWT(user));
+    await dispatch(validarUserJWT({ token: localStorage.token }))
+    
+   
   };
+  
   // loginUserJWT
   return (
     <>
@@ -96,6 +102,7 @@ const Login = () => {
             </p>
           </div>
         </div>
+        <LoginGoogle />
       </div>
     </>
   );
