@@ -19,20 +19,20 @@ const CardFood = () => {
 			<div className="sm:flex sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12">
 				<div className="sm:w-full md:w-1/3 md:mr-3 lg:w-1/4 border border-gray-300 rounded-lg shadow-md">
 					<div className="">
-						<img className="max-sm:w-32 max-md:w-48 pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish.img} alt={dish.name} />
+						<img className="max-sm:w-32 max-md:w-48 pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
 					<div className="px-5 pb-5">
-						<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish.name}</h5>
-						<p className="text-lg font-semibold text-blue-500">Antes <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish.price * 1.25)}</span></p>
-						<p className="text-xl font-bold text-emerald-600">Ahora ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish.price * 1)}</span></p>
+						<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h5>
+						<p className="text-lg font-semibold text-blue-500">Antes <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
+						<p className="text-xl font-bold text-emerald-600">Ahora ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish?.price * 1)}</span></p>
 
 						<div className="flex flex-col mt-2.5 mb-5">
-							{dish.ratings?.length > 0
+							{dish?.ratings?.length > 0
 								? <div className='flex flex-col'>
 									<div className="flex align-middle justify-between">
 										<span className="inline-flex">⭐⭐⭐⭐</span>
 									</div>
-									<small>{dish.ratings?.length} calificaciones</small>
+									<small>{dish?.ratings?.length} calificaciones</small>
 								</div>
 								: <small>Este platillo aun no tiene revisiones</small>
 							}
@@ -45,8 +45,8 @@ const CardFood = () => {
 				</div>
 				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/4 bg-white rounded-lg shadow-md">
 					<div>
-						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detalles de <span className='lowercase'>{dish.name}</span></h5>
-						<p>{dish.description}</p>
+						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detalles de <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
+						<p>{dish?.lenguage?.en?.descripcion}</p>
 					</div>
 				</div>
 			</div>
