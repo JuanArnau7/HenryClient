@@ -1,35 +1,40 @@
-import React from 'react';
-import { Route, Routes} from 'react-router-dom'
-import Home from './components/Home/Home';
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
+import LocalHome from './components/Local/Home/Home';
+import DeliveryHome from './components/Delivery/Home/Home';
 import Landing from './components/Landing/Landing';
-// import RegisterMenus from './components/RegisterMenus/RegisterMenus';
-// import RegisterDishes from './components/RegisterDishes/RegisterDishes';
-// import Register from './components/Register/Register'
+import RegisterMenus from './components/RegisterMenus/RegisterMenus';
+import RegisterDishes from './components/RegisterDishes/RegisterDishes';
+import Register from './components/Register/Register'
 
 function App() {
   return (
     <div>
-      <Routes>
-        <Route path="/" element={ <Landing/> } />
-
-        <Route  path="/home" element={ <Home/> }
+      <Switch>
+        <Route
+          exact
+          path="/landing"
+          component={Landing} />
+        <Route
+          exact
+          path="/home"
+          component={Home}
         />
-        {/* <Route
+        <Route
         exact
         path='/RegisterMenu'
         component={RegisterMenus}
-        /> */}
-        {/* <Route
+        />
+        <Route
         exact
         path='/RegisterDishes'
         component={RegisterDishes}
-        /> */}
-        {/* <Route
+        />
+        <Route
         exact
         path='/Register'
         component={Register}
-         />  */}
-      </Routes>
+        />
+      </Switch>
 
     </div>
   );
