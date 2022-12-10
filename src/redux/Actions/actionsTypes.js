@@ -1,1 +1,2 @@
 export const POST_USER_CREATE = 'POST_USER_CREATE'
+export const POST_DISH_CREATE = 'POST_DISH_CREATE'
