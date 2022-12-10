@@ -1,5 +1,9 @@
-import { POST_USER_CREATE, POST_DISH_CREATE } from './actionsTypes'
+
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, POST_USER_CREATE  } from './actionsTypes'
+
 import axios from 'axios'
+const URL = process.env.REACT_APP_URL || "http://localhost:3001/";
+
 export function postUserCreate(payload) {
     return async function(dispatch){
         try {
@@ -11,6 +15,7 @@ export function postUserCreate(payload) {
         }
     }
 }
+
 export const loginUserJWT = (data)=>{
     return async(dispatch) =>{
         try {
@@ -64,6 +69,7 @@ export function postUserCreate(payload) {
 		} catch (error) {
 			alert("Connection to /Post Users Failed. ERROR:" + error)
 		}
+
 	}
 }
   
@@ -78,3 +84,5 @@ export function postUserCreate(payload) {
         }
     }
 }
+
+
