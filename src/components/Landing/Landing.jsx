@@ -1,7 +1,5 @@
 import React from 'react'
-import img from '../Landing/img/restaurant.jpg'
-import img1 from '../Landing/img/ratatouille.jpg'
-import styles from '../Landing/Landing.module.css'
+import s from '../Landing/Landing.module.css'
 import { Link } from 'react-router-dom'
 
 
@@ -9,38 +7,30 @@ import { Link } from 'react-router-dom'
 
 const Landing = () => {
   return (
-    <>
-      <div className={styles.background}>
-      <div className={styles.img}>
-        <img src={img} alt="LandingPage" />
-      </div>
-
-        <div className={styles.contTile}>
-
-          <div className={styles.CardTitle}>
-            <div className={styles.Title}>Welcome</div>
-            <div className={styles.parrafo}>
-              
-            </div>
-            <Link to="/home">
-              <button className={styles.button}>Let's go !</button>
+    <div className={s.contenedor}>
+        <h1> HENRY </h1>
+        <p> FOOD RESTAURANT SINCE 1882 </p>
+        <div>
+            <Link to="/local/home">
+                <button>Local Home</button>
             </Link>
-          </div>
-            <div className={styles.Title}> Henry Food Restaurant!</div>
-
         </div>
-
-        <div className={styles.contGlobo}>
-          <div className={styles.contimg}>
-          <div className={styles.img1}>
-            <img src={img1} alt="LandingPage" />
-          </div>
-
-          </div>
+        <div className={s.login}>
+            <Link to='/login' >
+                <button> Login </button>
+            </Link>  
         </div>
-
-      </div>
-    </>
+        <div className={s.register}>
+            <Link to='/register' >
+                <button> Register </button>
+            </Link>
+        </div>
+        <div className={s.guest}>
+            <Link to='/homeguest' >
+                <button> Guest </button>
+            </Link>            
+        </div>
+    </div>
   )
 }
 
