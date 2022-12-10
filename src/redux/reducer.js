@@ -11,7 +11,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
       }
       case LOGIN_USER_JWT:
-        localStorage.setItem("user_jwt", action.payload);
+        localStorage.setItem("token", action.payload);
         return{
           ...state
         }
