@@ -15,7 +15,7 @@ const Login = () => {
       .then((resp) => resp.json())
       .then((resp) => {
         console.log(resp);
-        localStorage.setItem("user_jwt", resp);
+        localStorage.setItem("token", resp);
       })
       .catch(console.warn);
     document.getElementById("singInDiv").hidden = true;
