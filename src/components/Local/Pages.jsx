@@ -10,8 +10,8 @@ const Pages = ({ data }) => {
 		<div className='flex flex-wrap justify-around'>
 			{data.length > 0 && 
 				data.map((dish, index) => (
-					<div key={index} className="sm:w-11/12 md:w-5/12 lg:w-3/12 border border-gray-200 rounded-lg shadow-md m-3">
-						<img className="rounded-t-lg w-full" src={dish.img} alt={dish?.lenguage?.en?.name} />
+					<div key={index} className="sm:w-11/12 md:w-5/12 lg:w-3/12 border border-gray-200 shadow-md m-3">
+						<img className=" object-cover w-auto h-96 " src={dish.img} alt={dish?.lenguage?.en?.name} />
 						<div className="px-4 pt-2 pb-4">
 							<h6 className="lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h6>
 							<h6>$ {dish.price}</h6>

@@ -26,7 +26,7 @@ const NavBar = () => {
   return (
     <>
 
-      <nav className="bg-gray-900 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
+      <nav className="bg-burlywood-900 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <Link to='/' ><a className="flex items-center">
             <img src="https://thumbs.dreamstime.com/z/icono-del-restaurante-en-c%C3%ADrculo-128428725.jpg" className="h-6 mr-3 sm:h-9 border" alt="Henry Food Logo" />

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getAllDishes } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
 import Pages from "../Pages";
-
+import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
 	const dishes = useSelector(state => state.allDishes)
 	const dispatch = useDispatch()
@@ -35,7 +35,8 @@ const AlterHome = () => {
 	}
 
 	return (
-		<div className="flex w-11/12 mx-auto border-solid border-2 border-green-300">
+		<div className="flex flex-col w-11/12 mx-auto border-solid border-2 border-green-300">
+			<NavBar/>
 			<div className="">
 			<button onClick={handleLogOut}  >LOGOUT</button>
 				<button type="button"
@@ -47,7 +48,7 @@ const AlterHome = () => {
 						<path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path>
 					</svg>
 				</button>
-				<div className={toogleMenu ? "hidden md:block max-md:w-3/12 max-lg:w-4/12 h-screen" : "max-md:w-3/12 max-lg:w-4/12 h-screen"}>
+				<div className={toogleMenu }>
 					<div className="space-y-3">
 						<div className="flex flex-col">
 							<h2 className="font-bold ">Filters....</h2>
@@ -83,6 +84,12 @@ const AlterHome = () => {
 								currentPage={currentPage}
 							/>
 							<Pages data={currentPost} />
+							<Paginator
+								totalPosts={dishes.length}
+								postPerPage={postPerPage}
+								setCurrentPage={setCurrentPage}
+								currentPage={currentPage}
+							/>
 						</div>
 					}
 				</div>
