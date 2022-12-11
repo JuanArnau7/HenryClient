@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { postUserCreate } from "../../redux/Actions/actions"
+import { useNavigate } from 'react-router-dom'
+import Swal from "sweetalert2";
 
 const Register = () => {
     
@@ -10,65 +12,91 @@ const Register = () => {
     "email" : "",
     "country":"",
     "img" : "",
-    "passwordV" : "",
+    "password" : "",
   })
   const [pass, setPass] = useState({
-    "password": "",
+    "passwordV": "",
     "repeatPassword" : ""
   })
   const [error, setError] = useState({
-    eFullName: '',
+    eFullName : '',
     eEmail : '',
     eImg : '',
-    ePassword: '',
-    eRPassword: ''
+    ePassword : ''
   })
-  const dispatch = useDispatch()
-
+  
   const validacionFullName = (input) =>{
     if (input.length < 7){
       return "Full name required min 7 characters"
     }
     if (!input.includes(' ')){
-      return "Full name required ' '."
+      return "Full name required at least one space."
     }
     if (!/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'°,. ]+$/.test(input) && input !== ""){
       return "Only leters "
     }
+    return ''
   }
   const validacionEmail = (input) =>{
     if (!/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(input) && input !== ""){
       return "enter a valid email" 
     }
+    return ''
   }
   const validacionPassword = (input) =>{
-    if (input.length<6) {
+    if (pass.passwordV.length < 6) {
       return "Password required min 6 characters"
     }
-    if (pass.password !== pass.repeatPassword){
-      console.log(pass.password)
-      console.log(pass.repeatPassword)
-      setForm({...form, passwordV:pass.repeatPassword})
+    if (pass.passwordV !== pass.repeatPassword){
+      setForm({...form, password:""})
       return "Password must match"
+    }else {
+      setForm({...form, password:pass.repeatPassword})
     }
+    return ''
   }
-  const validacionPasswordR = (input) =>{
-    if (input !== pass.repeatPassword){
-      // return "Passwords must match 2"
-    }
-  }
-
   
-  const handleClickSubmit = (e) => {
+  useEffect(() => {
+    setError({...error, ePassword:validacionPassword(pass)})
+  },[pass])
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const errorConection = () => {
+    Swal.fire({
+      title: "Error to connect to server",
+      text: "",
+      icon: "warning",
+      confirmButtonText: "OK",
+    });
+  };
+  const errorRepeat = () => {
+    Swal.fire({
+      title: "Existing user",
+      text: "",
+      icon: "warning",
+      confirmButtonText: "OK",
+    });
+  };
+  const handleClickSubmit = async (e) => {
     e.preventDefault()
-    console.log("soy el submit")
-    console.log(form)
-    dispatch(postUserCreate(form))
+    var creacion = await dispatch(postUserCreate(form))
+    // console.log(creacion)
+    if (creacion?.status === 200){
+      navigate("/login")
+    }
+    if (creacion?.status === 400){
+      errorRepeat()
+    } 
+    else{
+      errorConection()
+    }
   }
+  
   const handleChange = (e) => {
     if(e.target.name === "fullName") setError({...error, eFullName:(validacionFullName(e.target.value))})
     if(e.target.name === "email") setError({...error, eEmail:(validacionEmail(e.target.value))})
-    if(e.target.name === "password") setError({...error, ePassword:(validacionPassword(e.target.value))})
+    if(e.target.name === "passwordV") setError({...error, ePassword:(validacionPassword(e.target.value))})
     if(e.target.name === "repeatPassword") setError({...error, ePassword:(validacionPassword(e.target.value))})
     
     setForm({
@@ -78,29 +106,25 @@ const Register = () => {
   }
 
   const handleChangePass = (e) => {
-    if(e.target.name === "password") setError({...error, eRPassword:(validacionPassword(e.target.value))}) 
-    if(e.target.name === "repeatPassword") setError({...error, eRPassword:(validacionPasswordR(e.target.value))})
+    if(e.target.name === "passwordV") setError({...error, eRPassword:(validacionPassword(e.target.value))}) 
+    if(e.target.name === "repeatPassword") setError({...error, eRPassword:(validacionPassword(e.target.value))})
     setPass({
       ...pass,
       [e.target.name]:e.target.value
     })
-    // if(password === repeatPassword) setForm({...form, passwordV:repeatPassword})
   }
-  // const handleClickCountry = (e) => {
-  //   setForm({
 
-  //   })
-  // }
   const desabilitado = (
     form.country.length &&
     form.email.length &&
     form.fullName.length &&
-    form.passwordV.length &&
-    !error.eEmail.length &&
+    form.password.length 
+    &&
     !error.eFullName.length && 
-    !error.ePassword.length &&
-    !error.eRPassword.length
+    !error.eEmail.length &&
+    !error.ePassword.length 
   )
+
   return(
       <>
             <div className="mt-10 sm:mt-0">
@@ -118,6 +142,7 @@ const Register = () => {
               <div className="col-span-6 sm:col-span-3">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">Full name</label>
                 <input onChange={handleChange} type="text" name="fullName" id="first-name" autoComplete="given-name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <p>{error.eFullName}</p>
               </div>
 
               {/* <div className="col-span-6 sm:col-span-3">
@@ -128,6 +153,7 @@ const Register = () => {
               <div className="col-span-6 sm:col-span-4">
                 <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">Email address</label>
                 <input onChange={handleChange} type="text" name="email" id="email-address" autoComplete="email" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <p>{error.eEmail}</p>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
@@ -144,6 +170,7 @@ const Register = () => {
                   <option value="Ecuador">Ecuador</option>
                 </select>
               </div>
+              <div>
 
               {/* <div className="col-span-6">
                 <label for="street-address" className="block text-sm font-medium text-gray-700">Street address</label>
@@ -164,22 +191,25 @@ const Register = () => {
                 <label for="postal-code" className="block text-sm font-medium text-gray-700">ZIP / Postal code</label>
                 <input type="text" name="postal-code" id="postal-code" autoComplete="postal-code" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div> */}
+              </div>
+
             </div>
               <div>
                 <label>Password</label>
                 <br></br>
-                <input onChange={handleChangePass} name={"password"} type={"password"}></input>
+                <input onChange={handleChangePass} name={"passwordV"} type={"password"}></input>
                 <br></br>
                 <label>Repeat password</label>
                 <br></br>
                 <input onChange={handleChangePass} name={"repeatPassword"} type={"password"} ></input>
+                <p>{error.ePassword}</p>
               </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
           {(desabilitado) ? (
                     <button onClick={handleClickSubmit} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" >Save</button>) 
                     : 
-                    (<button className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 background-color=grey" disabled>Save</button>)
+                    (<button className=" inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 " disabled>Save</button>)
                     }
           </div>
         </div>

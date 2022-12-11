@@ -9,9 +9,12 @@ export function postUserCreate(payload) {
         try {
             const res = await axios.post(`http://localhost:3001/users`, payload)
             dispatch({ type: POST_USER_CREATE, payload : res.payload});
+            // console.log(res)
             return res
         } catch (error) {
-            alert ("Connection to /Post Users Failed. ERROR:"+ error)
+            // alert ("Connection to /Post Users Failed. ERROR:"+ error)
+            // console.log(error)
+            return error.response
         }
     }
 }
