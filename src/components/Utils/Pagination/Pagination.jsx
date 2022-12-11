@@ -9,23 +9,20 @@ const Pagination = ({ postsPerPage, totalPosts, currentPage, paginate }) => {
   }
 
   const prevPage = () => {
-		// currentPage > 1 && paginate(currentPage - 1)
-    paginate(currentPage - 1)
+		currentPage > 1 && paginate(currentPage - 1)
 	} 
   const nextPage = () =>{
-		// currentPage < pageNumbers.length && paginate(currentPage + 1)
-    paginate(currentPage + 1)
+		currentPage < pageNumbers.length && paginate(currentPage + 1)
 	} 
-	
 
   return (
-    <div>
-      <button disable={currentPage = 1} onClick={prevPage}>Previous</button>
+    <div className='flex justify-center mb-3'>
+      <button onClick={prevPage} className='bg-gray-900 border-gray-200 px-3 hover:bg-blue-500 text-white hover:text-white rounded-l-sm '>Previous</button>
       {pageNumbers.map(number => (
-        <button key={`page-${number}`} onClick={() => paginate(number)}>
+        <button key={`page-${number}`} onClick={() => paginate(number)} className='bg-gray-900 border-gray-200 px-3 hover:bg-blue-500 text-white hover:text-white'>
           {number}</button>
       ))}
-      <button disable={currentPage = pageNumbers.length} onClick={nextPage}>Next</button>
+      <button onClick={nextPage} className='bg-gray-900 border-gray-200 px-3 hover:bg-blue-500 text-white hover:text-white rounded-r-sm'>Next</button>
     </div>
   );
 };
