@@ -1,12 +1,11 @@
 
-import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, GET_USER_WITH_JWT } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES } from './Actions/actionsTypes'
 
 
 const initialState = {
   // platos : "platos"
 	allDishes: [],
-	detailDish: {},
-  userLog: {},
+	detailDish: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +21,7 @@ const rootReducer = (state = initialState, action) => {
 				detailDish: state.allDishes.find(dish => dish._id === action.payload.id)
 			}
     case POST_USER_CREATE:
+      
       return{
         ...state,
       }
@@ -30,12 +30,6 @@ const rootReducer = (state = initialState, action) => {
         return{
           ...state
         }
-      case GET_USER_WITH_JWT:
-        return{
-          ...state,
-          userLog: action.payload
-        }
-
     default:
       return { ...state };
   }
