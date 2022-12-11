@@ -21,11 +21,12 @@ const rootReducer = (state = initialState, action) => {
 				detailDish: state.allDishes.find(dish => dish._id === action.payload.id)
 			}
     case POST_USER_CREATE:
+      
       return{
         ...state,
       }
       case LOGIN_USER_JWT:
-        localStorage.setItem("user_jwt", action.payload);
+        localStorage.setItem("token", action.payload);
         return{
           ...state
         }

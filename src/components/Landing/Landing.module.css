@@ -12,7 +12,7 @@
   /* text-align: center center; */
   color: rgba(255, 255, 255, .8);
   position: absolute;
-  top: 42%;
+  top: 36%;
   left: 40%;
 }
 
@@ -41,20 +41,28 @@
   cursor:pointer;
 }
 
-.contenedor .login button{
+.contenedor .login {
   position: absolute;
   top: 0%;
-  left: 85%
+  left: 85%;
+  background-color: darkgrey;
 }
- .contenedor .register button{
+ .contenedor .register {
   position: absolute;
+  top: 0%;
+  left: 90%;
+  background-color: darkgrey
+ }
+
+ .contenedor .guest {
+  display: inline-block;
+  /* position: absolute; */
   top: 0%;
   left: 90%;
  }
 
- .contenedor .guest button{
-  display: inline-block;
+.contenedor .home{
+  background-color: darkgrey;
   position: absolute;
-  top: 0%;
-  left: 2%;
- }
+  left: 15px;
+}

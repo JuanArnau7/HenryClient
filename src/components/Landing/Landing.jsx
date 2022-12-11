@@ -6,32 +6,32 @@ import { Link } from 'react-router-dom'
 
 
 const Landing = () => {
-  return (
+    return (
     <div className={s.contenedor}>
-        <h1> HENRY </h1>
+        <h1><u> HENRY </u></h1>
         <p> FOOD RESTAURANT SINCE 1882 </p>
         <div>
-            <Link to="/local/home">
-                <button>Local Home</button>
+            <Link to="/login">
+                <button className={s.home} >Home</button>
             </Link>
         </div>
-        <div className={s.login}>
+        <div >
             <Link to='/login' >
-                <button> Login </button>
+                {/* <button className={s.login}> Login </button> */}
             </Link>  
         </div>
-        <div className={s.register}>
+        <div >
             <Link to='/register' >
-                <button> Register </button>
+                {/* <button className={s.register}> Register </button> */}
             </Link>
         </div>
         <div className={s.guest}>
             <Link to='/homeguest' >
-                <button> Guest </button>
+                {/* <button> Guest </button> */}
             </Link>            
         </div>
     </div>
-  )
+    )
 }
 
 export default Landing

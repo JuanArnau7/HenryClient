@@ -3,4 +3,7 @@ export const GET_ALL_DISHES = 'GET_ALL_DISHES';
 export const DETAILS_DISH = 'DETAILS_DISH';
 export const POST_USER_CREATE = 'POST_USER_CREATE'
 export const LOGIN_USER_JWT = 'LOGIN_USER_JWT'
+export const POST_DISH_CREATE = 'POST_DISH_CREATE'
+export const GET_USER_WITH_JWT = 'GET_USER_WITH_JWT'
+
 
