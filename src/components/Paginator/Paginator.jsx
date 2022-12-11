@@ -16,7 +16,7 @@ const Paginator = ({ totalPosts, postPerPage, setCurrentPage, currentPage }) => 
 
 	return (
 		<div className='flex justify-center mb-3'>
-			<button onClick={prevPage} className='border border-blue-600 rounded-r-lg px-3 hover:bg-blue-500 hover:text-white'>⏪ Preview</button>
+			<button onClick={prevPage} className='border border-blue-600 rounded-l-lg px-3 hover:bg-blue-500 hover:text-white'>⏪ Preview</button>
 			{pages.map((page, index) => {
 				return <button
 					key={index}
@@ -28,7 +28,7 @@ const Paginator = ({ totalPosts, postPerPage, setCurrentPage, currentPage }) => 
 					{page}
 				</button>
 			})}
-			<button onClick={nextPage} className='border border-blue-600 rounded-l-lg px-3 hover:bg-blue-500 hover:text-white'>Next ⏩</button>
+			<button onClick={nextPage} className='border border-blue-600 rounded-r-lg px-3 hover:bg-blue-500 hover:text-white'>Next ⏩</button>
 		</div>
 	)
 }
