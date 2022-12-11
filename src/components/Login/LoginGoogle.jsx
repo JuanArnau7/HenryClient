@@ -22,7 +22,7 @@ const Login = () => {
     document.getElementById("btn-singOut").hidden = false;
   };
 
-  console.log(localStorage.user_jwt);
+  //console.log(localStorage.user_jwt);
   
   useEffect(() => {
     /* global google */
