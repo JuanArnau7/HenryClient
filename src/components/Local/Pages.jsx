@@ -21,7 +21,7 @@ const Pages = ({ data }) => {
 								className="rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600">Add cart</button>
 							<button 
 								onClick={() => moreDetails(dish)}
-								className="rounded-md bg-blue-500 text-white px-3 pb-1 hover:bg-blue-600">Mas detalles</button>
+								className="rounded-md bg-blue-500 text-white px-3 pb-1 hover:bg-blue-600">Detail</button>
 						</div>
 					</div>
 			))}

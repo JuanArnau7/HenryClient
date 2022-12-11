@@ -50,7 +50,7 @@ const AlterHome = () => {
 				<div className={toogleMenu ? "hidden md:block max-md:w-3/12 max-lg:w-4/12 h-screen" : "max-md:w-3/12 max-lg:w-4/12 h-screen"}>
 					<div className="space-y-3">
 						<div className="flex flex-col">
-							<h2 className="font-bold ">Filtros....</h2>
+							<h2 className="font-bold ">Filters....</h2>
 						</div>
 						<div className="flex-1">
 							<ul className="pt-2 pb-4 space-y-1 text-sm">
@@ -71,7 +71,7 @@ const AlterHome = () => {
 			<div className={toogleMenu ? "w-full" : "max-md:w-11/12 max-lg:w-11/12"}>
 				<h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-4">
 					Nuestros platos: 
-					<small className="font-normal text-sm ml-3">(mostrando {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} de {dishes.length} platos disponibles)</small>
+					<small className="font-normal text-sm ml-3">(showing {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} of {dishes.length} available dishes)</small>
 				</h1>
 				<div className="flex flex-wrap justify-between">
 					{currentPost &&
