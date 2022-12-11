@@ -7,30 +7,55 @@ const Register = () => {
   
   const [form, setForm] = useState({
     "fullName" : "",
-    // "lastName" : "",
     "email" : "",
     "country":"",
     "img" : "",
-    "password" : "",
+    "passwordV" : "",
   })
-  
+  const [pass, setPass] = useState({
+    "password": "",
+    "repeatPassword" : ""
+  })
   const [error, setError] = useState({
-    eFirstName: '',
-    eLastName : '',
+    eFullName: '',
     eEmail : '',
     eImg : '',
     ePassword: '',
+    eRPassword: ''
   })
   const dispatch = useDispatch()
 
   const validacionFullName = (input) =>{
-    return console.log("soy la validacion full name")
+    if (input.length < 7){
+      return "Full name required min 7 characters"
+    }
+    if (!input.includes(' ')){
+      return "Full name required ' '."
+    }
+    if (!/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'°,. ]+$/.test(input) && input !== ""){
+      return "Only leters "
+    }
   }
   const validacionEmail = (input) =>{
-    return console.log("soy la validacion email")
+    if (!/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i.test(input) && input !== ""){
+      return "enter a valid email" 
+    }
   }
   const validacionPassword = (input) =>{
-    return console.log("soy la validacion password")
+    if (input.length<6) {
+      return "Password required min 6 characters"
+    }
+    if (pass.password !== pass.repeatPassword){
+      console.log(pass.password)
+      console.log(pass.repeatPassword)
+      setForm({...form, passwordV:pass.repeatPassword})
+      return "Password must match"
+    }
+  }
+  const validacionPasswordR = (input) =>{
+    if (input !== pass.repeatPassword){
+      // return "Passwords must match 2"
+    }
   }
 
   
@@ -41,22 +66,41 @@ const Register = () => {
     dispatch(postUserCreate(form))
   }
   const handleChange = (e) => {
-    if(e.target.name === "fullName") setError({...error, eFirstName:(validacionFullName(e.target.value))})
-    // if(e.target.name === "lastName") setError({...error, eLastName:(validacionLastName(e.target.value))})
+    if(e.target.name === "fullName") setError({...error, eFullName:(validacionFullName(e.target.value))})
     if(e.target.name === "email") setError({...error, eEmail:(validacionEmail(e.target.value))})
     if(e.target.name === "password") setError({...error, ePassword:(validacionPassword(e.target.value))})
-    // if(e.target.name === "country") setError({...error, })
+    if(e.target.name === "repeatPassword") setError({...error, ePassword:(validacionPassword(e.target.value))})
+    
     setForm({
       ...form,
       [e.target.name]:e.target.value
     })
+  }
+
+  const handleChangePass = (e) => {
+    if(e.target.name === "password") setError({...error, eRPassword:(validacionPassword(e.target.value))}) 
+    if(e.target.name === "repeatPassword") setError({...error, eRPassword:(validacionPasswordR(e.target.value))})
+    setPass({
+      ...pass,
+      [e.target.name]:e.target.value
+    })
+    // if(password === repeatPassword) setForm({...form, passwordV:repeatPassword})
   }
   // const handleClickCountry = (e) => {
   //   setForm({
 
   //   })
   // }
-  
+  const desabilitado = (
+    form.country.length &&
+    form.email.length &&
+    form.fullName.length &&
+    form.passwordV.length &&
+    !error.eEmail.length &&
+    !error.eFullName.length && 
+    !error.ePassword.length &&
+    !error.eRPassword.length
+  )
   return(
       <>
             <div className="mt-10 sm:mt-0">
@@ -124,15 +168,19 @@ const Register = () => {
               <div>
                 <label>Password</label>
                 <br></br>
-                <input onChange={handleChange} name={"password"} type={"password"}></input>
+                <input onChange={handleChangePass} name={"password"} type={"password"}></input>
                 <br></br>
                 <label>Repeat password</label>
                 <br></br>
-                <input onChange={handleChange} type={"password"} ></input>
+                <input onChange={handleChangePass} name={"repeatPassword"} type={"password"} ></input>
               </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-            <button onClick={handleClickSubmit} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+          {(desabilitado) ? (
+                    <button onClick={handleClickSubmit} type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" >Save</button>) 
+                    : 
+                    (<button className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 background-color=grey" disabled>Save</button>)
+                    }
           </div>
         </div>
       </form>
