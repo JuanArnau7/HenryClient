@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate()
   const handleCallbackResponse = (response) => {
     //console.log("Enconde JWT ID token" + response.credential)
     const body = { id_token: response.credential };
@@ -16,6 +18,7 @@ const Login = () => {
       .then((resp) => {
         console.log(resp);
         localStorage.setItem("token", resp);
+        if(localStorage.token ) return navigate(`/local/alterHome`);
       })
       .catch(console.warn);
     document.getElementById("singInDiv").hidden = true;
@@ -57,7 +60,6 @@ const Login = () => {
 
   return (
     <>
-      <h1>LOGING</h1>
       <div id="singInDiv"></div>
       <button id="btn-singOut" onClick={handleSingOut}>
         Sing Out
