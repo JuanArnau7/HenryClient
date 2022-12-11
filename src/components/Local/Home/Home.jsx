@@ -49,6 +49,7 @@ const Home = () => {
         postsPerPage={postsPerPage}
         totalPosts={posts.length}
         paginate={paginate}
+        currentPage={currentPage}
       />
       <Menus
         posts={currentPosts}
