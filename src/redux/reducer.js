@@ -1,5 +1,5 @@
 
-import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, FILTER} from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -24,11 +24,19 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
       }
-      case LOGIN_USER_JWT:
-        localStorage.setItem("token", action.payload);
-        return{
-          ...state
-        }
+    case POST_DISH_CREATE:
+      return{
+        ...state, allDishes: [...state.allDishes, action.payload ]
+      }
+    case LOGIN_USER_JWT:
+      localStorage.setItem("token", action.payload);
+      return{
+        ...state
+      }
+    case FILTER:
+      return {
+          ...state, allDishes: [...action.payload]
+      }
     default:
       return { ...state };
   }

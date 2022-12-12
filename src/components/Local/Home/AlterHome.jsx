@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getAllDishes } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
+import FiltroCategoria from "../../Utils/Filter/FiltroCategoria";
+import FiltroPrecios from "../../Utils/Filter/FiltroPrecios";
 import Pages from "../Pages";
 
 const AlterHome = () => {
@@ -52,6 +54,13 @@ const AlterHome = () => {
 											<span className='text-2xl'>{tab.icon}</span>
 											<span>{tab.name}</span>
 										</div>
+										{tab.name === "Precios"?
+										<FiltroPrecios currentPost={currentPost}/>
+										:
+										<>
+										<FiltroCategoria dishes={dishes}/>
+										</>
+										}
 									</li>
 								))}
 							</ul>

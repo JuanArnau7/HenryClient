@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 const NavBarCreateFoods = props => {
 
-    const irAtras = () => {
-    alert("esto va a tener la funcion de ir a atras")
-    }
+	const navigate = useNavigate()
+	const irAtras = () =>{
+		navigate(`/local/alterHome`)
+	}
   return (
     <>
     <nav class="bg-gray-800">
