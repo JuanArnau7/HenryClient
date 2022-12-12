@@ -62,7 +62,7 @@ const CardFood = () => {
 			<div className="sm:flex sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12">
 				<div className="sm:w-full md:w-1/3 md:mr-3 lg:w-2/5 border border-gray-300 rounded-lg shadow-md">
 					<div className="">
-						<img className="max-sm:w-32 max-md:w-48 pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
+						<img className="max-sm:w-fit max-md:w-fit pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
 					<div className="px-5 pb-5">
 						<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h5>
