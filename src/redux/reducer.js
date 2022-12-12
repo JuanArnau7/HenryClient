@@ -1,11 +1,11 @@
 
-import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, GET_LENGTH_CART } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER} from './Actions/actionsTypes'
 
 
 const initialState = {
-  // platos : "platos"
 	allDishes: [],
 	detailDish: {},
+  filterDishes: [],
 	elementsCart: 0
 }
 
@@ -26,12 +26,20 @@ const rootReducer = (state = initialState, action) => {
       return{
         ...state,
       }
-      case LOGIN_USER_JWT:
-        localStorage.setItem("token", action.payload);
-        return{
-          ...state
-        }
-			case GET_LENGTH_CART:
+    case POST_DISH_CREATE:
+      return{
+        ...state, allDishes: [...state.allDishes, action.payload ]
+      }
+    case LOGIN_USER_JWT:
+      localStorage.setItem("token", action.payload);
+      return{
+        ...state
+      }
+    case FILTER:
+      return {
+          ...state, filterDishes: [...action.payload]
+      }
+		case GET_LENGTH_CART:
 				return{
 					...state,
 					elementsCart: action.payload

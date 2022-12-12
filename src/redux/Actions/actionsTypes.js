@@ -7,4 +7,5 @@ export const POST_DISH_CREATE = 'POST_DISH_CREATE'
 export const GET_USER_WITH_JWT = 'GET_USER_WITH_JWT'
 export const GET_LENGTH_CART = "GET_LENGTH_CART"
 
+export const FILTER = 'FILTER'
 
