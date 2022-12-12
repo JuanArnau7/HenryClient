@@ -39,23 +39,23 @@ const FiltroCategoria = () => {
 
   
   const handleChange = (e) => {
-    e.preventDefault()
+    console.log("dishes:", dishes)
+    dispatch(getAllDishes())
     if (e.target.value === "All") {
       dispatch(getAllDishes())
     } else {
-      let actualizar = dispatch(getAllDishes())
-      if (actualizar) {
-        dispatch(filtrar(dishes.filter(d => {
-          if (d.lenguage.es.type.includes(e.target.value)) return d
-        })))
-      }
-      }
+      dispatch(filtrar(dishes.filter(d => {
+        if (d.lenguage.es.type.includes(e.target.value)) return d
+      })))
+    }
   }
+
 
   useEffect(() => {
     setCategorias(categorias)
+    dispatch(getAllDishes())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dishes]);
+  }, [dispatch]);
   
     return(
       <>

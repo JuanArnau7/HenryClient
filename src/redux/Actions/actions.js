@@ -81,12 +81,6 @@ export const filtrar = (arr)  => {
     }
 }
 
-export const filtrar = (arr)  => {
-    return async dispatch => {
-        return dispatch({ type: FILTER, payload: arr })
-    }
-}
-
 export const validarUserJWT = (token)=>{
     return async(dispatch)=>{
 
