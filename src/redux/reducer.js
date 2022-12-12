@@ -21,6 +21,7 @@ const rootReducer = (state = initialState, action) => {
 				detailDish: state.allDishes.find(dish => dish._id === action.payload.id)
 			}
     case POST_USER_CREATE:
+      
       return{
         ...state,
       }
