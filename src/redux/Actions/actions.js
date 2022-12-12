@@ -1,6 +1,4 @@
-
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT,  FILTER  } from './actionsTypes'
-
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART } from './actionsTypes'
 import axios from 'axios'
 const URL = process.env.REACT_APP_URL || "http://localhost:3001/";
 
@@ -110,4 +108,15 @@ export const validarUserJWT = (token)=>{
             console.log(error)
         }
     }
+}
+
+export const getLengthCart = () =>{
+	return async dispatch =>{
+		const lengthCart = await JSON.parse(localStorage.getItem("dishes"));
+		return dispatch({
+			type: GET_LENGTH_CART,
+			payload: lengthCart.length
+		})
+
+	}
 }
