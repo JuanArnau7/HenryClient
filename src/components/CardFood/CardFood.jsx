@@ -23,27 +23,27 @@ const CardFood = () => {
 			setDishInCart(true)
 			localStorage.setItem("dishes", JSON.stringify(cartDishes))
 			Swal.fire({
-				title: "Elemento agregado",
-				text: `Haz agregado ${dish.name} correctamente`,
+				title: "Added element",
+				text: `You have added ${dish.name} correctly`,
 				icon: "success",
 				timer: 2000
 			})
 		} else {
 			const confirm = await Swal.fire({
-				title: "Estas seguro",
-				text: `Seguro deseas eliminar ${dish.name} de tu carrito de compras`,
+				title: "Are you sure?",
+				text: `Are you sure you want to remove ${dish.name} from your shopping cart?`,
 				icon: "question",
 				showCancelButton: true,
-				confirmButtonText: "Eliminar",
-				cancelButtonText: "Cancelar"
+				confirmButtonText: "Remove",
+				cancelButtonText: "Cancel"
 			})
 			if (confirm.isConfirmed) {
 				cartDishes.splice(index, 1)
 				setDishInCart(false)
 				localStorage.setItem("dishes", JSON.stringify(cartDishes))
 				Swal.fire({
-					title: "Platillo eliminado",
-					text: `Haz eliminado ${dish.name} correctamente`,
+					title: "Dish removed",
+					text: `You have removed ${dish.name} correctly`,
 					icon: "info",
 					timer: 2000
 				})
@@ -62,20 +62,20 @@ const CardFood = () => {
 			<div className="sm:flex sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12">
 				<div className="sm:w-full md:w-1/3 md:mr-3 lg:w-2/5 border border-gray-300 rounded-lg shadow-md">
 					<div className="">
-						<img className="max-sm:w-32 max-md:w-48 pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
+						<img className="max-sm:w-fit max-md:w-fit pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
 					<div className="px-5 pb-5">
 						<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h5>
-						<p className="text-lg font-semibold text-blue-500">Antes <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
-						<p className="text-xl font-bold text-emerald-600">Ahora ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish?.price * 1)}</span></p>
+						<p className="text-lg font-semibold text-blue-500">Before <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
+						<p className="text-xl font-bold text-emerald-600">Now ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish?.price * 1)}</span></p>
 
 						<div className="flex items-center justify-center mt-4">
 							<button
 								onClick={() => addOrRemoveFromCart(dish._id)}
-								className={dishInCart ? "rounded-md bg-blue-500 text-white px-3 pb-1 hover:bg-blue-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
+								className={dishInCart ? "rounded-md bg-red-500 text-white px-3 pb-1 hover:bg-red-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
 							>{dishInCart
-								? <span className='inline-flex align-middle'>Eliminar del carrito <MdRemoveShoppingCart className='mt-1 mx-2 text-lg'/></span>
-								: <span className='inline-flex align-middle'>Agregar al carrito <FaCartArrowDown className='mt-1 mx-2 text-xl'/></span>  
+								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg'/></span>
+								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl'/></span>  
 								}
 							</button>
 						</div>
@@ -83,7 +83,7 @@ const CardFood = () => {
 				</div>
 				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/5 bg-white rounded-lg shadow-md">
 					<div>
-						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detalles de <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
+						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
 						<p>{dish?.lenguage?.en?.descripcion}</p>
 					</div>
 				</div>
