@@ -5,6 +5,8 @@ import { detailsDish } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
+import NavBarCreateFoods from '../CreateFood/components/NavBarCreateFoods';
+import "./CardFood.css"
 
 const CardFood = () => {
 	const dispatch = useDispatch()
@@ -58,8 +60,12 @@ const CardFood = () => {
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
 	return (
-		<div>
-			<div className="sm:flex sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12">
+		<div className='BackgroundFood h-screen w-screen '>
+			<NavBarCreateFoods/>
+			<div className=' h-screen flex justify-center items-center BackgroundFood'>
+
+			
+			<div className="sm:flex sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-gray-100 flex justify-center items-center">
 				<div className="sm:w-full md:w-1/3 md:mr-3 lg:w-2/5 border border-gray-300 rounded-lg shadow-md">
 					<div className="">
 						<img className="max-sm:w-fit max-md:w-fit pt-8 pb-4 px-4 rounded-t-lg mx-auto" src={dish?.img} alt={dish?.lenguage?.en?.name} />
@@ -87,6 +93,7 @@ const CardFood = () => {
 						<p>{dish?.lenguage?.en?.descripcion}</p>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 	)

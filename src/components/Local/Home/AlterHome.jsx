@@ -8,6 +8,7 @@ import Pages from "../Pages";
 import NavBar from "../../Utils/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
+import "./AlterHome.css"
 // import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
@@ -43,10 +44,10 @@ const AlterHome = () => {
 	}
 
 	return (
-		<div className="bg-gradient-to-tr from-white via-gray-100 to-white h-fit">
+		<div className="AlterHome h-fit">
 			<NavBar handleLogOut={handleLogOut} handleCreate={handleCreate} />
-			<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit">
-				<div className="w-full">
+			<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-gray-100">
+				<div className="w-full mt-5">
 
 					<button type="button"
 						className="flex m-4 text-sm text-gray-500 md:hidden"
@@ -57,7 +58,7 @@ const AlterHome = () => {
 							<path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path>
 						</svg>
 					</button>
-					<div className={toogleMenu ? "hidden md:block h-fit" : "h-fit"}>
+					<div className={toogleMenu ? "hidden md:block h-fit mt-10" : "h-fit mt-10"}>
 						<div className="flex-1">
 							<ul className="flex justify-end items-center pt-2 pb-4 space-y-1 text-sm">
 								{tabs.map((tab, index) => (
