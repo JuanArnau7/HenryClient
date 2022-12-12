@@ -48,6 +48,21 @@ export const getAllDishes = () => {
 		}
 	}
 }
+export const getFilterDishes = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`${URL}foods`);
+            console.log("response", response)
+			return dispatch({
+				type: FILTER,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error Redux actions on get all dishes", error.message);
+			return error
+		}
+	}
+}
 
 export const detailsDish = (id) => {
 	return async (dispatch) => {

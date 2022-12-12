@@ -3,9 +3,9 @@ import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, POST_D
 
 
 const initialState = {
-  // platos : "platos"
 	allDishes: [],
-	detailDish: {}
+	detailDish: {},
+  filterDishes: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -36,7 +36,7 @@ const rootReducer = (state = initialState, action) => {
       }
     case FILTER:
       return {
-          ...state, allDishes: [...action.payload]
+          ...state, filterDishes: [...action.payload]
       }
     default:
       return { ...state };
