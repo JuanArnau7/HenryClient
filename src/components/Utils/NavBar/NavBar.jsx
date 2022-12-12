@@ -26,7 +26,7 @@ const NavBar = ({handleLogOut, handleCreate}) => {
   return (
     <>
 
-      <nav className=" px-2 sm:px-4 py-2.5 bg-red-500 shadow-xl">
+      <nav className=" px-2 sm:px-4 py-2.5 bg-red-500 shadow-xl fixed w-screen">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <Link to='/' ><span className="flex items-center">
             <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
