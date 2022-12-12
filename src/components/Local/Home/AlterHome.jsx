@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom";
 import { getAllDishes } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
-import NavBar from "../../Utils/NavBar/NavBar";
 import Pages from "../Pages";
-import NavBar from "../../Utils/NavBar/NavBar"
+import NavBar from "../../Utils/NavBar/NavBar";
+// import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
 	const dishes = useSelector(state => state.allDishes)
 	const dispatch = useDispatch()
@@ -22,8 +22,8 @@ const AlterHome = () => {
 	}, [dispatch])
 
 	const tabs = [
-		{ name: "Precios", content: "precio", icon: "💵" },
-		{ name: "Categorias", content: "Categoria", icon: "🍽️" }
+		{ name: "Prices", content: "precio", icon: "💵" },
+		{ name: "Categories", content: "Categoria", icon: "🍽️" }
 	];
 
 	const [toogleMenu, setToogleMenu] = useState(true)
