@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useDispatch } from 'react-redux';
+import { getLengthCart } from '../../redux/Actions/actions';
 
 const Pages = ({ data }) => {
 	const navigate = useNavigate()
 	const [cartDishes, setCartDishes] = useState(JSON.parse(localStorage.getItem("dishes")))
+	const dispatch = useDispatch()
 
 	const addCart = async (dish) => {
 		const index = cartDishes.findIndex(el => el.id === dish._id)
@@ -15,6 +18,7 @@ const Pages = ({ data }) => {
 			const addDishes = [...cartDishes, addDish]
 			localStorage.setItem("dishes", JSON.stringify(addDishes))
 			setCartDishes(addDishes)
+			dispatch(getLengthCart())
 			Swal.fire({
 				title: "Added element",
 				text: `You have added ${dish?.lenguage?.en?.name} correctly`,
@@ -34,6 +38,7 @@ const Pages = ({ data }) => {
 				const updateDishes = cartDishes.filter(el => el.id !== dish._id)
 				localStorage.setItem("dishes", JSON.stringify(updateDishes))
 				setCartDishes(updateDishes)
+				dispatch(getLengthCart())
 				Swal.fire({
 					title: "Dish removed",
 					text: `You have removed ${dish?.lenguage?.en?.name} correctly`,
@@ -47,6 +52,11 @@ const Pages = ({ data }) => {
 	const moreDetails = (dish) => {
 		navigate(`/detailDish/${dish._id}`)
 	}
+
+	useEffect(() => {
+
+	}, [dispatch])
+
 
 	return (
 		<div className='flex flex-wrap justify-around'>
@@ -65,8 +75,8 @@ const Pages = ({ data }) => {
 								onClick={() => addCart(dish)}
 								className={cartDishes.find(d => d.id === dish._id) ? "rounded-md bg-red-500 text-white px-3 pb-1 hover:bg-red-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
 							>{cartDishes.find(d => d.id === dish._id)
-								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg'/></span>
-								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl'/></span>  
+								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
+								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
 								}
 							</button>
 						</div>
