@@ -17,7 +17,7 @@ import { Link } from "react-router-dom"
 import { useState } from "react"
 import SearchBar from "../SearchBar/SearchBar"
 
-const NavBar = ({handleLogOut}) => {
+const NavBar = ({handleLogOut, handleCreate}) => {
   const [Menu, setMenu] = useState(false)
 
   // Set menu
@@ -40,14 +40,11 @@ const NavBar = ({handleLogOut}) => {
                 <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
               </div>
               <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-900  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-900  dark:bg-gray-800 md:dark:bg-red-500 dark:border-gray-700">
-                {/* <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir en Local</a>
+                <li>
+                <button onClick={() => handleLogOut()} className="block py-2 pl-3 pr-4 text-white rounded mr-4 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >LOGOUT</button>
                 </li>
                 <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir Delivey</a>
-                </li> */}
-                <li>
-                <button onClick={() => handleLogOut()} className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >LOGOUT</button>
+                <button onClick={() => handleCreate()} className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" >CREATE</button>
                 </li>
               </ul>
             </div>

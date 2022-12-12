@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom";
-import { getAllDishes } from "../../../redux/Actions/actions";
+import { getAllDishes, getFilterDishes } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
+import FiltroCategoria from "../../Utils/Filter/FiltroCategoria";
+import FiltroPrecios from "../../Utils/Filter/FiltroPrecios";
 import Pages from "../Pages";
 import NavBar from "../../Utils/NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
+import { FaFilter, FaSort } from "react-icons/fa";
 // import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
-	const dishes = useSelector(state => state.allDishes)
+	const dishes = useSelector(state => state.filterDishes)
 	const dispatch = useDispatch()
+	useEffect(() => {
+		dispatch(getFilterDishes())
+	}, [dispatch])
+	
 
 	// Information for paginator component
 	const [currentPage, setCurrentPage] = useState(1);
@@ -17,13 +24,10 @@ const AlterHome = () => {
 	const firstPostIndex = lastPostIndex - postPerPage;
 	const currentPost = dishes.slice(firstPostIndex, lastPostIndex);
 
-	useEffect(() => {
-		dispatch(getAllDishes())
-	}, [dispatch])
 
 	const tabs = [
-		{ name: "Prices", content: "precio", icon: "💵" },
-		{ name: "Categories", content: "Categoria", icon: "🍽️" }
+		{ name: "Sort", content: "precio", icon: <FaSort/> },
+		{ name: "Categories", content: "Categoria", icon: <FaFilter/> }
 	];
 
 	const [toogleMenu, setToogleMenu] = useState(true)
@@ -34,10 +38,13 @@ const AlterHome = () => {
 		localStorage.clear();
 		navigate(`/`);
 	}
+	const handleCreate = () => {
+		navigate(`/createFood`);
+	}
 
 	return (
 		<div className="bg-gradient-to-tr from-white via-gray-100 to-white h-fit">
-			<NavBar handleLogOut={handleLogOut} />
+			<NavBar handleLogOut={handleLogOut} handleCreate={handleCreate} />
 			<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit">
 				<div className="w-full">
 
@@ -51,18 +58,19 @@ const AlterHome = () => {
 						</svg>
 					</button>
 					<div className={toogleMenu ? "hidden md:block h-fit" : "h-fit"}>
-
-						<div className="flex flex-col">
-							<h2 className="font-bold text-right">Filters....</h2>
-						</div>
 						<div className="flex-1">
-							<ul className="flex justify-end pt-2 pb-4 space-y-1 text-sm">
+							<ul className="flex justify-end items-center pt-2 pb-4 space-y-1 text-sm">
 								{tabs.map((tab, index) => (
-									<li key={index}>
+									<li key={index} className="flex justify-center items-center ">
 										<div className="flex items-center p-2 sm:space-x-2 md:space-x-3">
 											<span className='text-2xl'>{tab.icon}</span>
 											<span>{tab.name}</span>
 										</div>
+										{tab.name === "Sort"?
+										<FiltroPrecios/>
+										:
+										<FiltroCategoria dishes={dishes}/>
+										}
 									</li>
 								))}
 							</ul>
