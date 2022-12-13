@@ -12,6 +12,7 @@ export function postUserCreate(payload) {
         } catch (error) {
             // alert ("Connection to /Post Users Failed. ERROR:"+ error)
             // console.log(error)
+            console.log("HOLAAA", error.response)
             return error.response
         }
     }
