@@ -85,7 +85,7 @@ const AlterHome = () => {
 						Our dishes:
 						<small className="font-normal text-sm ml-3">(showing {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} of {dishes.length} available dishes)</small>
 					</h1>
-					<div className="flex flex-wrap justify-between">
+					<div className="flex flex-wrap justify-between min-h-screen min-w-screen">
 						{currentPost &&
 							<div>
 								<Paginator
