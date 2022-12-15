@@ -1,11 +1,14 @@
+import React, { useRef } from "react";
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { postUserCreate } from "../../redux/Actions/actions"
 import { useNavigate } from 'react-router-dom'
 import Swal from "sweetalert2";
 import { AiOutlineEyeInvisible, AiOutlineEye  } from "react-icons/ai"
+import ReCAPTCHA from "react-google-recaptcha";
 const Register = () => {
   const [visible, setVisible] = useState(true)
+  const captcha = useRef(null)
   const [form, setForm] = useState({
     "fullName" : "",
     "email" : "",
@@ -81,23 +84,32 @@ const Register = () => {
     Swal.fire({
       title: "User created successfully",
       text: "",
-      icon: "warning",
+      icon: "success",
       confirmButtonText: "OK",
     });
   };
   const handleClickSubmit = async (e) => {
     e.preventDefault()
-    var creacion = await dispatch(postUserCreate(form))
-    console.log("CREACION " ,creacion)
-    if (creacion?.status === 200){
-      correctCreation()
-      navigate("/login")
-    }
-    if (creacion?.status === 400){
-      errorRepeat()
-    } 
-    if (!creacion){
-      errorConection()
+    if (captcha.current.getValue()) {
+      var creacion = await dispatch(postUserCreate(form))
+      console.log("CREACION " ,creacion)
+      if (creacion.status === 200){
+        correctCreation()
+        navigate("/login")
+      }
+      if (creacion.status === 400){
+        errorRepeat()
+      } 
+      if (!creacion){
+        errorConection()
+      }
+    } else {
+      Swal.fire({
+        title: "Captcha Error!",
+        text: "",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   }
   
@@ -194,6 +206,12 @@ const Register = () => {
                 <p className="block text-sm font-medium text-red-700">{error.ePassword}</p>
                 {/* <input onChange={handleChangePass} name={"repeatPassword"} type={"password"} className="h-7 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></input> */}
                 {/* <p className="block text-sm font-medium text-red-700">{error.ePassword}</p> */}
+                <div className="flex justify-center items-center mt-5">
+                <ReCAPTCHA
+                  sitekey="6LfWi34jAAAAAGh1rW_GwTTSd-7B9KG18NEId5Pz"
+                  ref={captcha}
+                />,
+                </div>
               </div>
           </div>
           <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">

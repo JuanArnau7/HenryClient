@@ -1,3 +1,4 @@
+import React from "react";
 const Dish = ({ image, name, diets, id }) => {
   return(
     <div>
