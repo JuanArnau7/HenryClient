@@ -46,7 +46,7 @@ const FiltroCategoria = () => {
       dispatch(getFilterDishes())
     } else {
       dispatch(filtrar(dishes.filter(d => {
-        if (d.lenguage.es.type.includes(e.target.value)) return d
+        if (d.lenguage.es.type?.includes(e.target.value)) return d
       })))
     }
   }
