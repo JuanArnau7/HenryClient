@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
-import { detailsDish } from '../../redux/Actions/actions';
+import { detailsDish, getLengthCart } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -15,15 +15,16 @@ const CardFood = () => {
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === id.id)
-	
+
 	const [dishInCart, setDishInCart] = useState(findDish ? true : false)
 
-	const addOrRemoveFromCart = async (id) =>{
+	const addOrRemoveFromCart = async (id) => {
 		const index = cartDishes.findIndex(el => el.id === id)
-		if(index < 0){
+		if (index < 0) {
 			cartDishes.push({ id: dish._id, name: dish.name, img: dish.img, price: dish.price })
 			setDishInCart(true)
 			localStorage.setItem("dishes", JSON.stringify(cartDishes))
+			dispatch(getLengthCart())
 			Swal.fire({
 				title: "Added element",
 				text: `You have added ${dish.name} correctly`,
@@ -43,6 +44,7 @@ const CardFood = () => {
 				cartDishes.splice(index, 1)
 				setDishInCart(false)
 				localStorage.setItem("dishes", JSON.stringify(cartDishes))
+				dispatch(getLengthCart())
 				Swal.fire({
 					title: "Dish removed",
 					text: `You have removed ${dish.name} correctly`,
@@ -55,6 +57,7 @@ const CardFood = () => {
 
 	useEffect(() => {
 		dispatch(detailsDish(id))
+		console.log("dish", dish)
 	}, [dispatch, id])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -80,8 +83,8 @@ const CardFood = () => {
 								onClick={() => addOrRemoveFromCart(dish._id)}
 								className={dishInCart ? "rounded-md bg-red-500 text-white px-3 pb-1 hover:bg-red-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
 							>{dishInCart
-								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg'/></span>
-								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl'/></span>  
+								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
+								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
 								}
 							</button>
 						</div>
@@ -89,8 +92,8 @@ const CardFood = () => {
 				</div>
 				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/5 bg-white rounded-lg shadow-md">
 					<div>
-						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
-						<p>{dish?.lenguage?.en?.descripcion}</p>
+						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish.lenguage?.en?.name}</span></h5>
+						<p>{dish.lenguage?.en?.descripcion}</p>
 					</div>
 				</div>
 			</div>

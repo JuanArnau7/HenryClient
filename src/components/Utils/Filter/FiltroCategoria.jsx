@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { filtrar, getAllDishes, getFilterDishes } from "../../../redux/Actions/actions"
@@ -45,7 +46,7 @@ const FiltroCategoria = () => {
       dispatch(getFilterDishes())
     } else {
       dispatch(filtrar(dishes.filter(d => {
-        if (d.lenguage.es.type.includes(e.target.value)) return d
+        if (d.lenguage.es.type?.includes(e.target.value)) return d
       })))
     }
   }

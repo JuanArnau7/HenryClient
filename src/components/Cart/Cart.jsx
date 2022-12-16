@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { IoIosRestaurant } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Cart = () => {
 	const [cartDishes, setCartDishes] = useState(JSON.parse(localStorage.getItem("dishes")))
+	const navigate = useNavigate()
 
 	let total = cartDishes.reduce((sum, curr) => sum + curr.price * curr.cant, 0)
 
@@ -19,6 +22,8 @@ const Cart = () => {
   const justNumbers = (e) => {
     ((e.key === 'Backspace') || (e.key === 'Tab') || (e.key.includes('Arrow')) || (!/[0-9]/.test(e.key))) && (e.preventDefault())
   }
+
+	const goToHome = () => navigate('/local/alterHome')
 
 	return (
 		<div className='mb-16'>
@@ -85,7 +90,7 @@ const Cart = () => {
 				<button
 					className='rounded-md bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
 				>
-					Pedir a la mesa
+					Order to table
 					<div className='flex justify-center'>
 						<IoIosRestaurant className='text-4xl' />
 					</div>
@@ -94,9 +99,19 @@ const Cart = () => {
 				<button
 					className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 				>
-					Pedido a domicilio
+					Order at home
 					<div className='flex justify-center'>
 						<TbTruckDelivery className='text-4xl' />
+					</div>
+				</button>
+
+				<button
+					className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
+					onClick={goToHome}
+				>
+					Back to home
+					<div className='flex justify-center'>
+						<AiOutlineHome className='text-4xl' />
 					</div>
 				</button>
 			</div>

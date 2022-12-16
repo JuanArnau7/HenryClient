@@ -1,7 +1,8 @@
+import React from "react";
 import { loginUserJWT } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
+import './Login.css'
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -40,7 +41,7 @@ const Login = () => {
   // loginUserJWT
   return (
     <>
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen Center">
         <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
           <div className="mb-8 flex justify-center">
             <img

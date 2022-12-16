@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link, useNavigate } from "react-router-dom"
+import { BsCart4 } from "react-icons/bs"
 
 // const NavBar = () => {
 //     return(
@@ -14,8 +16,10 @@ import { Link } from "react-router-dom"
   
 //   export default NavBar
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import SearchBar from "../SearchBar/SearchBar"
+import { useDispatch, useSelector } from "react-redux"
+import { getLengthCart } from "../../../redux/Actions/actions"
 
 const NavBar = ({handleLogOut, handleCreate}) => {
   const [Menu, setMenu] = useState(false)
@@ -23,10 +27,23 @@ const NavBar = ({handleLogOut, handleCreate}) => {
   // Set menu
   const manageMenu = () => Menu ? setMenu(false) : setMenu(true)
 
+	const carrito = useSelector(state => state.elementsCart)
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
+	const goToCart = () =>{
+		navigate('/cart')
+	}
+	
+	useEffect(() => {
+		dispatch(getLengthCart())		
+	}, [carrito, dispatch])
+	
+
   return (
     <>
 
-      <nav className=" px-2 sm:px-4 py-2.5 bg-red-500 shadow-xl fixed w-screen">
+      <nav className=" px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl  w-full">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <Link to='/' ><span className="flex items-center">
             <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
@@ -80,6 +97,12 @@ const NavBar = ({handleLogOut, handleCreate}) => {
             </button>
           </div>
 
+
+					<div onClick={goToCart}
+						className="flex md:order-4 cursor-pointer hover:border hover:border-white hover:px-2 hover:py-2 hover:rounded-md">
+						<BsCart4 className="text-3xl text-white"/>
+						<sup className="text-red-500 bg-white mb-3 px-2 pt-2 rounded-full">{carrito}</sup>
+					</div>
         </div>
       </nav>
 
