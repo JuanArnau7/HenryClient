@@ -1,6 +1,5 @@
 
-import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER} from './Actions/actionsTypes'
-
+import { LOGIN_USER_JWT, POST_USER_CREATE,  DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, FILTER, GET_NAME_DISHES, GET_LENGTH_CART} from './Actions/actionsTypes'
 
 const initialState = {
 	allDishes: [],
@@ -39,6 +38,11 @@ const rootReducer = (state = initialState, action) => {
       return {
           ...state, filterDishes: [...action.payload]
       }
+    case GET_NAME_DISHES: 
+      return {
+        ...state,
+        filterDishes: action.payload
+    }
 		case GET_LENGTH_CART:
 				return{
 					...state,
