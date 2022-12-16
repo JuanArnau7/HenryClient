@@ -9,13 +9,20 @@ import NavBar from "../../Utils/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
+import Loading from "../../Utils/Loading/Loading";
 // import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
 	const dispatch = useDispatch()
+	const [Visible, setVisible] = useState(true)
 	useEffect(() => {
 		dispatch(getFilterDishes())
 	}, [dispatch])
+	useEffect(() => {
+		setTimeout(()=>{
+		 setVisible(false)
+		}, 1500 )
+	}, [dishes])
 	
 
 	// Information for paginator component
@@ -44,9 +51,24 @@ const AlterHome = () => {
 	}
 
 	return (
+		<>
+		{Visible?
+		<>
 		<div className="AlterHome h-fit">
+		<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-white">
+		<NavBar handleLogOut={handleLogOut} handleCreate={handleCreate} />
+
+		<div className="flex justify-center items-center shadow-xl h-screen w-full bg-white">
+		<Loading Visible={Visible}/>
+		</div>
+		</div>
+		</div>
+		</>
+		:
+		<>
+		<div className="AlterHome h-fit">
+		<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-white">
 			<NavBar handleLogOut={handleLogOut} handleCreate={handleCreate} />
-			<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-gray-100">
 				<div className="w-full mt-5">
 
 					<button type="button"
@@ -85,7 +107,7 @@ const AlterHome = () => {
 						Our dishes:
 						<small className="font-normal text-sm ml-3">(showing {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} of {dishes.length} available dishes)</small>
 					</h1>
-					<div className="flex flex-wrap justify-between">
+					<div className="flex flex-wrap justify-between min-h-screen min-w-screen">
 						{currentPost &&
 							<div>
 								<Paginator
@@ -108,6 +130,8 @@ const AlterHome = () => {
 				</div>
 			</div>
 		</div>
+		</>}
+		</>
 
 	)
 }

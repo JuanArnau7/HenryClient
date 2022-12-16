@@ -3,8 +3,6 @@ import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import LocalHome from './components/Local/Home/Home';
 import DeliveryHome from './components/Delivery/Home/Home';
 import Landing from './components/Landing/Landing';
-import RegisterMenus from './components/Dashboard/RegisterMenus/RegisterMenus';
-import RegisterDishes from './components/Dashboard/RegisterDishes/RegisterDishes';
 import Register from './components/Register/Register'
 import LoginGoogle from "./components/Login/LoginGoogle";
 import CardFood from './components/CardFood/CardFood';
@@ -15,6 +13,7 @@ import Login from './components/Login/Login';
 import Cart from "./components/Cart/Cart";
 import CreateFood from './components/CreateFood/CreateFood';
 import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 
 function App() {
@@ -38,6 +37,8 @@ function App() {
 					<Route exact path='/dashboard/menus' element={<RegisterMenus />} />
 					<Route exact path='/dashboard/dishes' element={<RegisterDishes />} />
 					<Route exact path='/detailDish/:id' element={<CardFood />} />					
+					<Route exact path='/dashboard' element={<Dashboard />} />
+					<Route exact path='/detailDish/:id' element={<CardFood />} />
 					<Route exact path='/register' element={<Register />} />
 					<Route exact path='/perfil' element={<PerfilUsuario />} />
 					<Route exact path='/cart' element={<Cart />} />

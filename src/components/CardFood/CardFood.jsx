@@ -57,6 +57,7 @@ const CardFood = () => {
 
 	useEffect(() => {
 		dispatch(detailsDish(id))
+		console.log("dish", dish)
 	}, [dispatch, id])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -91,8 +92,8 @@ const CardFood = () => {
 				</div>
 				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/5 bg-white rounded-lg shadow-md">
 					<div>
-						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
-						<p>{dish?.lenguage?.en?.descripcion}</p>
+						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish.lenguage?.en?.name}</span></h5>
+						<p>{dish.lenguage?.en?.descripcion}</p>
 					</div>
 				</div>
 			</div>
