@@ -6,4 +6,5 @@ export const LOGIN_USER_JWT = 'LOGIN_USER_JWT'
 export const POST_DISH_CREATE = 'POST_DISH_CREATE'
 export const GET_USER_WITH_JWT = 'GET_USER_WITH_JWT'
 export const FILTER = 'FILTER'
+export const GET_NAME_DISHES = 'GET_NAME_DISHES'
 

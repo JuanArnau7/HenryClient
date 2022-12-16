@@ -23,7 +23,7 @@ const AlterHome = () => {
 	const postPerPage = 8
 	const lastPostIndex = currentPage * postPerPage;
 	const firstPostIndex = lastPostIndex - postPerPage;
-	const currentPost = dishes.slice(firstPostIndex, lastPostIndex);
+	const currentPost = dishes.length > 7 ? dishes.slice(firstPostIndex, lastPostIndex) : dishes
 
 
 	const tabs = [
