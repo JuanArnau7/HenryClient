@@ -14,6 +14,7 @@ import AlterHome from "./components/Local/Home/AlterHome";
 import Login from './components/Login/Login';
 import Cart from "./components/Cart/Cart";
 import CreateFood from './components/CreateFood/CreateFood';
+import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 
 
 function App() {
@@ -36,8 +37,9 @@ function App() {
 					<Route exact path="/deliver/home" element={<DeliveryHome />} />
 					<Route exact path='/dashboard/menus' element={<RegisterMenus />} />
 					<Route exact path='/dashboard/dishes' element={<RegisterDishes />} />
-					<Route exact path='/detailDish/:id' element={<CardFood />} />
+					<Route exact path='/detailDish/:id' element={<CardFood />} />					
 					<Route exact path='/register' element={<Register />} />
+					<Route exact path='/perfil' element={<PerfilUsuario />} />
 					<Route exact path='/cart' element={<Cart />} />
 					<Route path='/login' element={<Login/>} >
           <Route path='google' element={<LoginGoogle/>} />

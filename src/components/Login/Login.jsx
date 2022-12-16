@@ -31,10 +31,15 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    dispatch(loginUserJWT(user));
-    //await dispatch(validarUserJWT({ token: localStorage.token }))
-    if (localStorage.token) return navigate(`/local/alterHome`);
-    errorLoging();
+    const res = await dispatch(loginUserJWT(user));
+		const token = localStorage.getItem("token")
+		if(res === 400 || !token)	return errorLoging(); 
+		Swal.fire({
+			title: "Welcome",
+			text: "Welcome to our page",
+			icon: "success"
+		})
+		navigate('/perfil')
   };
 
   // loginUserJWT
