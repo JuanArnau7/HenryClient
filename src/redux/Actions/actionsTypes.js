@@ -8,6 +8,7 @@ export const GET_LENGTH_CART = "GET_LENGTH_CART"
 export const GET_USER_BY_ID = "GET_USER_BY_ID"
 export const DELETE_USER = "DELETE_USER"
 export const UPDATE_USER = "UPDATE_USER"
+export const LOGOUT = "LOGOUT"
 
 export const FILTER = 'FILTER'
 

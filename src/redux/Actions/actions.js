@@ -1,4 +1,4 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT } from './actionsTypes'
 import axios from 'axios'
 const URL = process.env.REACT_APP_URL || "http://localhost:3001/";
 
@@ -6,11 +6,10 @@ export function postUserCreate(payload) {
 	return async function (dispatch) {
 		try {
 			const res = await axios.post(`http://localhost:3001/users`, payload)
-			console.log("Respuesta al crear usuario", res.data);
 			localStorage.setItem("token", res.data)
 			return dispatch({ 
 				type: POST_USER_CREATE, 
-				payload: res.data 
+				payload: res 
 			});
 		} catch (error) {
 			console.log("Error Redux action on post user create", error.response)
@@ -29,7 +28,7 @@ export const loginUserJWT = (data) => {
 			})
 		} catch (error) {
 			console.log("Error Redux on login local", error.response)
-			return error.response.status
+			return error.response
 		}
 	}
 }
@@ -52,7 +51,7 @@ export const getFilterDishes = () => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(`${URL}foods`);
-			console.log("response", response)
+			console.log("response redux get filter dishes", response)
 			return dispatch({
 				type: FILTER,
 				payload: response.data
@@ -159,12 +158,20 @@ export const updateUser = (id, data) => {
 			const response = await axios.patch(`${URL}users/updateUser/${id}`, data)
 			dispatch({
 				type: UPDATE_USER,
-				payload: data
+				payload: response.data
 			})
 			return response
 		} catch (error) {
 			console.log("Error Redux action on update user", error.response);
 			return error.response
 		}
+	}
+}
+
+export const logOut = () =>{
+	return async dispatch => {
+		dispatch({
+			type: LOGOUT,
+		})
 	}
 }

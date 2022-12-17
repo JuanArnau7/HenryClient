@@ -22,8 +22,8 @@ const Login = () => {
   };
   const errorLoging = () => {
     Swal.fire({
-      title: "wrong email and password!!!",
-      text: "",
+      title: "Login failed!",
+      text: "User not found or password incorrect",
       icon: "warning",
       confirmButtonText: "OK",
     });
@@ -34,7 +34,7 @@ const Login = () => {
   const handleSubmit = async () => {
     const res = await dispatch(loginUserJWT(user));
 		const token = localStorage.getItem("token")
-		if(res === 400 || !token)	return errorLoging(); 
+		if(res.status === 400 || !token)	return errorLoging(); 
 		Swal.fire({
 			title: "Welcome",
 			text: "Welcome to our page",
