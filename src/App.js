@@ -14,6 +14,8 @@ import Cart from "./components/Cart/Cart";
 import CreateFood from './components/CreateFood/CreateFood';
 import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 import Dashboard from "./components/Dashboard/Dashboard";
+import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
+import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
 
 
 function App() {

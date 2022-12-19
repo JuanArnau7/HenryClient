@@ -59,10 +59,10 @@ const DataUser = () => {
 						</div>
 						: <div className='mb-14'>
 							<h3 className='text-center font-bold mb-4 text-xl'>These are your users credentials</h3>
-							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user?.fullName} </p>
-							<p className='mb-2'><span className='font-bold'>Email:   </span> {user?.email}</p>
-							<p className='mb-2'><span className='font-bold'>Country:     </span> {user?.country || "You have not registred your country"}</p>
-							<p className='mb-2'><span className='font-bold'>City:   </span> {user?.city || "You have not registred your city"}</p>
+							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user.fullName} </p>
+							<p className='mb-2'><span className='font-bold'>Email:   </span> {user.email}</p>
+							<p className='mb-2'><span className='font-bold'>Country:     </span> {user.country || "You have not registred your country"}</p>
+							<p className='mb-2'><span className='font-bold'>City:   </span> {user.city || "You have not registred your city"}</p>
 							<div className='flex justify-around mt-8'>
 								<button onClick={logOut}
 									className="rounded-md bg-yellow-400 text-blue-900 px-5 pb-1 hover:bg-yellow-500 hover:font-semibold"

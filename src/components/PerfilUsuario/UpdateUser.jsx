@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useFormik } from 'formik';
 import { updateUser } from '../../redux/Actions/actions';
 import Swal from "sweetalert2";
+import { useFormik } from 'formik';
 
 const validate = values => {
 	const errors = {};
@@ -165,7 +165,7 @@ const UpdateUser = () => {
 					value={formik.values.country}
 				>
 					<option defaultValue hidden>Selecciona una opcion... </option>
-					{countries?.map((country, index) => (
+					{countries.map((country, index) => (
 						<option key={index} value={country.country}>{country.country}</option>)
 					)}
 				</select>
@@ -185,7 +185,7 @@ const UpdateUser = () => {
 					className="mb-4 shadow border rounded border-gray-500 w-full pl-2 text-gray-500 bg-white leading-tight focus:ring-blue-500 focus:border-blue-300"
 				>
 					<option defaultValue hidden>Selecciona una opcion... </option>
-					{cities?.map((city, index) => {
+					{cities.map((city, index) => {
 						return (<option key={index} value={city}>{city}</option>)
 					})}
 				</select>
