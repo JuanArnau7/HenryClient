@@ -65,7 +65,7 @@ const UpdateUser = () => {
 			const response = await dispatch(updateUser(user._id, values))
 			if(response.status === 404){
 				Swal.fire("Fail", "The update proflie failed because your password is wrong", "error")
-			} else if(response.status === 204){
+			} else if(response.status === 200){
 				Swal.fire("Update data successfully", "You have updated your data profile successfully", "success")
 			}
 		},

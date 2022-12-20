@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -56,6 +56,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state,
 				userProfile: action.payload
+			}
+		case LOGOUT:
+			return {
+				...state,
+				userProfile: {}
 			}
 		default:
 			return { ...state };
