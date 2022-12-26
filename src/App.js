@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, BrowserRouter, Routes, useNavigate } from 'react-router-dom'
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import LocalHome from './components/Local/Home/Home';
 import DeliveryHome from './components/Delivery/Home/Home';
 import Landing from './components/Landing/Landing';
