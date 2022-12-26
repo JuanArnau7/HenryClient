@@ -40,7 +40,7 @@ const Login = () => {
 			text: "Welcome to our page",
 			icon: "success"
 		})
-		navigate('/perfil')
+		navigate('/alterHome')
   };
 
   // loginUserJWT

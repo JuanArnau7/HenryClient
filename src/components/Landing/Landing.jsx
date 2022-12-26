@@ -9,26 +9,11 @@ const Landing = () => {
     return (
     <div className={s.contenedor}>
         <h1><u> HENRY </u></h1>
-        <p> FOOD RESTAURANT SINCE 1882 </p>
+        <p> FOOD RESTAURANT </p>
         <div>
-            <Link to="/login">
-                <button className={s.home} >Home</button>
+            <Link to="/local/alterHome">
+                <button className={s.home}>Home</button>
             </Link>
-        </div>
-        <div >
-            <Link to='/login' >
-                {/* <button className={s.login}> Login </button> */}
-            </Link>  
-        </div>
-        <div >
-            <Link to='/register' >
-                {/* <button className={s.register}> Register </button> */}
-            </Link>
-        </div>
-        <div className={s.guest}>
-            <Link to='/homeguest' >
-                {/* <button> Guest </button> */}
-            </Link>            
         </div>
     </div>
     )
