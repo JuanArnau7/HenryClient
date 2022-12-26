@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getLengthCart } from '../../redux/Actions/actions';
 import { AiOutlineHome } from "react-icons/ai";
 import { FaSpinner } from "react-icons/fa"
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
@@ -11,15 +13,15 @@ const FormPayment = () => {
 	const stripe = useStripe();
 	const elements = useElements();
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const [message, setMessage] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const elementsCart = localStorage.getItem("dishes")
 
 	useEffect(() => {
-		console.log("elementos del carrito", elementsCart.length);
-		if(!elementsCart || elementsCart.length === 0){
-			Swal.fire("Tu carrito esta vacio!!", "No se puede hacer el proceso de compras porque tu carrito de compras esta vacio, te invitamos a navegar por nuestra pagina para agregar productos a tu carrito de compras", "info")
+		if(!elementsCart || JSON.parse(elementsCart).length === 0){
+			Swal.fire("Tu carrito esta vacio!!", "Te invitamos a navegar por nuestra pagina para agregar productos a tu carrito de compras", "info")
 			navigate('/local/alterHome')
 		}
 	}, [])
@@ -49,7 +51,8 @@ const FormPayment = () => {
 				elements.getElement(CardElement).clear()
 				Swal.fire("Compra exitosa","Todo ha salido bien en el proceso de compra. \n Gracias por tu compra", "success")
 				localStorage.removeItem("dishes")
-				navigate('local/alterHome')
+				dispatch(getLengthCart())
+				navigate('/local/alterHome')
 			} catch (error) {
 				if(error.response.data){
 					Swal.fire({
