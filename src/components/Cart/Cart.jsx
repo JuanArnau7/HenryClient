@@ -4,18 +4,24 @@ import { IoIosRestaurant } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiDeleteBinFill } from "react-icons/ri";
+import Swal from 'sweetalert2';
+import { getLengthCart } from '../../redux/Actions/actions';
+import { useDispatch } from 'react-redux';
 import NavBar from "../Utils/NavBar/NavBar";
 
 
 const Cart = () => {
 	const [cartDishes, setCartDishes] = useState(JSON.parse(localStorage.getItem("dishes")))
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
 	let total = cartDishes.reduce((sum, curr) => sum + curr.price * curr.cant, 0)
 
 	const handleChange = (e, index) => {
 		const data = [...cartDishes]
 		data[index].cant = e.target.value;
 		setCartDishes(data)
+		localStorage.setItem("dishes", JSON.stringify(cartDishes))
 	}
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -28,7 +34,26 @@ const Cart = () => {
 	const checkOutPayment = () => navigate('/paymentStripe')
 
 	const deleteFromCart = async (dish) => {
-		console.log("receiving to delete...", dish);
+		const confirm = await Swal.fire({
+			title: "Are you sure?",
+			text: `Are you sure you want to remove ${dish.name} from your shopping cart?`,
+			icon: "question",
+			showCancelButton: true,
+			confirmButtonText: "Remove",
+			cancelButtonText: "Cancel"
+		})
+		if (confirm.isConfirmed) {
+			const updateDishes = cartDishes.filter(el => el.id !== dish.id)
+			localStorage.setItem("dishes", JSON.stringify(updateDishes))
+			setCartDishes(updateDishes)
+			dispatch(getLengthCart())
+			Swal.fire({
+				title: "Dish removed",
+				text: `You have removed ${dish.name} correctly`,
+				icon: "info",
+				timer: 2000
+			})
+		}
 	}
 
 	const goToHome = () => navigate('/local/alterHome')
@@ -49,7 +74,7 @@ const Cart = () => {
 					return (
 						<div key={index} className="w-11/12 px-4 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto">
 							<div className="flow-root">
-								<ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
+								<ul className="divide-y divide-gray-200 dark:divide-gray-700">
 									<li className="py-3">
 										<div className="flex flex-col sm:flex-row items-center">
 											<div className='w-full md:w-3/5 flex flex-row'>
