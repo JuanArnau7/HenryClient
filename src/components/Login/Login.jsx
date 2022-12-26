@@ -40,7 +40,7 @@ const Login = () => {
 			text: "Welcome to our page",
 			icon: "success"
 		})
-		navigate('/alterHome')
+		navigate('/local/alterHome')
   };
 
   // loginUserJWT
@@ -50,8 +50,8 @@ const Login = () => {
         <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
           <div className="mb-8 flex justify-center">
             <img
-              className="w-24"
-              src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg"
+              className="w-48"
+              src="https://neurona-ba.com/wp-content/uploads/2021/07/HenryLogo.jpg"
               alt=""
             />
           </div>
