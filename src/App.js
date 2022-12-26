@@ -16,7 +16,8 @@ import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
 import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
-// import NavBar from "./components/Utils/NavBar/NavBar";
+import NavBar from "./components/Utils/NavBar/NavBar";
+import PaymentStripe from "./components/Payments/PaymentStripe";
 
 function App() {
 	const dispatch = useDispatch()
@@ -53,6 +54,11 @@ function App() {
 					<Route exact path='/detailDish/:id' element={<CardFood />} />
 					<Route exact path='/register' element={<Register />} />
 					<Route exact path='/perfil' element={<PerfilUsuario />} />
+					<Route exact path='/cart' element={<Cart />} />
+					<Route exact path='/paymentStripe' element={<PaymentStripe />} />
+					<Route path='/login' element={<Login />} >
+						<Route path='google' element={<LoginGoogle />} />
+					</Route >
 				</Routes>
 			</BrowserRouter>
 
