@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
-// import NavBar from "../../Utils/NavBar/NavBar"
+import NavBar from "../../Utils/NavBar/NavBar";
+
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
 	const dispatch = useDispatch()
@@ -42,6 +43,7 @@ const AlterHome = () => {
 	
 	return (
 		<>
+		
 			{Visible ?
 				<>
 					<div className="AlterHome h-fit">
