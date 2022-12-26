@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, BrowserRouter, Routes, useNavigate } from 'react-router-dom'
+import { Route, BrowserRouter, Routes } from 'react-router-dom'
 import LocalHome from './components/Local/Home/Home';
 import DeliveryHome from './components/Delivery/Home/Home';
 import Landing from './components/Landing/Landing';
@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
 import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
 import NavBar from "./components/Utils/NavBar/NavBar";
+import PaymentStripe from "./components/Payments/PaymentStripe";
 
 function App() {
 	const dispatch = useDispatch()
@@ -45,6 +46,7 @@ function App() {
 					<Route exact path='/register' element={<Register />} />
 					<Route exact path='/perfil' element={<PerfilUsuario />} />
 					<Route exact path='/cart' element={<Cart />} />
+					<Route exact path='/paymentStripe' element={<PaymentStripe />} />
 					<Route path='/login' element={<Login />} >
 						<Route path='google' element={<LoginGoogle />} />
 					</Route >

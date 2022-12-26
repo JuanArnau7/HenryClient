@@ -1,11 +1,11 @@
 import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT } from './actionsTypes'
 import axios from 'axios'
-const URL = process.env.REACT_APP_URL || "http://localhost:3001/";
+const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
 	return async function (dispatch) {
 		try {
-			const res = await axios.post(`http://localhost:3001/users`, payload)
+			const res = await axios.post(`${URL_SERVER}users`, payload)
 			localStorage.setItem("token", res.data)
 			return dispatch({ 
 				type: POST_USER_CREATE, 
@@ -21,7 +21,7 @@ export function postUserCreate(payload) {
 export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
-			const userJWT = await axios.post('http://localhost:3001/auth/login', data);
+			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
 				type: LOGIN_USER_JWT
@@ -36,7 +36,7 @@ export const loginUserJWT = (data) => {
 export const getAllDishes = () => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(`${URL}foods`);
+			const response = await axios.get(`${URL_SERVER}foods`);
 			return dispatch({
 				type: GET_ALL_DISHES,
 				payload: response
@@ -50,7 +50,7 @@ export const getAllDishes = () => {
 export const getFilterDishes = () => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(`${URL}foods`);
+			const response = await axios.get(`${URL_SERVER}foods`);
 			console.log("response redux get filter dishes", response)
 			return dispatch({
 				type: FILTER,
@@ -80,7 +80,7 @@ export const detailsDish = (id) => {
 export function postDishCreate(payload) {
 	return async function (dispatch) {
 		try {
-			const res = await axios.post(`http://localhost:3001/foods`, payload)
+			const res = await axios.post(`${URL_SERVER}foods`, payload)
 			dispatch({ type: POST_DISH_CREATE, payload: res.payload });
 			return res
 		} catch (error) {
@@ -99,7 +99,7 @@ export const validarUserJWT = (token) => {
 	return async (dispatch) => {
 
 		try {
-			const user = await axios.post('http://localhost:3001/auth', token)
+			const user = await axios.post(`${URL_SERVER}auth`, token)
 			return dispatch({
 				type: GET_USER_WITH_JWT,
 				payload: user.data.data
@@ -114,7 +114,7 @@ export const validarUserJWT = (token) => {
 export const getUserById = (id) => {
 	return async dispatch => {
 		try {
-			const user = await axios.get(`${URL}auth/getUserById/${id}`)
+			const user = await axios.get(`${URL_SERVER}auth/getUserById/${id}`)
 			return dispatch({
 				type: GET_USER_BY_ID,
 				payload: user.data
@@ -139,7 +139,7 @@ export const getLengthCart = () => {
 export const deleteUser = (id) => {
 	return async dispatch => {
 		try {
-			const deleteUser = await axios.delete(`${URL}users/${id}`)
+			const deleteUser = await axios.delete(`${URL_SERVER}users/${id}`)
 			localStorage.removeItem("token")
 			return dispatch({
 				type: DELETE_USER,
@@ -155,7 +155,7 @@ export const deleteUser = (id) => {
 export const updateUser = (id, data) => {
 	return async dispatch => {
 		try {
-			const response = await axios.patch(`${URL}users/updateUser/${id}`, data)
+			const response = await axios.patch(`${URL_SERVER}users/updateUser/${id}`, data)
 			dispatch({
 				type: UPDATE_USER,
 				payload: response.data
