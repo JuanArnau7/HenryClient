@@ -65,7 +65,7 @@ const NavBar = () => {
 					</div>				
 
 					{/* El boton para crear nuevos platos estara disponible solo para adminsitradores */}
-					{ user.rol !== "ROL_ADMIN" &&
+					{ user.rol === "ROL_ADMIN" &&
 						<button onClick={() => handleCreate()} className="px-5 py-1 bg-red-600 text-white rounded hover:bg-red-800" >
 							Create
 						</button>
@@ -75,14 +75,14 @@ const NavBar = () => {
 						{!user._id && pathname === '/login' ? (
 							<Link
 								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"register"}
+								to={"/register"}
 							>
 								Signup
 							</Link>
 						) : !user._id && pathname === '/register' ? (
 							<Link
 								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"login"}
+								to={"/login"}
 							>
 								Login
 							</Link>
@@ -90,13 +90,13 @@ const NavBar = () => {
 							<div className="flex gap-4">
 								<Link
 									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"register"}
+									to={"/register"}
 								>
 									Signup
 								</Link>
 								<Link
 									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"login"}
+									to={"/login"}
 								>
 									Login
 								</Link>

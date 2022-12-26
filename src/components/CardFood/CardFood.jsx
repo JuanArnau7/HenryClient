@@ -7,6 +7,8 @@ import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 import NavBarCreateFoods from '../CreateFood/components/NavBarCreateFoods';
 import "./CardFood.css"
+import NavBar from "../Utils/NavBar/NavBar";
+import { Link } from 'react-router-dom';
 
 const CardFood = () => {
 	const dispatch = useDispatch()
@@ -64,7 +66,8 @@ const CardFood = () => {
 
 	return (
 		<div className='BackgroundFood h-screen w-screen '>
-			<NavBarCreateFoods/>
+			<NavBar></NavBar>
+			{/* <NavBarCreateFoods/> */}
 			<div className=' h-screen flex justify-center items-center BackgroundFood'>
 
 			
@@ -78,7 +81,11 @@ const CardFood = () => {
 						<p className="text-lg font-semibold text-blue-500">Before <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
 						<p className="text-xl font-bold text-emerald-600">Now ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish?.price * 1)}</span></p>
 
-						<div className="flex items-center justify-center mt-4">
+						<div className="flex items-center justify-around mt-4">
+							 
+							<Link to="/local/alterHome" className="rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600">Home</Link>
+								
+							
 							<button
 								onClick={() => addOrRemoveFromCart(dish._id)}
 								className={dishInCart ? "rounded-md bg-red-500 text-white px-3 pb-1 hover:bg-red-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
