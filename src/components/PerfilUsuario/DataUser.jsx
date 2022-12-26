@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import { deleteUser } from '../../redux/Actions/actions';
+import { deleteUser, logOut } from '../../redux/Actions/actions';
 
 const DataUser = () => {
 	const user = useSelector(state => state.userProfile)
@@ -23,8 +23,18 @@ const DataUser = () => {
 		}
 	}
 
-	const logOut = () => {
-
+	const closeSesion = async () => {
+		const confirm = await Swal.fire({
+			title: "Are you sure?",
+			text: "Sure you want logout this page?",
+			icon: 'question',
+			showCancelButton: true
+		})
+		if (confirm.isConfirmed) {
+			dispatch(logOut())
+			localStorage.removeItem("token")
+			navigate(`/local/alterHome`);
+		}
 	}
 
 	return (
@@ -59,12 +69,13 @@ const DataUser = () => {
 						</div>
 						: <div className='mb-14'>
 							<h3 className='text-center font-bold mb-4 text-xl'>These are your users credentials</h3>
-							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user.fullName} </p>
-							<p className='mb-2'><span className='font-bold'>Email:   </span> {user.email}</p>
-							<p className='mb-2'><span className='font-bold'>Country:     </span> {user.country || "You have not registred your country"}</p>
-							<p className='mb-2'><span className='font-bold'>City:   </span> {user.city || "You have not registred your city"}</p>
+							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user?.fullName} </p>
+							<p className='mb-2'><span className='font-bold'>Email:   </span> {user?.email}</p>
+							<p className='mb-2'><span className='font-bold'>Country:     </span> {user?.country || "You have not registred your country"}</p>
+							<p className='mb-2'><span className='font-bold'>City:   </span> {user?.city || "You have not registred your city"}</p>
+							<p className='mb-2'><span className='font-bold'>Address:   </span> {user?.address || "You have not registred your address"}</p>
 							<div className='flex justify-around mt-8'>
-								<button onClick={logOut}
+								<button onClick={closeSesion}
 									className="rounded-md bg-yellow-400 text-blue-900 px-5 pb-1 hover:bg-yellow-500 hover:font-semibold"
 								>
 									Logout
