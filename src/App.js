@@ -31,13 +31,22 @@ function App() {
 	return (
 		<div>
 			<BrowserRouter>
-				<NavBar/>
+			
 				<Routes>
 					<Route exact path="/" element={<Landing />}></Route>
+
+					
 					<Route exact path="/local/home" element={<LocalHome />} />
-					<Route exact path="/createFood" element={<CreateFood />} />
 					<Route exact path="/local/alterHome" element={<AlterHome />} />
 					<Route exact path="/deliver/home" element={<DeliveryHome />} />
+					<Route exact path='/cart' element={<Cart />} />	
+
+
+					<Route path='/login' element={<Login />} >
+						<Route path='google' element={<LoginGoogle />} />
+					</Route >
+
+					<Route exact path="/createFood" element={<CreateFood />} />
 					<Route exact path='/dashboard/menus' element={<RegisterMenus />} />
 					<Route exact path='/dashboard/dishes' element={<RegisterDishes />} />
 					<Route exact path='/detailDish/:id' element={<CardFood />} />
