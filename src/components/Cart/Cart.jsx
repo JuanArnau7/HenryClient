@@ -4,6 +4,8 @@ import { IoIosRestaurant } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiDeleteBinFill } from "react-icons/ri";
+import NavBar from "../Utils/NavBar/NavBar";
+
 
 const Cart = () => {
 	const [cartDishes, setCartDishes] = useState(JSON.parse(localStorage.getItem("dishes")))
@@ -33,6 +35,7 @@ const Cart = () => {
 
 	return (
 		<div className='mx-auto'>
+			<NavBar/>
 			<div className="flex my-4 justify-center">
 				<h5 className="font-bold text-2xl">
 					Carrito de compras

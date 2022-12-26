@@ -34,17 +34,14 @@ function App() {
 			
 				<Routes>
 					<Route exact path="/" element={<Landing />}></Route>
-
 					
+					{/* {isLogged} */}
 					<Route exact path="/local/home" element={<LocalHome />} />
 					<Route exact path="/local/alterHome" element={<AlterHome />} />
 					<Route exact path="/deliver/home" element={<DeliveryHome />} />
 					<Route exact path='/cart' element={<Cart />} />	
+					
 
-
-					<Route path='/login' element={<Login />} >
-						<Route path='google' element={<LoginGoogle />} />
-					</Route >
 
 					<Route exact path="/createFood" element={<CreateFood />} />
 					<Route exact path='/dashboard/menus' element={<RegisterMenus />} />
@@ -58,7 +55,7 @@ function App() {
 					<Route exact path='/paymentStripe' element={<PaymentStripe />} />
 					<Route path='/login' element={<Login />} >
 						<Route path='google' element={<LoginGoogle />} />
-					</Route >
+					</Route>
 				</Routes>
 			</BrowserRouter>
 
