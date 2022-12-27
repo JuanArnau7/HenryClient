@@ -13,6 +13,7 @@ import Login from './components/Login/Login';
 import Cart from "./components/Cart/Cart";
 import CreateFood from './components/CreateFood/CreateFood';
 import Dashboard from "./components/Dashboard/Dashboard";
+import Sidebar from "./components/Utils/SideBar/Sidebar";
 
 
 function App() {
@@ -38,11 +39,11 @@ function App() {
 					<Route exact path='/register' element={<Register />} />
 					<Route exact path='/cart' element={<Cart />} />
 					<Route path='/login' element={<Login/>} >
-          <Route path='google' element={<LoginGoogle/>} />
-        </Route >
+          				<Route path='google' element={<LoginGoogle/>} />
+        			</Route >
+					<Route path="/sidebar" element={<Sidebar/>}></Route>
 				</Routes>
 			</BrowserRouter>
-
 		</div>
 	);
 }
