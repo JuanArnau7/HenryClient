@@ -1,4 +1,4 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, CREATE_ORDER, GET_USER_ORDERS, POST_REVIEWS  } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS  } from './actionsTypes'
 import axios from 'axios'
 const URL_SERVER =  "http://localhost:3001/";
 // const URL_SERVER = "https://henryrestaurantback-production-f71f.up.railway.app/"
@@ -176,6 +176,7 @@ export const logOut = () =>{
 		})
 	}
 }
+
 export function postReviewDish(payload) {
 	return async function (dispatch) {
 		try {
@@ -188,10 +189,6 @@ export function postReviewDish(payload) {
 			});
 		} catch (error) {
 			console.log("Error Redux action on post review", error.response)
-			return error.response
-		}
-	}
-}
 
 export const createOrder = (userid, order, typeOrder, table, address) => {
 	return async dispatch => {
