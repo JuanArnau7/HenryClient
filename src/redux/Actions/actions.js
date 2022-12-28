@@ -1,6 +1,7 @@
 import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT } from './actionsTypes'
 import axios from 'axios'
-const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
+// const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
+const URL_SERVER = "https://henryrestaurantback-production.up.railway.app/"
 
 export function postUserCreate(payload) {
 	return async function (dispatch) {
