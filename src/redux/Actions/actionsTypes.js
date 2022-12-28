@@ -9,6 +9,9 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID"
 export const DELETE_USER = "DELETE_USER"
 export const UPDATE_USER = "UPDATE_USER"
 export const LOGOUT = "LOGOUT"
+export const POST_REVIEWS = "POST_REVIEWS"
+
+
 
 export const FILTER = 'FILTER'
 

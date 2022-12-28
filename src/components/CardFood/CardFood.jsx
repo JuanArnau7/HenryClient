@@ -60,8 +60,8 @@ const CardFood = () => {
 	}
 
 	useEffect(() => {
+		console.log("idParmas", id)
 		dispatch(detailsDish(id))
-		// console.log("dish", dish)
 	}, [dispatch, id])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -124,6 +124,7 @@ const CardFood = () => {
 			</div>
 		</div>
 		<ModalAddReviewDish
+		DishId={id.id}
 		ModalReviewDish={ModalReviewDish}
 		setModalReviewDish={setModalReviewDish}
 		/>
