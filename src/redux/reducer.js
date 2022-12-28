@@ -6,7 +6,8 @@ const initialState = {
 	detailDish: {},
 	filterDishes: [],
 	elementsCart: 0,
-	userProfile: {}
+	userProfile: {},
+	isLogged: false
 }
 
 const rootReducer = (state = initialState, action) => {

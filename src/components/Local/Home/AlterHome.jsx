@@ -56,6 +56,8 @@ const AlterHome = () => {
 				</>
 				:
 				<>
+					<NavBar></NavBar>
+					
 					<div className="AlterHome h-fit">
 						<div className="flex flex-col w-11/12 mx-auto px-6 shadow-xl h-fit bg-white">
 							<div className="w-full mt-3 md:mt-0">

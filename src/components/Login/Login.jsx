@@ -40,18 +40,18 @@ const Login = () => {
 			text: "Welcome to our page",
 			icon: "success"
 		})
-		navigate('/alterHome')
+		navigate('/local/alterHome')
   };
 
   // loginUserJWT
   return (
     <>
       <div className="flex items-center justify-center h-screen Center">
-        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
+        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] w-1/4 ">
           <div className="mb-8 flex justify-center">
             <img
-              className="w-24"
-              src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg"
+              className="w-48"
+              src="https://neurona-ba.com/wp-content/uploads/2021/07/HenryLogo.jpg"
               alt=""
             />
           </div>
@@ -109,7 +109,7 @@ const Login = () => {
           </div>
           <br />
       <Outlet />
-          <div className="mt-5 flex text-center text-sm text-gray-400">
+          <div className="mt-5 flex text-center justify-center align-items-center text-sm text-gray-400">
             <p>
               This site is protected by reCAPTCHA and the Google <br />
               <a className="underline" href="">
