@@ -1,6 +1,6 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS  } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES } from './actionsTypes'
 import axios from 'axios'
-const URL_SERVER =  "http://localhost:3001/";
+const URL_SERVER = "http://localhost:3001/";
 // const URL_SERVER = "https://henryrestaurantback-production-f71f.up.railway.app/"
 
 export function postUserCreate(payload) {
@@ -8,9 +8,9 @@ export function postUserCreate(payload) {
 		try {
 			const res = await axios.post(`${URL_SERVER}users`, payload)
 			localStorage.setItem("token", res.data)
-			return dispatch({ 
-				type: POST_USER_CREATE, 
-				payload: res 
+			return dispatch({
+				type: POST_USER_CREATE,
+				payload: res
 			});
 		} catch (error) {
 			console.log("Error Redux action on post user create", error.response)
@@ -48,6 +48,23 @@ export const getAllDishes = () => {
 		}
 	}
 }
+
+export const getNameDishes = (name) => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`${URL}foods?name=` + name);
+			// console.log("response", response)
+			return dispatch({
+				type: GET_NAME_DISHES,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error Redux actions on get all dishes", error.message);
+			return error
+		}
+	}
+}
+
 export const getFilterDishes = () => {
 	return async (dispatch) => {
 		try {
@@ -169,7 +186,7 @@ export const updateUser = (id, data) => {
 	}
 }
 
-export const logOut = () =>{
+export const logOut = () => {
 	return async dispatch => {
 		dispatch({
 			type: LOGOUT,
@@ -183,12 +200,15 @@ export function postReviewDish(payload) {
 			const res = await axios.post(`${URL_SERVER}reviews`, payload)
 			console.log(res)
 			localStorage.setItem("token", res.data)
-			return dispatch({ 
-				type: POST_REVIEWS, 
-				payload: res 
+			return dispatch({
+				type: POST_REVIEWS,
+				payload: res
 			});
 		} catch (error) {
 			console.log("Error Redux action on post review", error.response)
+		}
+	}
+}
 
 export const createOrder = (userid, order, typeOrder, table, address) => {
 	return async dispatch => {
@@ -206,7 +226,7 @@ export const createOrder = (userid, order, typeOrder, table, address) => {
 	}
 }
 
-export const getUserOrders = (id) =>{
+export const getUserOrders = (id) => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}orders/${id}`)
