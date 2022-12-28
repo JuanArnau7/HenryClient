@@ -189,6 +189,9 @@ export function postReviewDish(payload) {
 			});
 		} catch (error) {
 			console.log("Error Redux action on post review", error.response)
+		}
+	}
+}
 
 export const createOrder = (userid, order, typeOrder, table, address) => {
 	return async dispatch => {
