@@ -1,4 +1,4 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, CREATE_ORDER, GET_USER_ORDERS } from './actionsTypes'
 import axios from 'axios'
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
@@ -173,5 +173,36 @@ export const logOut = () =>{
 		dispatch({
 			type: LOGOUT,
 		})
+	}
+}
+
+export const createOrder = (userid, order, typeOrder, table, address) => {
+	return async dispatch => {
+		try {
+			await axios.post(`${URL_SERVER}orders/`, {
+				userid, order, typeOrder, table, address
+			})
+			return dispatch({
+				type: CREATE_ORDER
+			})
+		} catch (error) {
+			console.log("Error on redux actions on create order", error);
+			return error.response
+		}
+	}
+}
+
+export const getUserOrders = (id) =>{
+	return async dispatch => {
+		try {
+			const response = await axios(`${URL_SERVER}orders/${id}`)
+			return dispatch({
+				type: GET_USER_ORDERS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error redux actions on get user's orders", error);
+			return error.response
+		}
 	}
 }
