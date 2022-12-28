@@ -1,17 +1,26 @@
 import React from "react";
-import {useDispatch} from 'react-redux';
-import { getNameDishes } from "../../../redux/Actions/actions";
+import {useDispatch, useSelector} from 'react-redux';
+import { filtrar, getFilterDishes, getNameDishes } from "../../../redux/Actions/actions";
 
 const SearchBar = ({manageMenu}) => {
+  const dishes = useSelector(state => state.filterDishes)
   const dispatch = useDispatch();
   
-  const filtrar = (busqueda) => {
+  const filtrarPlatos = (busqueda) => {
     dispatch(getNameDishes(busqueda))
   }
   
-  const handleinput = (e) => {
-    filtrar(e.target.value)
+  const handleinput = async(e) => {
+    if(!e.target.value){
+    dispatch(getFilterDishes())
+    }else{
+        dispatch(filtrar(dishes.filter(d => {
+          if (d.lenguage.es.name.toLowerCase().includes(e.target.value.toLowerCase()) || d.lenguage.en.name.toLowerCase().includes(e.target.value.toLowerCase())) return d
+        })))
+    }
   }
+
+
 
   
   return (
