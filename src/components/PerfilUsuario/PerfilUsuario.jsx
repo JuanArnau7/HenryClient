@@ -5,7 +5,8 @@ import UpdateUser from './UpdateUser';
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
-import { getUserById } from '../../redux/Actions/actions';
+import { getUserById, getUserOrders } from '../../redux/Actions/actions';
+import NavBar from '../Utils/NavBar/NavBar';
 
 const PerfilUsuario = () => {
 	const [openTab, setOpenTab] = useState("Datos registrados")
@@ -32,14 +33,16 @@ const PerfilUsuario = () => {
 			async function perfilUser(){
 				const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
 				await dispatch(getUserById(tokenDecoded.id))
+				await dispatch(getUserOrders(tokenDecoded.id))
 			}
 			perfilUser()
 		}
 	}, [dispatch, token, navigate])
 	
 	return (
-		<div className='mt-4 px-4'>
-			<div className='flex flex-col md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 shadow-md shadow-blue-300'>
+		<div>
+			<NavBar />
+			<div className='flex flex-col mt-4 md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 shadow-md shadow-blue-300'>
 				<div className='w-full md:w-1/3 md:border-r-2 border-blue-300'>
 					<ul className="flex flex-row flex-wrap justify-around md:flex-col mt-3 md:mt-6">
 						{tabs.map((tab) => (

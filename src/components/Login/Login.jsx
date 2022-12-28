@@ -1,5 +1,5 @@
 import React from "react";
-import { loginUserJWT } from "../../redux/Actions/actions";
+import { getUserById, loginUserJWT } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -40,6 +40,10 @@ const Login = () => {
 			text: "Welcome to our page",
 			icon: "success"
 		})
+		
+		const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
+		dispatch(getUserById(tokenDecoded.id))
+		
 		navigate('/local/alterHome')
   };
 
