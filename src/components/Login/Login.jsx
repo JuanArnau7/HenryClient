@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <>
       <div className="flex items-center justify-center h-screen Center">
-        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
+        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] w-1/4 ">
           <div className="mb-8 flex justify-center">
             <img
               className="w-48"
@@ -113,7 +113,7 @@ const Login = () => {
           </div>
           <br />
       <Outlet />
-          <div className="mt-5 flex text-center text-sm text-gray-400">
+          <div className="mt-5 flex text-center justify-center align-items-center text-sm text-gray-400">
             <p>
               This site is protected by reCAPTCHA and the Google <br />
               <a className="underline" href="">

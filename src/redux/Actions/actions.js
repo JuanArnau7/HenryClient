@@ -1,6 +1,7 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, CREATE_ORDER, GET_USER_ORDERS } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS  } from './actionsTypes'
 import axios from 'axios'
-const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
+const URL_SERVER =  "http://localhost:3001/";
+// const URL_SERVER = "https://henryrestaurantback-production-f71f.up.railway.app/"
 
 export function postUserCreate(payload) {
 	return async function (dispatch) {
@@ -175,6 +176,19 @@ export const logOut = () =>{
 		})
 	}
 }
+
+export function postReviewDish(payload) {
+	return async function (dispatch) {
+		try {
+			const res = await axios.post(`${URL_SERVER}reviews`, payload)
+			console.log(res)
+			localStorage.setItem("token", res.data)
+			return dispatch({ 
+				type: POST_REVIEWS, 
+				payload: res 
+			});
+		} catch (error) {
+			console.log("Error Redux action on post review", error.response)
 
 export const createOrder = (userid, order, typeOrder, table, address) => {
 	return async dispatch => {
