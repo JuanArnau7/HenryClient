@@ -112,7 +112,7 @@ const NavBar = () => {
 						) : user._id && (
 							<Link
 								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"perfil"}
+								to={"/perfil"}
 							>
 								Profile
 							</Link>
