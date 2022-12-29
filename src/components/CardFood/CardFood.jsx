@@ -27,20 +27,20 @@ const CardFood = () => {
 	const addOrRemoveFromCart = async (id) => {
 		const index = cartDishes.findIndex(el => el.id === id)
 		if (index < 0) {
-			cartDishes.push({ id: dish._id, name: dish.name, img: dish.img, price: dish.price })
+			cartDishes.push({ id: dish?._id, name: dish?.name, img: dish?.img, price: dish?.price })
 			setDishInCart(true)
 			localStorage.setItem("dishes", JSON.stringify(cartDishes))
 			dispatch(getLengthCart())
 			Swal.fire({
 				title: "Added element",
-				text: `You have added ${dish.name} correctly`,
+				text: `You have added ${dish?.name} correctly`,
 				icon: "success",
 				timer: 2000
 			})
 		} else {
 			const confirm = await Swal.fire({
 				title: "Are you sure?",
-				text: `Are you sure you want to remove ${dish.name} from your shopping cart?`,
+				text: `Are you sure you want to remove ${dish?.name} from your shopping cart?`,
 				icon: "question",
 				showCancelButton: true,
 				confirmButtonText: "Remove",
@@ -53,7 +53,7 @@ const CardFood = () => {
 				dispatch(getLengthCart())
 				Swal.fire({
 					title: "Dish removed",
-					text: `You have removed ${dish.name} correctly`,
+					text: `You have removed ${dish?.name} correctly`,
 					icon: "info",
 					timer: 2000
 				})
@@ -70,18 +70,17 @@ const CardFood = () => {
 
 	return (
 		<>
-		<div className='BackgroundFood h-screen w-screen'>
+		<div className='BackgroundFood h-screen w-screen overflow-y'>
 			<NavBar></NavBar>
 			{/* <NavBarCreateFoods/> */}
-			<div className=' h-screen flex justify-center items-center BackgroundFood'>
-
-			
+			<div className=' h-screen  flex justify-center items-center BackgroundFood'>
+				
 			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-4/6">
 				<div className="sm:w-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 					<div className=" rounded-t-lg ">
 						<img className="max-sm:w-full max-md:w-full  rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
-					<div className="px-5 pb-5 m-4">
+					<div className="px-5 pb-5 m-4 h-full">
 						<div className='flex '>
 						<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h5>
 						<div class="flex items-center justify-center ml-4">

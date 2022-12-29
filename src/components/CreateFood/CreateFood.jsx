@@ -176,15 +176,15 @@ const CreateFood = props => {
         "img": "",
         "price" : 0,
         "lenguage": {
-          es: {
-            name: "",
-            descripcion: "",
-            type : ""
+          "es": {
+            "name": "",
+            "descripcion": "",
+            "type" : ""
           },
-          en: {
-              name: "",
-              descripcion: "",
-              type: ""
+          "en": {
+              "name": "",
+              "descripcion": "",
+              "type": ""
           },
         },
       })
@@ -207,29 +207,29 @@ const CreateFood = props => {
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
                 <label className="block text-sm font-medium text-gray-700">Nombre</label>
-                <input onChange={handleNameEnglish} type="text" name="name" id="first-name"  className="mt-1 block w-full rounded-md border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleNameEnglish} type="text" value={Form.lenguage.en.name} name="lenguague.en.name"  className="mt-1 block w-full rounded-md  h-9 border  border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label  className="block text-sm font-medium text-gray-700">Precio</label>
-                <input onChange={handleChange} type="number" name="price" id="last-name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleChange} type="number" name="price"  value={Form.price} className="mt-1 block w-full rounded-md h-9 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
-              <div className="col-span-6 sm:col-span-4">
-              <div className="justify-items-center">
+              <div className="col-span-6 sm:col-span-6 ">
+              <div className="flex flex-col justify-center items-center">
               <label  className="block text-sm font-medium text-gray-700">Descripcion</label>
-              <div className="mt-1">
-                <textarea id="about" onChange={handleDescriptionEnglish} name="description" rows="3" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="eg ingredients...."></textarea>
+              <div className="mt-1 w-full flex  justify-center items-center">
+                <textarea id="about" onChange={handleDescriptionEnglish} name="description" value={Form.lenguage.en.descripcion} rows="3" className="mt-1 block w-full h-full rounded-md  border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="eg ingredients...."></textarea>
               </div>
             </div>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label  className="block text-sm font-medium text-gray-700">Tipo de Plato</label>
-                <input onChange={handleTypeEnglish} type="text" name="price" id="last-name"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleTypeEnglish} type="text" value={Form.lenguage.en.type}  name="price" id="last-name"  className="mt-1 block w-full rounded-md h-9 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
               <div className="col-span-6 sm:col-span-3">
                 <label  className="block text-sm font-medium text-gray-700">Imagen URL</label>
-                <input onChange={handleChange} type="url" name="img" id="last-name"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleChange} type="url" name="img" id="last-name" value={Form.img}  className="mt-1 block w-full rounded-md h-9 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
               </div>
             </div>
@@ -247,22 +247,22 @@ const CreateFood = props => {
                 <h4>Español</h4>
               </div>
             <div className="grid grid-cols-6 gap-6">
-              <div className="col-span-6 sm:col-span-3">
+              <div className="col-span-6 sm:col-span-6 w-full">
                 <label  className="block text-sm font-medium text-gray-700">Nombre</label>
-                <input onChange={handleNameSpanish} type="text" name="name" id="first-name"  className="mt-1 block w-full rounded-md border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleNameSpanish} type="text" name="lenguague.es.name"  value={Form.lenguage.es.name} className="mt-1 block w-full rounded-md h-9 border border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
-              <div className="col-span-6 sm:col-span-4">
+              <div className="col-span-6 sm:col-span-6">
               <div className="justify-items-center">
               <label  className="block text-sm font-medium text-gray-700">Descripcion</label>
-              <div className="mt-1">
-                <textarea id="about" onChange={handleDescriptionSpanish} name="description" rows="3" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="eg ingredients...."></textarea>
+              <div className="mt-1 w-full">
+                <textarea id="about" onChange={handleDescriptionSpanish} value={Form.lenguage.es.descripcion}  name="description" rows="3" className="mt-1 block w-full rounded-md  border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="eg ingredients...."></textarea>
               </div>
             </div>
               </div>
 
               <div className="col-span-6 sm:col-span-3">
                 <label  className="block text-sm font-medium text-gray-700">Tipo de Plato</label>
-                <input onChange={handleTypeSpanish} type="text" name="price" id="last-name"  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
+                <input onChange={handleTypeSpanish} type="text" name="price" id="last-name" value={Form.lenguage.es.type}  className="mt-1 block min-w-full rounded-md h-9 border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"/>
               </div>
             </div>
 
