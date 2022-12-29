@@ -1,7 +1,6 @@
 import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES } from './actionsTypes'
 import axios from 'axios'
-const URL_SERVER = "http://localhost:3001/";
-// const URL_SERVER = "https://henryrestaurantback-production-f71f.up.railway.app/"
+const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
 	return async function (dispatch) {
@@ -52,8 +51,8 @@ export const getAllDishes = () => {
 export const getNameDishes = (name) => {
 	return async (dispatch) => {
 		try {
-			const response = await axios.get(`${URL}foods?name=` + name);
-			// console.log("response", response)
+			const response = await axios.get(`${URL_SERVER}foods?name=` + name);
+            // console.log("response", response)
 			return dispatch({
 				type: GET_NAME_DISHES,
 				payload: response.data
