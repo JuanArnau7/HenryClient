@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS  } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES  } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -44,6 +44,11 @@ const rootReducer = (state = initialState, action) => {
 			return {
 				...state, filterDishes: [...action.payload]
 			}
+		case GET_NAME_DISHES: 
+		return {
+			...state,
+			filterDishes: action.payload
+		}
 		case GET_LENGTH_CART:
 			return {
 				...state,

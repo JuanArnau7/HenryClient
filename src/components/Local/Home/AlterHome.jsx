@@ -59,7 +59,7 @@ const AlterHome = () => {
 					<NavBar></NavBar>
 					
 					<div className="AlterHome h-fit">
-						<div className="flex flex-col w-11/12 mx-auto px-6 shadow-xl h-fit bg-white">
+						<div className="flex flex-col w-11/12 mx-auto px-6 shadow-xl h-fit bg-gray-100">
 							<div className="w-full mt-3 md:mt-0">
 
 								<button type="button"
@@ -98,9 +98,8 @@ const AlterHome = () => {
 									Our dishes:
 									<small className="font-normal text-sm ml-3">(showing {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} of {dishes.length} available dishes)</small>
 								</h1>
-								<div className="flex flex-wrap justify-between min-h-screen min-w-screen">
 									{currentPost &&
-										<div>
+										<div className="min-w-screen min-h-screen">
 											<Paginator
 												totalPosts={dishes.length}
 												postPerPage={postPerPage}
@@ -117,7 +116,6 @@ const AlterHome = () => {
 										</div>
 
 									}
-								</div>
 							</div>
 						</div>
 					</div>

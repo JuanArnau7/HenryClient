@@ -5,7 +5,7 @@ import { filtrar, getAllDishes } from "../../../redux/Actions/actions"
 
 const FiltroPrecios = () => {
   const dispatch = useDispatch()
-  const Dishes = useSelector(state => state.allDishes)
+  const Dishes = useSelector(state => state.filterDishes)
 
   const handleChange =(e)=>{
     console.log(e.target.value, Dishes)
