@@ -43,7 +43,7 @@ const AlterHome = () => {
 
 	return (
 		<>
-			<NavBar />
+			
 			{Visible ?
 				<>
 					<div className="AlterHome h-fit">
