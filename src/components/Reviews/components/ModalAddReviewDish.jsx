@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { postReviewDish } from '../../../redux/Actions/actions';
-import SelectorCalificacionReview from './SelectorCalificacionReview'
 
-const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
+const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId}) => {
     const dispatch = useDispatch()
-    const [Calificacion, setCalificacion] = useState("");
     const [Description, setDescription] = useState("")
+    const [Title, setTitle] = useState("")
     const [Rating, setRating] = useState({
         s1 : false,
         s2 : false,
@@ -15,12 +14,13 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
         s4 : false,
         s5 : false,
     })
-    const tiempoTranscurrido = Date.now();
-    const hoy = new Date(tiempoTranscurrido);
 
 
     const handleDescription = (e) => {
         setDescription(e.target.value)
+    }
+    const handleTitle = (e) => {
+        setTitle(e.target.value)
     }
     const agregado =()=>{
         Swal.fire({
@@ -50,15 +50,14 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
 
         e.preventDefault()
         let review = {
-            foods : DishId,
-            reviews : Calificacion,
+            title: Title,
+            userId :userId,
+            foodId : DishId,
             descriptions : Description,
             score: Rating.s5? 5 : Rating.s4? 4 : Rating.s3? 3 : Rating.s2? 2 : 1,
-            reviewsDate: hoy
         }
         let add = await dispatch(postReviewDish(review))
         if (validar() === true) {
-            console.log("review", review)
             if (add) {
                agregado()
                reset()
@@ -70,7 +69,7 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
         }
     }
     const validar = () => {
-        if (!Calificacion || Calificacion === "") {
+        if (!Title) {
             return false 
         }
         if (!Description || Description === "") {
@@ -82,7 +81,7 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
         return true
     }
     const reset = () => {
-        setCalificacion("");
+        setTitle("");
         setDescription("");
         setRating({
         s1 : false,
@@ -107,7 +106,8 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId}) => {
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add Review</h3>
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
-                        <SelectorCalificacionReview setCalificacion={setCalificacion}/>
+                    <label htmlFor="first-name" className="block text-base font-medium text-gray-700">Title</label>
+                        <input onChange={handleTitle} type="text"  className=" h-10 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                     </div>
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>

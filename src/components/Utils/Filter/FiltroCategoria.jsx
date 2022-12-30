@@ -13,6 +13,12 @@ const FiltroCategoria = () => {
       name: "Desayunos"
     },
     {
+      name: "Hamburguesas"
+    },
+    {
+      name: "Pastas"
+    },
+    {
       name: "Smoothies"
     },
     {
