@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { detailsDish, getLengthCart } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
-import NavBarCreateFoods from '../CreateFood/components/NavBarCreateFoods';
 import "./CardFood.css"
 import NavBar from "../Utils/NavBar/NavBar";
-import { Link } from 'react-router-dom';
 import ModalAddReviewDish from '../Reviews/components/ModalAddReviewDish';
-import DishReviews from './components/DishReviews';
+import ReviewsFoods from '../Reviews/ReviewsFoods';
 
 const CardFood = () => {
 	const dispatch = useDispatch()
 	const id = useParams()
 	const dish = useSelector(state => state.detailDish);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
-	const [ReadReviews, setReadReviews] = useState(false)
+	const [ReadReviews, setReadReviews] = useState(false);
+	const userToken = localStorage.getItem('token')
+	const parseJwt = (token) => {
+		try {
+		  return JSON.parse(atob(token.split('.')[1]));
+		} catch (e) {
+		  return null;
+		}
+	  };
+	const userId = userToken?  parseJwt(userToken).id : null
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === id.id)
@@ -64,7 +71,7 @@ const CardFood = () => {
 	useEffect(() => {
 		// console.log("idParmas", id)
 		dispatch(detailsDish(id))
-	}, [dispatch, id, dish])
+	}, [dispatch, dish])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 	
@@ -96,7 +103,7 @@ const CardFood = () => {
 						<div className="flex items-center justify-around mt-4">
 							 
 							{/* <Link to="/local/alterHome" className="rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600">Home</Link> */}
-							<a href="/local/alterHome" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800">Home</a>
+							<Link to="/local/alterHome" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800">Home</Link>
 							<button type="button" onClick={() => addOrRemoveFromCart(dish._id)}
 								className={dishInCart ? "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" : "focus:outline-none text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"}>{dishInCart
 									? <span className='flex items-center'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
@@ -124,7 +131,7 @@ const CardFood = () => {
 						</div>
 					</div>
 					:
-					<DishReviews setReadReviews={setReadReviews}/>
+					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id}/>
 					}
 				</div>
 			</div>
@@ -134,6 +141,7 @@ const CardFood = () => {
 		DishId={id.id}
 		ModalReviewDish={ModalReviewDish}
 		setModalReviewDish={setModalReviewDish}
+		userId={userId}
 		/>
 		</>
 	)

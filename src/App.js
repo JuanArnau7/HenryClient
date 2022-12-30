@@ -7,7 +7,7 @@ import Register from './components/Register/Register'
 import LoginGoogle from "./components/Login/LoginGoogle";
 import CardFood from './components/CardFood/CardFood';
 import { useDispatch } from 'react-redux';
-import { getAllDishes, getFilterDishes } from "./redux/Actions/actions";
+import { getAllDishes, getFilterDishes, getFoodsReviews, getUsers } from "./redux/Actions/actions";
 import AlterHome from "./components/Local/Home/AlterHome";
 import Login from './components/Login/Login';
 import Cart from "./components/Cart/Cart";
@@ -16,7 +16,6 @@ import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
 import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
-import NavBar from "./components/Utils/NavBar/NavBar";
 import PaymentStripe from "./components/Payments/PaymentStripe";
 import ReviewsFoods from "./components/Reviews/ReviewsFoods";
 
@@ -27,6 +26,8 @@ function App() {
 	useEffect(() => {
 		dispatch(getAllDishes())
 		dispatch(getFilterDishes())
+		dispatch(getFoodsReviews())
+		dispatch(getUsers())
 	}, [dispatch])
 
 	return (

@@ -14,5 +14,11 @@ export const FILTER = 'FILTER'
 export const CREATE_ORDER = "CREATE_ORDER"
 export const GET_USER_ORDERS = "GET_USER_ORDERS"
 export const GET_NAME_DISHES = "GET_NAME_DISHES"
+export const GET_FOOD_REVIEWS = "GET_FOOD_REVIEWS"
+export const GET_USERS = "GET_USERS"
+
+
+
+
 
 
