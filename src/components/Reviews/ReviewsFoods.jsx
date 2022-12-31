@@ -1,17 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoArrowBackSharp } from "react-icons/io5";
 import {  useSelector } from 'react-redux';
-import moment from 'moment/moment';
 
 const ReviewsFoods = ({setReadReviews, FoodId}) => {
   const AllReviews = useSelector(state=> state.reviewsDishes)
   const AllUsers = useSelector(state=> state.allUsers)
+  const [Positive, setPositive] = useState(false)
+  const [Negative, setNegative] = useState(false)
   const Reviews = AllReviews.filter(r => {
     if (r.foodId === FoodId){
       return r
     } else {
       return
     }
+  })
+  const Positives = AllReviews.filter(p=>{
+      if (r.score>3) {
+        return p
+      } 
+      return 
   })
 
   const obtenerDatos = (userId) => {
@@ -48,7 +55,7 @@ const ReviewsFoods = ({setReadReviews, FoodId}) => {
     <button type="button" className="mt-2 text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" >All</button>
     
     </div>
-    {Reviews.length?
+    {Reviews.length && !Positive && !Negative?
     Reviews.map((rev)=>{
       return(
     <div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
