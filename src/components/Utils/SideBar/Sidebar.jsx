@@ -1,63 +1,46 @@
+import { useState } from 'react';
 import logo from './img/logo.png'
+
+
 const Sidebar = () => {
+
+   const [open, setOpen] = useState(false);
+
     return (
        <>
-       
-
-       <aside className="w-64" aria-label="Sidebar">
-   <div className="overflow-y-auto py-4 px-3 bg-gray-50  dark:bg-gray-700 h-screen">
-      <a href="http://localhost:3000/" className="flex items-center pl-2.5 mb-5">
-         <img src={logo} className="mr-5 h-8 sm:h-8" alt="Flowbite Logo" />
-         <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Henry Food</span>
-      </a>
-      <ul className="space-y-2">
-            <button type="button" className="flex items-center p-2 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
-                <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Filtros</span>
-                <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+         <div className="py-5  top-0 left-25 right-0 shadow-md">
+            <button className='py-7' onClick={ () => setOpen(true) }>
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+               </svg>
             </button>
-            <ul id="dropdown-example" class="hidden py-2 space-y-2">
-                  <li>
-                     <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Comidas</a>
-                  </li>
-                  <li>
-                     <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Bebidas</a>
-                  </li>
-                  <li>
-                     <a href="#" class="flex items-center p-2 pl-11 w-full text-base font-normal text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Postres</a>
-                  </li>
-            </ul>
-         <li>
-            <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600">
-               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path><path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
-               <span className="flex-1 ml-3 whitespace-nowrap">Soporte</span>
-               <span className="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
-            </a>
-         </li>
-         <li>
-            <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600">
-               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
-               <span className="flex-1 ml-3 whitespace-nowrap">Cuenta</span>
-            </a>
-         </li>
-    </ul>
-    <ul className="space-y-2">
-         <li>
-            <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600">
-               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path></svg>
-               <span className="flex-1 ml-3 whitespace-nowrap">Log Out</span>
-            </a>
-         </li>
-         <li>
-            <a href="#" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-600">
-               <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
-               <span className="flex-1 ml-3 whitespace-nowrap">Configuracion</span>
-            </a>
-         </li>
-      </ul>
-   </div>
-</aside>
 
+            <div className={`${!open && "hidden" } bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm` } onClick={ () => setOpen(false) }></div>
+
+
+            <div className={` ${open ? 'w-80' : 'w-0' } bg-green-600 min-h-screen w-80 fixed top-0 left-0 transition-all duration-300`}>
+               <div className={` ${!open && 'hidden' } pt-3`}>
+                  <button className='ml-4 text-black mb-14' onClick={ () => setOpen(false) }>
+                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                     </svg>
+                  </button>
+                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
+                     Soporte
+                  </div>
+                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
+                     Cuenta
+                  </div>
+                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
+                     Salir
+                  </div>
+                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
+                     Configuracion
+                  </div>
+               </div>
+            </div>
+
+         </div>
        </>
     )
 }

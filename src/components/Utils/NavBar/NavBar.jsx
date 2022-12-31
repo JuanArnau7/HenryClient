@@ -20,6 +20,7 @@ import { useState, useEffect } from "react"
 import SearchBar from "../SearchBar/SearchBar"
 import { useDispatch, useSelector } from "react-redux"
 import { getLengthCart } from "../../../redux/Actions/actions"
+import Sidebar from "../SideBar/Sidebar";
 
 const NavBar = ({handleLogOut, handleCreate}) => {
   const [Menu, setMenu] = useState(false)
@@ -42,11 +43,11 @@ const NavBar = ({handleLogOut, handleCreate}) => {
 
   return (
     <>
-
       <nav className=" px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl  w-full">
+      <Sidebar />
         <div className="container flex flex-wrap items-center justify-between mx-auto">
           <Link to='/' ><span className="flex items-center">
-            <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
+            <span className="px-2 self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
           </span></Link>
           {!Menu ?
             <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">

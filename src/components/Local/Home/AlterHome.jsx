@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
+import Sidebar from "../../Utils/SideBar/Sidebar";
 // import NavBar from "../../Utils/NavBar/NavBar"
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
@@ -57,6 +58,7 @@ const AlterHome = () => {
 		<div className="AlterHome h-fit">
 		<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-white">
 		<NavBar handleLogOut={handleLogOut} handleCreate={handleCreate} />
+		<Sidebar />
 
 		<div className="flex justify-center items-center shadow-xl h-screen w-full bg-white">
 		<Loading Visible={Visible}/>

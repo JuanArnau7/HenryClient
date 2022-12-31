@@ -41,7 +41,6 @@ function App() {
 					<Route path='/login' element={<Login/>} >
           				<Route path='google' element={<LoginGoogle/>} />
         			</Route >
-					<Route path="/sidebar" element={<Sidebar/>}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>
