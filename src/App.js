@@ -16,6 +16,7 @@ import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
 import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
+// import NavBar from "./components/Utils/NavBar/NavBar
 import PaymentStripe from "./components/Payments/PaymentStripe";
 import ReviewsFoods from "./components/Reviews/ReviewsFoods";
 
