@@ -1,5 +1,5 @@
 import React from "react";
-import { loginUserJWT } from "../../redux/Actions/actions";
+import { getUserById, loginUserJWT } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -22,8 +22,8 @@ const Login = () => {
   };
   const errorLoging = () => {
     Swal.fire({
-      title: "wrong email and password!!!",
-      text: "",
+      title: "Login failed!",
+      text: "User not found or password incorrect",
       icon: "warning",
       confirmButtonText: "OK",
     });
@@ -32,21 +32,30 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    dispatch(loginUserJWT(user));
-    //await dispatch(validarUserJWT({ token: localStorage.token }))
-    if (localStorage.token) return navigate(`/local/alterHome`);
-    errorLoging();
+    const res = await dispatch(loginUserJWT(user));
+		const token = localStorage.getItem("token")
+		if(res.status === 400 || !token)	return errorLoging(); 
+		Swal.fire({
+			title: "Welcome",
+			text: "Welcome to our page",
+			icon: "success"
+		})
+		
+		const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
+		dispatch(getUserById(tokenDecoded.id))
+		
+		navigate('/local/alterHome')
   };
 
   // loginUserJWT
   return (
     <>
       <div className="flex items-center justify-center h-screen Center">
-        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] ">
+        <div className="min-w-fit flex-col border bg-white px-6 py-14 shadow-md rounded-[4px] w-1/4 ">
           <div className="mb-8 flex justify-center">
             <img
-              className="w-24"
-              src="https://assets.leetcode.com/static_assets/public/webpack_bundles/images/logo.c36eaf5e6.svg"
+              className="w-48"
+              src="https://neurona-ba.com/wp-content/uploads/2021/07/HenryLogo.jpg"
               alt=""
             />
           </div>
@@ -104,7 +113,7 @@ const Login = () => {
           </div>
           <br />
       <Outlet />
-          <div className="mt-5 flex text-center text-sm text-gray-400">
+          <div className="mt-5 flex text-center justify-center align-items-center text-sm text-gray-400">
             <p>
               This site is protected by reCAPTCHA and the Google <br />
               <a className="underline" href="">

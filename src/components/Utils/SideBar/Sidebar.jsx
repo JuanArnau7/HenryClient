@@ -8,8 +8,8 @@ const Sidebar = () => {
 
     return (
        <>
-         <div className="py-5  top-0 left-25 right-0 shadow-md">
-            <button className='py-7' onClick={ () => setOpen(true) }>
+         <div className=" top-0 left-25 right-0">
+            <button className='py-2' onClick={ () => setOpen(true) }>
                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                </svg>

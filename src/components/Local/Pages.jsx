@@ -62,7 +62,7 @@ const Pages = ({ data }) => {
 		<div className='flex flex-wrap justify-around'>
 			{data.length > 0 &&
 				data.map((dish, index) => (
-					<div key={index} className="sm:w-11/12 md:w-5/12 lg:w-3/12 rounded-lg shadow-md hover:shadow-xl transition m-3 cursor-pointer flex flex-col w-full  justify-center">
+					<div key={index} className="sm:w-11/12 md:w-5/12 lg:w-3/12 rounded-lg shadow-md hover:shadow-xl transition m-3 cursor-pointer  w-fit  justify-center bg-white">
 						<div onClick={() => moreDetails(dish)}>
 							<img className="rounded-t-lg w-full h-56 object-cover" src={dish.img} alt={dish.lenguage.en.name} />
 							<div className="px-4 pt-2 pb-4 h-24 flex flex-col justify-center">
