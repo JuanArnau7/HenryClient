@@ -52,7 +52,7 @@ const NavBar = () => {
 		<>
 			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
 				<div className="flex flex-wrap px-6 items-center justify-center md:justify-between mx-auto">
-					<div className="flex flex-row gap-3">
+					<div className="flex flex-row items-center justify-center gap-3">
 						<Sidebar  pathname={pathname} userId={user._id}/>
 						<Link to='/' >
 							<span className="flex items-center">
@@ -89,21 +89,7 @@ const NavBar = () => {
 								Login
 							</Link>
 						) : !user._id ? (
-							<div className="flex gap-4">
-								<Link
-									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"/register"}
-								>
-									Signup
-								</Link>
-								<Link
-									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"/login"}
-								>
-									Login
-								</Link>
-
-							</div>
+							<></>
 						) : user._id && pathname === "/perfil" ? (
               <>
                 <button
