@@ -71,7 +71,7 @@ const CardFood = () => {
 	useEffect(() => {
 		// console.log("idParmas", id)
 		dispatch(detailsDish(id))
-	}, [dispatch, dish])
+	}, [dish])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 	
@@ -80,10 +80,10 @@ const CardFood = () => {
 		<div className='BackgroundFood h-screen w-screen overflow-y'>
 			<NavBar></NavBar>
 			{/* <NavBarCreateFoods/> */}
-			<div className=' h-screen  flex justify-center items-center BackgroundFood'>
+			<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 				
-			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-4/6">
-				<div className="sm:w-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
+			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-5/6">
+				<div className="sm:w-full s:h-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 					<div className=" rounded-t-lg ">
 						<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
@@ -120,7 +120,7 @@ const CardFood = () => {
 						</div>
 					</div>
 				</div>
-				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
+				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-0  sm:mt-0 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
 					{!ReadReviews?
 					<div className='m-6 h-full flex flex-col justify-center items-center '>
 						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
