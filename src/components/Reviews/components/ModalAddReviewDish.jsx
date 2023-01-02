@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { postReviewDish } from '../../../redux/Actions/actions';
 
-const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId}) => {
+const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId, establecerReviews}) => {
     const dispatch = useDispatch()
     const [Description, setDescription] = useState("")
     const [Title, setTitle] = useState("")
@@ -56,8 +56,9 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
             descriptions : Description,
             score: Rating.s5? 5 : Rating.s4? 4 : Rating.s3? 3 : Rating.s2? 2 : 1,
         }
-        let add = await dispatch(postReviewDish(review))
+        console.log(review)
         if (validar() === true) {
+            let add = await dispatch(postReviewDish(review))
             if (add) {
                agregado()
                reset()
@@ -91,6 +92,7 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
         s5 : false,
         });
         setModalReviewDish(false)
+        establecerReviews()
     }
   return (
     <>
@@ -107,7 +109,7 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
                 <form className="space-y-6" onSubmit={handleSubmit}>
                     <div>
                     <label htmlFor="first-name" className="block text-base font-medium text-gray-700">Title</label>
-                        <input onChange={handleTitle} type="text"  className=" h-10 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                        <input onChange={handleTitle} type="text" value={Title} className=" h-10 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
                     </div>
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
