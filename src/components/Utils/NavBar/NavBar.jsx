@@ -53,7 +53,6 @@ const NavBar = () => {
 			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0">
 				<div className="flex flex-wrap px-6 items-center justify-center md:justify-between mx-auto">
 					<div className="flex flex-row gap-3">
-            <Sidebar />
 						<Link to='/' >
 							<span className="flex items-center">
 								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
@@ -105,16 +104,19 @@ const NavBar = () => {
 
 							</div>
 						) : user._id && pathname === "/perfil" ? (
-							<button
-								className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
-								onClick={handleLogOut}
-							>
-								Logout
-							</button>
+              <>
+                <Sidebar />
+                <button
+                className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
+                onClick={handleLogOut}
+							  >
+								  Logout
+							  </button>
+              </>
 						) : user._id && (
-							<Link
-								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"/perfil"}
+              <Link
+              className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
+              to={"/perfil"}
 							>
 								Profile
 							</Link>
