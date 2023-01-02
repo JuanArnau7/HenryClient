@@ -13,18 +13,32 @@ import ReviewsFoods from '../Reviews/ReviewsFoods';
 const CardFood = () => {
 	const dispatch = useDispatch()
 	const id = useParams()
+	const [userId, setuserId] = useState(null)
 	const dish = useSelector(state => state.detailDish);
+	const reviews = useSelector(state => state.reviewsDishes);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
-	const userToken = localStorage.getItem('token')
-	const parseJwt = (token) => {
-		try {
-		  return JSON.parse(atob(token.split('.')[1]));
-		} catch (e) {
-		  return null;
+	const [Reviews, setReviews] = useState([])
+
+	const establecerToken= async()=>{
+		let tk = localStorage.getItem('token');
+		let userToken = await JSON.parse(atob(tk.split('.')[1]));
+		if (userToken) {
+			setuserId(userToken.id)
 		}
-	  };
-	const userId = userToken?  parseJwt(userToken).id : null
+	}
+	const establecerReviews = ()=>{
+		let rev = reviews.filter(r => {
+		  if (r.foodId === id.id){
+			return r
+		  } else {
+			return
+		  }
+		})
+		if (rev) {
+		  setReviews(rev)
+		}
+	  }
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === id.id)
@@ -71,7 +85,10 @@ const CardFood = () => {
 	useEffect(() => {
 		// console.log("idParmas", id)
 		dispatch(detailsDish(id))
-	}, [dispatch, dish])
+		establecerToken()
+		establecerReviews()
+		    // eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dish,reviews])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 	
@@ -80,10 +97,10 @@ const CardFood = () => {
 		<div className='BackgroundFood h-screen w-screen overflow-y'>
 			<NavBar></NavBar>
 			{/* <NavBarCreateFoods/> */}
-			<div className=' h-screen  flex justify-center items-center BackgroundFood'>
+			<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 				
-			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-4/6">
-				<div className="sm:w-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
+			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-5/6">
+				<div className="sm:w-full s:h-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 					<div className=" rounded-t-lg ">
 						<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 					</div>
@@ -94,7 +111,6 @@ const CardFood = () => {
 							<svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
 							<p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
 							<span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-							<a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">73 reviews</a>
 						</div>
 						</div>
 						<p className="text-lg font-semibold text-blue-500">Before <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
@@ -120,7 +136,7 @@ const CardFood = () => {
 						</div>
 					</div>
 				</div>
-				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-6 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
+				<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-0  sm:mt-0 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
 					{!ReadReviews?
 					<div className='m-6 h-full flex flex-col justify-center items-center '>
 						<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
@@ -131,7 +147,7 @@ const CardFood = () => {
 						</div>
 					</div>
 					:
-					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id}/>
+					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} Reviews={Reviews}/>
 					}
 				</div>
 			</div>
@@ -142,6 +158,7 @@ const CardFood = () => {
 		ModalReviewDish={ModalReviewDish}
 		setModalReviewDish={setModalReviewDish}
 		userId={userId}
+		establecerReviews={establecerReviews}
 		/>
 		</>
 	)

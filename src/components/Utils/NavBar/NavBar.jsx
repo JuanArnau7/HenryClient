@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getLengthCart, logOut } from "../../../redux/Actions/actions";
 import { FaStoreAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Sidebar from "../SideBar/Sidebar";
 
 const NavBar = () => {
 	const [Menu, setMenu] = useState(false)
@@ -49,9 +50,10 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0">
+			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
 				<div className="flex flex-wrap px-6 items-center justify-center md:justify-between mx-auto">
-					<div className="flex flex-row gap-3">
+					<div className="flex flex-row items-center justify-center gap-3">
+						<Sidebar  pathname={pathname} userId={user._id}/>
 						<Link to='/' >
 							<span className="flex items-center">
 								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
@@ -87,36 +89,18 @@ const NavBar = () => {
 								Login
 							</Link>
 						) : !user._id ? (
-							<div className="flex gap-4">
-								<Link
-									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"/register"}
-								>
-									Signup
-								</Link>
-								<Link
-									className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-									to={"/login"}
-								>
-									Login
-								</Link>
-
-							</div>
+							<></>
 						) : user._id && pathname === "/perfil" ? (
-							<button
-								className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
-								onClick={handleLogOut}
-							>
-								Logout
-							</button>
-						) : user._id && (
-							<Link
-								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"/perfil"}
-							>
-								Profile
-							</Link>
-						)}
+              <>
+                <button
+                className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
+                onClick={handleLogOut}
+							  >
+								  Logout
+							  </button>
+              </>
+						) 
+					: <></>}
 
 						<SearchBar manageMenu={manageMenu} />
 						

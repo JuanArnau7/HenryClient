@@ -60,7 +60,7 @@ const FiltroCategoria = () => {
   
     return(
       <>
-      <form className="flex">
+      <form className="flex flex-col m-5 gap-2 ">
 
         <select defaultValue={''} id="country" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChangeCountry}>
           <option value={''}>Options</option>
@@ -101,7 +101,7 @@ const FiltroCategoria = () => {
         :
         <></>}
         </select>
-        <button onClick={handleSubmit} type="reset" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Reset</button>
+        <button onClick={handleSubmit} type="reset" className="bg-blue-600 border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">Reset</button>
       </form>
       </>
     )
