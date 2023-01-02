@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getLengthCart, logOut } from "../../../redux/Actions/actions";
 import { FaStoreAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Sidebar from "../SideBar/Sidebar";
 
 const NavBar = () => {
 	const [Menu, setMenu] = useState(false)
@@ -103,16 +104,19 @@ const NavBar = () => {
 
 							</div>
 						) : user._id && pathname === "/perfil" ? (
-							<button
-								className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
-								onClick={handleLogOut}
-							>
-								Logout
-							</button>
+              <>
+                <Sidebar />
+                <button
+                className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
+                onClick={handleLogOut}
+							  >
+								  Logout
+							  </button>
+              </>
 						) : user._id && (
-							<Link
-								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
-								to={"/perfil"}
+              <Link
+              className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
+              to={"/perfil"}
 							>
 								Profile
 							</Link>
