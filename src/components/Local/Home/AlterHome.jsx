@@ -40,10 +40,10 @@ const AlterHome = () => {
 	const btnToogleMenu = () => setToogleMenu(prev => !prev)
 
 	const navigate = useNavigate();
-	
+
 	return (
 		<>
-		
+			
 			{Visible ?
 				<>
 					<div className="AlterHome h-fit">
