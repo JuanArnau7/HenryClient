@@ -37,11 +37,7 @@ const FiltroCategoria = () => {
     },
     {
       name: "Bebidas"
-    },
-    {
-      name: "Sopas"
     }
-
   ]
 
   
