@@ -110,9 +110,9 @@ const Register = () => {
 	const handleClickSubmit = async (e) => {
 		e.preventDefault()
 		if (captcha.current.getValue()) {
-			var creacion = await dispatch(postUserCreate(form))
-			console.log("CREACION ", creacion)
-			if (creacion.payload.status === 200) {
+			const creacion = await dispatch(postUserCreate(form))
+			console.log("CREACION ", creacion.status === 400)
+			if (creacion?.payload?.status === 200) {
 				correctCreation()
 				reset()
 				navigate("/perfil")
@@ -171,27 +171,27 @@ const Register = () => {
 	return (
 		<>
 			<div className="flex items-center justify-center h-screen Center">
-				<div className="w-11/12 md:w-1/2 lg:w-1/3 flex-col border bg-white px- py-4 shadow-md rounded-[4px]">
+				<div className="w-11/12 md:w-9/12 lg:w-1/2 flex-col border bg-white px- py-4 shadow-md rounded-[4px]">
 					<form action="#" method="POST">
 						<div className="md:col-span-1">
 							<div className="px-4 sm:px-0">
 								<h3 className="text-lg font-semibold leading-6 bg-white text-gray-900 text-center">Create User form</h3>
 							</div>
 						</div>
-						<div className="bg-white px-4 py-5 sm:p-6">
+						<div className="bg-white px-6 py-5 sm:p-6">
 							<div className="mb-5">
 								<label htmlFor="first-name" className="block text-base font-medium text-gray-700">Full name</label>
-								<input onChange={handleChange} type="text" name="fullName" id="first-name" className=" h-10 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+								<input onChange={handleChange} type="text" name="fullName" id="first-name" className="h-10 mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-3" />
 								<p className="block text-sm font-medium text-red-700">{error.eFullName}</p>
 							</div>
 							<div className="mb-5">
 								<label htmlFor="email-address" className="block text-base font-medium text-gray-700">Email address</label>
-								<input onChange={handleChange} type="text" name="email" id="email-address" className="h-10 mt-1 relative w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm " />
+								<input onChange={handleChange} type="text" name="email" id="email-address" className="h-10 mt-1 relative w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-3" />
 								<p className="block text-sm font-medium text-red-700">{error.eEmail}</p>
 							</div>
 							<div className="mb-5">
 								<label htmlFor="country" className="block text-base font-medium text-gray-700">Country</label>
-								<select onChange={handleChange} id="country" name="country" className="mt-1 block w-full h-10 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+								<select onChange={handleChange} id="country" name="country" className="mt-1 block w-full h-10 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm pl-3">
 									<option value="Argentina">Argentina</option>
 									<option value="Mexico">Mexico</option>
 									<option value="United States">United States</option>
