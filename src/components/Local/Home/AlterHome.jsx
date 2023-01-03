@@ -5,7 +5,7 @@ import Paginator from "../../Paginator/Paginator";
 import FiltroCategoria from "../../Utils/Filter/FiltroCategoria";
 import FiltroPrecios from "../../Utils/Filter/FiltroPrecios";
 import Pages from "../Pages";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
@@ -39,7 +39,7 @@ const AlterHome = () => {
 	const [toogleMenu, setToogleMenu] = useState(true)
 	const btnToogleMenu = () => setToogleMenu(prev => !prev)
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 
 	return (
 		<>
