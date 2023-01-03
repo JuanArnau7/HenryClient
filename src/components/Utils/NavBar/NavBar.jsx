@@ -91,18 +91,14 @@ const NavBar = () => {
 						) : !user._id ? (
 							<></>
 						) : user._id && pathname === "/perfil" ? (
-              <>
-                <button
-                className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
-                onClick={handleLogOut}
-							  >
-								  Logout
-							  </button>
-              </>
+              				<></>
 						) 
-					: <></>}
-
+						: 
+						<>
 						<SearchBar manageMenu={manageMenu} />
+						</>
+						}
+
 						
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">

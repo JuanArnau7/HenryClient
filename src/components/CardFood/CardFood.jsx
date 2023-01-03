@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { detailsDish, getLengthCart } from '../../redux/Actions/actions';
+import { detailsDish, getFoodsReviews, getLengthCart } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -9,6 +9,7 @@ import "./CardFood.css"
 import NavBar from "../Utils/NavBar/NavBar";
 import ModalAddReviewDish from '../Reviews/components/ModalAddReviewDish';
 import ReviewsFoods from '../Reviews/ReviewsFoods';
+import Loading from '../Utils/Loading/Loading';
 
 const CardFood = () => {
 	const dispatch = useDispatch()
@@ -19,6 +20,8 @@ const CardFood = () => {
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
 	const [Reviews, setReviews] = useState([])
+	const [Visible, setVisible] = useState(true)
+	const [FoodId, setFoodId] = useState(null)
 
 	const establecerToken= async()=>{
 		let tk = localStorage.getItem('token');
@@ -29,7 +32,7 @@ const CardFood = () => {
 	}
 	const establecerReviews = ()=>{
 		let rev = reviews.filter(r => {
-		  if (r.foodId === id.id){
+		  if (r.foodId === FoodId){
 			return r
 		  } else {
 			return
@@ -41,7 +44,7 @@ const CardFood = () => {
 	  }
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
-	const findDish = cartDishes.find(dish => dish.id === id.id)
+	const findDish = cartDishes.find(dish => dish.id === FoodId)
 
 	const [dishInCart, setDishInCart] = useState(findDish ? true : false)
 
@@ -83,20 +86,36 @@ const CardFood = () => {
 	}
 
 	useEffect(() => {
-		// console.log("idParmas", id)
+		 console.log("dish", dish)
 		dispatch(detailsDish(id))
 		establecerToken()
 		establecerReviews()
+		dispatch(getFoodsReviews())
+		setFoodId(id)
+		setTimeout(() => {
+			setVisible(false)
+		}, 1500)
 		    // eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dish,reviews])
+	}, [dish])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 	
 	return (
 		<>
-		<div className='BackgroundFood h-screen w-screen overflow-y'>
+		{Visible && !dish?
+				<>
+					<div className="AlterHome h-fit">
+						<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-white">
+							<div className="flex justify-center items-center shadow-xl h-screen w-full bg-white">
+								<Loading Visible={Visible} />
+							</div>
+						</div>
+					</div>
+				</>
+				:
+				<>
+					<div className='BackgroundFood h-screen w-screen overflow-y'>
 			<NavBar></NavBar>
-			{/* <NavBarCreateFoods/> */}
 			<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 				
 			<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg  h-5/6">
@@ -118,21 +137,12 @@ const CardFood = () => {
 
 						<div className="flex items-center justify-around mt-4">
 							 
-							{/* <Link to="/local/alterHome" className="rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600">Home</Link> */}
 							<Link to="/local/alterHome" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-blue-800">Home</Link>
 							<button type="button" onClick={() => addOrRemoveFromCart(dish._id)}
 								className={dishInCart ? "focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" : "focus:outline-none text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"}>{dishInCart
 									? <span className='flex items-center'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
 									: <span className='flex items-center'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
 									}</button>
-							{/* <button
-								onClick={() => addOrRemoveFromCart(dish._id)}
-								className={dishInCart ? "rounded-md bg-red-500 text-white px-3 pb-1 hover:bg-red-600" : "rounded-md bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
-							>{dishInCart
-								? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
-								: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
-								}
-							</button> */}
 						</div>
 					</div>
 				</div>
@@ -160,6 +170,9 @@ const CardFood = () => {
 		userId={userId}
 		establecerReviews={establecerReviews}
 		/>
+				</>
+				}
+		
 		</>
 	)
 }
