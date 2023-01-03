@@ -149,7 +149,7 @@ const CardFood = () => {
 						</div>
 					</div>
 					:
-					<DishReviews setReadReviews={setReadReviews}/>
+					<ReviewsFoods setReadReviews={setReadReviews}/>
 					}
 				</div>
 			</div>
