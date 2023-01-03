@@ -1,4 +1,4 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS } from './actionsTypes'
 import axios from 'axios'
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
@@ -47,12 +47,39 @@ export const getAllDishes = () => {
 		}
 	}
 }
+export const getFoodsReviews = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`${URL_SERVER}reviews`);
+			return dispatch({
+				type: GET_FOOD_REVIEWS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error Redux actions on get all dishes", error.message);
+			return error
+		}
+	}
+}
+export const getUsers = () => {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`${URL_SERVER}users`);
+			return dispatch({
+				type: GET_USERS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error Redux actions on get all dishes", error.message);
+			return error
+		}
+	}
+}
 
 export const getNameDishes = (name) => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(`${URL_SERVER}foods?name=` + name);
-            // console.log("response", response)
 			return dispatch({
 				type: GET_NAME_DISHES,
 				payload: response.data
@@ -68,7 +95,6 @@ export const getFilterDishes = () => {
 	return async (dispatch) => {
 		try {
 			const response = await axios.get(`${URL_SERVER}foods`);
-			console.log("response redux get filter dishes", response)
 			return dispatch({
 				type: FILTER,
 				payload: response.data
@@ -235,6 +261,21 @@ export const getUserOrders = (id) => {
 			})
 		} catch (error) {
 			console.log("Error redux actions on get user's orders", error);
+			return error.response
+		}
+	}
+}
+// /foods?country=MEXICAN&food=DRINKS&fit=LOW%20IN%20FAT
+export const getAllTags = () => {
+	return async dispatch => {
+		try {
+			const response = await axios(`${URL_SERVER}tags`)
+			return dispatch({
+				type: GET_ALL_TAGS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error redux actions on get tags's", error);
 			return error.response
 		}
 	}

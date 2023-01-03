@@ -8,16 +8,16 @@ const ShoppingHistory = () => {
 
 	return (
 		<div>
-			<h3 className='text-center font-bold mb-4 text-xl'>Historial de tus compras </h3>
+			<h3 className='text-center font-bold mb-4 text-xl'>History of your purchases </h3>
 
 			<div className='mb-16'>
 				{historyShopping.length === 0
 					? <div className="flex flex-col">
-						<h3 className='mr-3 font-bold'>No tienes compras registradas</h3>
+						<h3 className='mr-3 font-bold'>You have no registered purchases</h3>
 						<img src="https://img.freepik.com/vector-premium/pequenos-personajes-enorme-historial-transacciones-receta-pago-comprador-hombre-tarjeta-credito-pago-linea-mujer-vidrio-pago-efectivo-compras-tienda-ilustracion-vector-gente-dibujos-animados_87771-11353.jpg" alt="Sin historial de compras" />
 						<Link to={'/local/alterHome'}
 							className="bg-blue-500 text-center w-1/2 mx-auto mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-							Ir a la pagina de inicio
+							Go to Home
 						</Link>
 					</div>
 					: historyShopping.map((dish, index) => {
@@ -26,7 +26,7 @@ const ShoppingHistory = () => {
 							<div key={index} className='mb-5'>
 								<div className="flex mb-2">
 									<p className='mr-2 font-bold'>{index + 1} -</p>
-									<p className='font-semibold'> Estado del pedido:</p>
+									<p className='font-semibold'> Order status:</p>
 									<p>{dish.stateOrder}</p>
 								</div>
 
@@ -38,13 +38,13 @@ const ShoppingHistory = () => {
 													No
 												</th>
 												<th scope="col" className="py-3 px-5">
-													Producto
+													Product
 												</th>
 												<th scope="col" className="py-3 px-4">
-													Cantidad <br /> <small className='font-light'>(pendiente🥴)</small>
+													Amount <br /> <small className='font-light'>(pending🥴)</small>
 												</th>
 												<th scope="col" className="py-3 px-3">
-													Valor
+													Value
 												</th>
 												<th scope="col" className="py-3 px-5 text-right">
 													SubTotal

@@ -63,12 +63,12 @@ const Cart = () => {
 			<NavBar/>
 			<div className="flex my-4 justify-center">
 				<h5 className="font-bold text-2xl">
-					Carrito de compras
+					Shopping cart
 				</h5>
 			</div>
 			{cartDishes.length === 0
 				? <div>
-					Tu carrito de compras esta vacio
+					Your shopping cart is empty
 				</div> :
 				cartDishes.map((el, index) => {
 					return (
@@ -86,13 +86,13 @@ const Cart = () => {
 														{el.name}
 													</p>
 													<p className="pl-4 text-sm text-gray-500 truncate">
-														Precio unitario ${el.price}
+														Unit price ${el.price}
 													</p>
 												</div>
 											</div>
 											<div className='flex flex-row justify-between w-full md:w-2/5'>
 												<div className='flex flex-col'>
-													<label htmlFor="cant" className='text-sm'>Cantidad a agregar</label>
+													<label htmlFor="cant" className='text-sm'>Ammount to add</label>
 													<input type="number"
 														id='cant'
 														name="cant"
@@ -104,7 +104,7 @@ const Cart = () => {
 												</div>
 												<div className="flex flex-col align-middle items-center pt-1">
 													<p className="text-sm font-semibold text-gray-900 truncate">
-														Sub-total
+														Subtotal
 													</p>
 													${el.price * el.cant}
 												</div>
@@ -123,7 +123,7 @@ const Cart = () => {
 				})
 			}
 			<div className='w-11/12 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
-				<span className='font-bold font-sans text-xl'>Total a pagar =</span>  $ {currencyFormat(total)}
+				<span className='font-bold font-sans text-xl'>Total =</span>  $ {currencyFormat(total)}
 			</div>
 			<div className='mt-4 w-full flex justify-around'>
 				<button
