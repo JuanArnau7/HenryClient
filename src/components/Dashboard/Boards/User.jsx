@@ -1,9 +1,10 @@
 import React from "react";
+import Table from "../../Utils/Table/Table";
 
 const BoardUser = () => {
   return (
     <div>
-      <h1>BoardUser</h1>
+      <Table/>
     </div>
   )
 }
