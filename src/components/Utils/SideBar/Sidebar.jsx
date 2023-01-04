@@ -5,6 +5,19 @@ import Swal from 'sweetalert2';
 import { logOut } from '../../../redux/Actions/actions';
 import FiltroCategoria from '../Filter/FiltroCategoria';
 import FiltroPrecios from '../Filter/FiltroPrecios';
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { FaSignInAlt } from 'react-icons/fa';
+import { FiFilter } from 'react-icons/fi';
+import { TbArrowsSort } from 'react-icons/tb';
+import { CgProfile } from 'react-icons/cg';
+import { BsCart4 } from 'react-icons/bs';
+
+
+
+
+
+
+
 
 
 const Sidebar = ({pathname, userId}) => {
@@ -53,21 +66,8 @@ const Sidebar = ({pathname, userId}) => {
                   <div className='bg-white h-screen'>
                   {!userId?
                   <>
-                  <Link to={"/login"}>
-                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
-                     Log In
-                  </div>
-                  </Link>
-                  <Link to={"/register"}>
-                  <div className='text-center text-black text-xl hover:bg-gray-600 cursor-pointer py-3 mb-2'>
-                     Sing In
-                  </div>
-                  </Link>
-                  </>
-                  :
-                  <>
                   <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <FiFilter className='text-2xl ml-2'/> <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Filtros?
                      <FiltroCategoria/>
                      :
@@ -75,7 +75,36 @@ const Sidebar = ({pathname, userId}) => {
                      }
                   </div>
                   <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <TbArrowsSort className='text-2xl ml-2'/><svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                     {Sorts?
+                     <FiltroPrecios/>
+                     :
+                     <></>
+                     }
+                  </div>
+                  <Link to={"/login"}>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 flex items-center justify-center'>
+                  Log In <BiLogIn className='text-3xl'/> 
+                  </div>
+                  </Link>
+                  <Link to={"/register"}>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 flex items-center justify-center'>
+                     Sing In   <FaSignInAlt className='text-2xl ml-2'/>
+                  </div>
+                  </Link>
+                  </>
+                  :
+                  <>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <FiFilter className='text-2xl ml-2'/> <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                     {Filtros?
+                     <FiltroCategoria/>
+                     :
+                     <></>
+                     }
+                  </div>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <TbArrowsSort className='text-2xl ml-2'/><svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Sorts?
                      <FiltroPrecios/>
                      :
@@ -83,18 +112,18 @@ const Sidebar = ({pathname, userId}) => {
                      }
                   </div>
                   <Link to={'/perfil'}>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium '>
-                     User Profile
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium flex items-center justify-center'>
+                     User Profile <CgProfile className="text-2xl ml-2"/>
                   </div>
                   </Link>
                   <Link to={'/cart'}>
-                     <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium '>
-                       Cart 
+                     <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium flex items-center justify-center '>
+                       Cart <BsCart4 className="text-2xl ml-2 "/>
                      </div>
                   </Link>
                   <Link>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium ' onClick={()=>handleLogOut()}>
-                     Log Out
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium flex items-center justify-center' onClick={()=>handleLogOut()}>
+                     Log Out <BiLogOut className="text-3xl ml-2 "/>
                   </div>
                   </Link>
                   </>

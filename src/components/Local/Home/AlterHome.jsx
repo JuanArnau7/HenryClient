@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getFilterDishes } from "../../../redux/Actions/actions";
+import { getFilterDishes, loginUserJWT } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
-import FiltroCategoria from "../../Utils/Filter/FiltroCategoria";
-import FiltroPrecios from "../../Utils/Filter/FiltroPrecios";
 import Pages from "../Pages";
 // import { useNavigate } from "react-router-dom";
 import { FaFilter, FaSort } from "react-icons/fa";
@@ -17,6 +15,7 @@ const AlterHome = () => {
 	const [Visible, setVisible] = useState(true)
 	useEffect(() => {
 		dispatch(getFilterDishes())
+		dispatch(loginUserJWT())
 	}, [dispatch])
 	useEffect(() => {
 		setTimeout(() => {
