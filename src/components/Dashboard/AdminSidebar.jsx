@@ -1,27 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./AdminSidebar.css"
 
-const AdminSidebar = () => {
-  const [sidebar, setSidebar] = useState(false)
-
-  const showSidebar = () => {
-    setSidebar(!sidebar)
-  }
+const AdminSidebar = ({sidebar, handlerSidebar}) => {
 
   return (
     <div>
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <span onClick={showSidebar}>Abrir</span>
+          <span onClick={() => handlerSidebar()}>Abrir</span>
         </Link>
       </div>
       <div className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
-              <span onClick={showSidebar}>Cerrar</span>
+              <span onClick={() => handlerSidebar()}>Cerrar</span>
             </Link>
           </li>
           {SidebarData.map((item, index) => {

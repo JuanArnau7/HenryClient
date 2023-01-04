@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
@@ -9,11 +9,17 @@ import BoardTag from "./Boards/Tag";
 import BoardUser from "./Boards/User";
 
 const Dashboard = () => {
+  const [sidebar, setSidebar] = useState(false)
+
+  const showSidebar = () => {
+    setSidebar(!sidebar)
+  }
+
   return (
     <div>
-      <AdminSidebar />
+      <AdminSidebar handlerSidebar={showSidebar} sidebar={sidebar}/>
       {/* className="pl-64" */}
-      <div>
+      <div className={sidebar ? "flex pl-64" : "flex"}>
         <Routes>
           <Route exact path='/home' element={<BoardHome />} />
           <Route exact path='/foods' element={<BoardFoods />} />
