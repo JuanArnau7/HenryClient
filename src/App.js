@@ -14,8 +14,6 @@ import Cart from "./components/Cart/Cart";
 import CreateFood from './components/CreateFood/CreateFood';
 import PerfilUsuario from "./components/PerfilUsuario/PerfilUsuario";
 import Dashboard from "./components/Dashboard/Dashboard";
-import RegisterDishes from "./components/Dashboard/RegisterDishes/RegisterDishes";
-import RegisterMenus from "./components/Dashboard/RegisterMenus/RegisterMenus";
 // import NavBar from "./components/Utils/NavBar/NavBar
 import PaymentStripe from "./components/Payments/PaymentStripe";
 import ReviewsFoods from "./components/Reviews/ReviewsFoods";
@@ -43,10 +41,8 @@ function App() {
 					<Route exact path="/deliver/home" element={<DeliveryHome />} />
 					<Route exact path='/cart' element={<Cart />} />	
 					<Route exact path="/createFood" element={<CreateFood />} />
-					<Route exact path='/dashboard/menus' element={<RegisterMenus />} />
-					<Route exact path='/dashboard/dishes' element={<RegisterDishes />} />
 					<Route exact path='/detailDish/:id' element={<CardFood />} />
-					<Route exact path='/dashboard' element={<Dashboard />} />
+					<Route exact path='/dashboard/*' element={<Dashboard />} />
 					<Route exact path='/detailDish/:id' element={<CardFood />} />
 					<Route exact path='/register' element={<Register />} />
 					<Route exact path='/reviewsFoods' element={<ReviewsFoods />} />

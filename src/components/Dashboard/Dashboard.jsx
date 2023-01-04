@@ -1,11 +1,33 @@
-import React  from "react";
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import AdminSidebar from "./AdminSidebar";
+import BoardFoods from "./Boards/Food";
+import BoardHome from "./Boards/Home";
+import BoardReview from "./Boards/Review";
+import BoardTag from "./Boards/Tag";
+import BoardUser from "./Boards/User";
+
 const Dashboard = () => {
+  const [sidebar, setSidebar] = useState(false)
+
+  const showSidebar = () => {
+    setSidebar(!sidebar)
+  }
+
   return (
     <div>
-      {/* <SideBar/> */}
-      <h1>Admin Dashboard</h1>
-      {/* We will create a list of items that are pulled from the db, that will have buttons for easy A.M.D */}
-
+      <AdminSidebar handlerSidebar={showSidebar} sidebar={sidebar}/>
+      {/* className="pl-64" */}
+      <div className={sidebar ? "flex pl-64" : "flex"}>
+        <Routes>
+          <Route exact path='/home' element={<BoardHome />} />
+          <Route exact path='/foods' element={<BoardFoods />} />
+          <Route exact path='/users' element={<BoardUser />} />
+          <Route exact path='/reviews' element={<BoardReview />} />
+          <Route exact path='/tags' element={<BoardTag />} />
+        </Routes>
+      </div>
     </div>
   )
 }
