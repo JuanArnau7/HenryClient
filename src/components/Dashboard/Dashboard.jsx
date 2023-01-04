@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 // import { Link } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
@@ -12,7 +12,8 @@ const Dashboard = () => {
   return (
     <div>
       <AdminSidebar />
-      <div className="pl-64">
+      {/* className="pl-64" */}
+      <div>
         <Routes>
           <Route exact path='/home' element={<BoardHome />} />
           <Route exact path='/foods' element={<BoardFoods />} />
