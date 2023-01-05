@@ -95,10 +95,10 @@ const NavBar = () => {
 						) 
 						: 
 						<>
-						<SearchBar manageMenu={manageMenu} />
 						</>
 						}
-
+						<SearchBar manageMenu={manageMenu} />
+						
 						
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">

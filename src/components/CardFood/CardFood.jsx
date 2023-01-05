@@ -16,10 +16,9 @@ const CardFood = () => {
 	const id = useParams()
 	const [userId, setuserId] = useState(null)
 	const dish = useSelector(state => state.detailDish);
-	const reviews = useSelector(state => state.reviewsDishes);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
-	const [Reviews, setReviews] = useState([])
+
 	const [Visible, setVisible] = useState(true)
 	const [FoodId, setFoodId] = useState(null)
 
@@ -30,18 +29,7 @@ const CardFood = () => {
 			setuserId(userToken.id)
 		}
 	}
-	const establecerReviews = ()=>{
-		let rev = reviews.filter(r => {
-		  if (r.foodId === FoodId){
-			return r
-		  } else {
-			return
-		  }
-		})
-		if (rev) {
-		  setReviews(rev)
-		}
-	  }
+
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === FoodId)
@@ -89,8 +77,7 @@ const CardFood = () => {
 		 console.log("dish", dish)
 		dispatch(detailsDish(id))
 		establecerToken()
-		establecerReviews()
-		dispatch(getFoodsReviews())
+
 		setFoodId(id)
 		setTimeout(() => {
 			setVisible(false)
@@ -157,7 +144,7 @@ const CardFood = () => {
 						</div>
 					</div>
 					:
-					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} Reviews={Reviews}/>
+					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id}/>
 					}
 				</div>
 			</div>
@@ -168,7 +155,6 @@ const CardFood = () => {
 		ModalReviewDish={ModalReviewDish}
 		setModalReviewDish={setModalReviewDish}
 		userId={userId}
-		establecerReviews={establecerReviews}
 		/>
 				</>
 				}

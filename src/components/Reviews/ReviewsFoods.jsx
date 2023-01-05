@@ -3,12 +3,13 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import {  useDispatch, useSelector } from 'react-redux';
 import { getFoodsReviews } from '../../redux/Actions/actions';
 
-const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
+const ReviewsFoods = ({setReadReviews, FoodId}) => {
   const dispatch = useDispatch()
   const AllReviews = useSelector(state=> state.reviewsDishes)
   const AllUsers = useSelector(state=> state.allUsers)
   const [Positive, setPositive] = useState(false)
   const [Negative, setNegative] = useState(false)
+  const [Reviews, setReviews] = useState([])
   // const [Reviews, setReviews] = useState([])
   // const establecerReviews = ()=>{
   //   let rev = AllReviews.filter(r => {
@@ -52,8 +53,22 @@ const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
     let fechaFormateada = `${dia}/${mes+1}/${ano}`;
     return fechaFormateada;
 }
+
+const establecerReviews = ()=>{
+  let rev = AllReviews.filter(r => {
+    if (r.foodId === FoodId){
+    return r
+    } else {
+    return
+    }
+  })
+  if (rev) {
+    setReviews(rev)
+  }
+  }
   useEffect(() => {
     dispatch(getFoodsReviews())
+    establecerReviews()
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AllReviews])
   
