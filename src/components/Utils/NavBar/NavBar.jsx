@@ -51,19 +51,19 @@ const NavBar = () => {
 
 	return (
 		<>
-			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
+			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50 dark:bg-green-900">
 				<div className="flex flex-wrap px-6 items-center justify-center md:justify-between mx-auto">
 					<div className="flex flex-row items-center justify-center gap-3">
 						<Sidebar  pathname={pathname} userId={user._id}/>
 						<Link to='/' >
 							<span className="flex items-center">
-								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
+								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-gray-900">Henry's Foods</span>
 							</span>
 						</Link>
 						<Link to={'/local/alterHome'}
-							className="hover:border hover:border-white rounded-lg px-4">
+							className="hover:border hover:border-white rounded-lg px-4 dark:border-black ">
 							<span className="sr-only">Go to all dishes</span>
-							<FaStoreAlt className="text-white text-3xl" />
+							<FaStoreAlt className="text-white text-3xl dark:text-gray-900" />
 						</Link>
 					</div>				
 
@@ -107,8 +107,8 @@ const NavBar = () => {
 						
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">
-							<BsCart4 className="text-3xl text-white" />
-							<sup className="text-gray-600 font-bold bg-white mb-3 px-2 pt-2.5 rounded-full">{carrito}</sup>
+							<BsCart4 className="text-3xl text-white dark:text-gray-900" />
+							<sup className="text-gray-600 font-bold bg-white mb-3 px-2 pt-2.5 rounded-full dark:text-white dark:bg-gray-800">{carrito}</sup>
 						</div>
 					</div>
 				</div>

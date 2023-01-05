@@ -40,17 +40,17 @@ const Sidebar = ({pathname, userId}) => {
             <div className={`${!open && "hidden" } bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm` } onClick={ () => (setOpen(false), setFiltros(false), setSorts(false) )}></div>
 
 
-            <div className={` ${open ? 'w-80' : 'w-0' } bg-green-700 min-h-screen w-80 fixed top-0 left-0 transition-all duration-300`}>
+            <div className={` ${open ? 'w-80' : 'w-0' } bg-green-700 dark:bg-green-900 min-h-screen w-80 fixed top-0 left-0 transition-all duration-300`}>
                <div className={` ${!open && 'hidden' } my-3`}>
-                  <div className='bg-green-700 h-12 flex items-center '>
+                  <div className='bg-green-700 dark:bg-green-900 h-12 flex items-center '>
                   <button className='ml-4 text-black mr-12 'onClick={ () => (setOpen(false), setFiltros(false), setSorts(false) )} >
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
                      </svg>
                   </button>
-                  <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
+                  <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-gray-900">Henry's Foods</span>
                   </div>
-                  <div className='bg-white h-screen'>
+                  <div className='bg-white h-screen dark:bg-gray-500'>
                   {!userId?
                   <>
                   <Link to={"/login"}>
@@ -66,16 +66,16 @@ const Sidebar = ({pathname, userId}) => {
                   </>
                   :
                   <>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
+                     <button  className="text-black  text-xl bg-transparent   font-medium px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Filtros?
                      <FiltroCategoria/>
                      :
                      <></>
                      }
                   </div>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
+                     <button  className="text-black  text-xl bg-transparent font-medium px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Sorts?
                      <FiltroPrecios/>
                      :
@@ -83,17 +83,17 @@ const Sidebar = ({pathname, userId}) => {
                      }
                   </div>
                   <Link to={'/perfil'}>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium '>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
                      User Profile
                   </div>
                   </Link>
                   <Link to={'/cart'}>
-                     <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium '>
+                     <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
                        Cart 
                      </div>
                   </Link>
                   <Link>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium ' onClick={()=>handleLogOut()}>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg' onClick={()=>handleLogOut()}>
                      Log Out
                   </div>
                   </Link>
