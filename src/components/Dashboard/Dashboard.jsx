@@ -19,7 +19,7 @@ const Dashboard = () => {
     <div>
       <AdminSidebar handlerSidebar={showSidebar} sidebar={sidebar}/>
       {/* className="pl-64" */}
-      <div className={sidebar ? "flex pl-64" : "flex"}>
+      <div className={sidebar ? "flex pl-64 w-full" : "flex w-full"}>
         <Routes>
           <Route exact path='/home' element={<BoardHome />} />
           <Route exact path='/foods' element={<BoardFoods />} />
