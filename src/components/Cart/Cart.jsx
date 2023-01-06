@@ -60,15 +60,30 @@ const Cart = () => {
 
 	return (
 		<div className='mx-auto'>
-			<NavBar/>
-			<div className="flex my-4 justify-center">
-				<h5 className="font-bold text-2xl">
-					Shopping cart
-				</h5>
-			</div>
+			<NavBar />
+			{cartDishes.length > 0 &&
+				<div className="flex my-4 justify-center">
+					<h5 className="font-bold text-2xl">
+						Shopping Cart
+					</h5>
+				</div>
+			}
 			{cartDishes.length === 0
-				? <div>
-					Your shopping cart is empty
+				? <div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
+					<h5 className='font-bold font-sans text-xl text-center'>Your shopping cart is empty</h5>
+					<div className='flex justify-center'>
+						<img src="https://static.vecteezy.com/system/resources/thumbnails/003/857/426/small_2x/happy-man-shopping-with-cart-free-vector.jpg" alt="De compras" />
+					</div>
+					<p className='font-sans text-lg text-center'>Continue browsing our page to add your favorite products to your shopping cart</p>
+					<button
+						className='block mx-auto mt-6 rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+						onClick={goToHome}
+					>
+						Back to home
+						<div className='flex justify-center'>
+							<AiOutlineHome className='text-4xl' />
+						</div>
+					</button>
 				</div> :
 				cartDishes.map((el, index) => {
 					return (
@@ -122,6 +137,7 @@ const Cart = () => {
 					)
 				})
 			}
+
 			<div className='w-11/12 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
 				<span className='font-bold font-sans text-xl'>Total =</span>  $ {currencyFormat(total)}
 			</div>
@@ -135,25 +151,40 @@ const Cart = () => {
 					</div>
 				</button>
 
-				<button onClick={checkOutPayment}
-					className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
-				>
-					Order at home
-					<div className='flex justify-center'>
-						<TbTruckDelivery className='text-4xl' />
-					</div>
-				</button>
+				<div className='w-11/12 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
+					<span className='font-bold font-sans text-xl'>Total a pagar =</span>  $ {currencyFormat(total)}
+				</div>
+				<div className='mt-4 w-full flex justify-around'>
+					<button
+						className='rounded-md bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
+						onClick={()=> navigate('/orderAtTable')}
+					>
+						Order to table
+						<div className='flex justify-center'>
+							<IoIosRestaurant className='text-4xl' />
+						</div>
+					</button>
 
-				<button
-					className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
-					onClick={goToHome}
-				>
-					Back to home
-					<div className='flex justify-center'>
-						<AiOutlineHome className='text-4xl' />
-					</div>
-				</button>
-			</div>
+					<button onClick={checkOutPayment}
+						className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+					>
+						Order at home
+						<div className='flex justify-center'>
+							<TbTruckDelivery className='text-4xl' />
+						</div>
+					</button>
+
+					<button
+						className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
+						onClick={goToHome}
+					>
+						Back to home
+						<div className='flex justify-center'>
+							<AiOutlineHome className='text-4xl' />
+						</div>
+					</button>
+				</div>
+			</>}
 		</div>
 	)
 }
