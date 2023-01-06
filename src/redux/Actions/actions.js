@@ -235,11 +235,11 @@ export function postReviewDish(payload) {
 	}
 }
 
-export const createOrder = (userid, order, typeOrder, table, address) => {
+export const createOrder = (userid, order, typeOrder, table, address, date) => {
 	return async dispatch => {
 		try {
 			await axios.post(`${URL_SERVER}orders/`, {
-				userid, order, typeOrder, table, address
+				userid, order, typeOrder, table, address, date
 			})
 			return dispatch({
 				type: CREATE_ORDER
