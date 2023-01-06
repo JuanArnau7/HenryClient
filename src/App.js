@@ -17,6 +17,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 // import NavBar from "./components/Utils/NavBar/NavBar
 import PaymentStripe from "./components/Payments/PaymentStripe";
 import ReviewsFoods from "./components/Reviews/ReviewsFoods";
+import OrderAtTable from "./components/Local/OrderAtTable/OrderAtTable";
 
 function App() {
 	const dispatch = useDispatch()
@@ -50,6 +51,7 @@ function App() {
 					<Route exact path='/reviewsFoods' element={<ReviewsFoods />} />
 					<Route exact path='/perfil' element={<PerfilUsuario />} />
 					<Route exact path='/cart' element={<Cart />} />
+					<Route exact path='/orderAtTable' element={<OrderAtTable />} />
 					<Route exact path='/paymentStripe' element={<PaymentStripe />} />
 					<Route path='/login' element={<Login />} >
 						<Route path='google' element={<LoginGoogle />} />
