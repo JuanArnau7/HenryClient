@@ -22,9 +22,11 @@ export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
+			console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
-				type: LOGIN_USER_JWT
+				type: LOGIN_USER_JWT,
+				payload: userJWT.data
 			})
 		} catch (error) {
 			console.log("Error Redux on login local", error.response)

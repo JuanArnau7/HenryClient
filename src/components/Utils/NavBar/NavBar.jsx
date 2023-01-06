@@ -33,7 +33,12 @@ const NavBar = () => {
 			<nav className="sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
 				<div className="flex flex-wrap px-6 items-center justify-between mx-auto">
 					<div className="flex flex-row items-center justify-center gap-3">
-						<Sidebar pathname={pathname} userId={user._id} />
+						{pathname === "/local/alterHome"?
+						<>
+						<Sidebar  pathname={pathname} userId={user._id}/>
+						</>
+						:
+						<></>}
 						<Link to='/' >
 							<span className="flex items-center">
 								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
@@ -53,16 +58,33 @@ const NavBar = () => {
 						</button>
 					}
 
-					<div className="flex items-center gap-2 md:gap-4">
-						<div className="hidden sm:block">
-							<SearchBar />
-						</div>
-						{pathname !== "/perfil" &&
-							<FaUserCircle
-								className="text-4xl text-white pt-1 cursor-pointer"
-								onClick={() => navigate('/perfil')} />
+					<div className="flex justify-between w-full mt-4 md:mt-0 md:w-1/2 lg:w-5/12 gap-3">
+						{!user._id && pathname === '/login' ? (
+							<Link
+								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
+								to={"/register"}
+							>
+								Signup
+							</Link>
+						) : !user._id && pathname === '/register' ? (
+							<Link
+								className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
+								to={"/login"}
+							>
+								Login
+							</Link>
+						) : !user._id ? (
+							<></>
+						) : user._id && pathname === "/perfil" ? (
+              				<></>
+						) 
+						: 
+						<>
+						</>
 						}
-
+						<SearchBar manageMenu={manageMenu} />
+						
+						
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">
 							<BsCart4 className="text-3xl text-white" />

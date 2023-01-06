@@ -45,9 +45,10 @@ const AlterHome = () => {
 			
 			{Visible ?
 				<>
+				<NavBar></NavBar>
 					<div className="AlterHome h-fit">
-						<div className="flex flex-col w-11/12 mx-auto p-6 shadow-xl h-fit bg-white">
-							<div className="flex justify-center items-center shadow-xl h-screen w-full bg-white">
+						<div className="flex flex-col w-screen mx-auto p-6  h-fit bg-white">
+							<div className="flex justify-center items-center  h-screen w-full bg-white">
 								<Loading Visible={Visible} />
 							</div>
 						</div>
@@ -58,10 +59,10 @@ const AlterHome = () => {
 					<NavBar></NavBar>
 					
 					<div className="AlterHome h-fit">
-						<div className="flex flex-col w-11/12 mx-auto px-6 shadow-xl h-fit bg-gray-100">
+						<div className="flex flex-col w-screen mx-auto px-6 shadow-xl h-fit bg-green-100">
 
 							<div className={toogleMenu ? "w-full" : "max-md:w-11/12 max-lg:w-11/12"}>
-								<h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-4 mt-5">
+								<h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-4 mt-5 ml-20">
 									Our dishes:
 									<small className="font-normal text-sm ml-3">(showing {lastPostIndex > dishes.length ? dishes.length : lastPostIndex} of {dishes.length} available dishes)</small>
 								</h1>

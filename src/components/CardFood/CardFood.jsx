@@ -16,10 +16,9 @@ const CardFood = () => {
 	const id = useParams()
 	const [userId, setuserId] = useState(null)
 	const dish = useSelector(state => state.detailDish);
-	const reviews = useSelector(state => state.reviewsDishes);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
-	const [Reviews, setReviews] = useState([])
+
 	const [Visible, setVisible] = useState(true)
 	const [FoodId, setFoodId] = useState(null)
 
@@ -32,6 +31,7 @@ const CardFood = () => {
 			}
 		}
 	}
+<<<<<<< HEAD
 	const establecerReviews = () => {
 		let rev = reviews.filter(r => {
 			if (r.foodId === id.id) {
@@ -44,6 +44,9 @@ const CardFood = () => {
 			setReviews(rev)
 		}
 	}
+=======
+
+>>>>>>> origin/alex
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === FoodId)
@@ -92,9 +95,19 @@ const CardFood = () => {
 		dispatch(getAllDishes())
 		dispatch(detailsDish(id))
 		establecerToken()
+<<<<<<< HEAD
 		establecerReviews()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dish, reviews])
+=======
+
+		setFoodId(id)
+		setTimeout(() => {
+			setVisible(false)
+		}, 1500)
+		    // eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [dish])
+>>>>>>> origin/alex
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
@@ -148,6 +161,7 @@ const CardFood = () => {
 							}
 						</div>
 					</div>
+<<<<<<< HEAD
 				</div>
 			</div>
 			<ModalAddReviewDish
@@ -157,6 +171,24 @@ const CardFood = () => {
 				userId={userId}
 				establecerReviews={establecerReviews}
 			/>
+=======
+					:
+					<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id}/>
+					}
+				</div>
+			</div>
+			</div>
+		</div>
+		<ModalAddReviewDish
+		DishId={id.id}
+		ModalReviewDish={ModalReviewDish}
+		setModalReviewDish={setModalReviewDish}
+		userId={userId}
+		/>
+				</>
+				}
+		
+>>>>>>> origin/alex
 		</>
 				// }
 		
