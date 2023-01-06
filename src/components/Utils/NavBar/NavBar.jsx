@@ -53,7 +53,12 @@ const NavBar = () => {
 			<nav className="px-2 sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
 				<div className="flex flex-wrap px-6 items-center justify-center md:justify-between mx-auto">
 					<div className="flex flex-row items-center justify-center gap-3">
+						{pathname === "/local/alterHome"?
+						<>
 						<Sidebar  pathname={pathname} userId={user._id}/>
+						</>
+						:
+						<></>}
 						<Link to='/' >
 							<span className="flex items-center">
 								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
