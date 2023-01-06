@@ -51,8 +51,8 @@ const FiltroPrecios = () => {
         <select  className="  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChange}>
           <option value={''}>Options</option>
           <option value={'All'}>All</option>
-          <option value={'Mayor'}>Mayor a menor costo</option>
-          <option value={'Menor'}>Menor a mayor costo</option>
+          <option value={'Mayor'}>Higher at lower cost</option>
+          <option value={'Menor'}>Lower to higher cost</option>
           <option value={'AZ'}>A-Z</option>
           <option value={'ZA'}>Z-A</option>
         </select>

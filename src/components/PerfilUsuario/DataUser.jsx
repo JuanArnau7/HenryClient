@@ -55,16 +55,16 @@ const DataUser = () => {
 					</div>
 					: !user.state
 						? <div>
-							<h3 className='text-center font-bold mb-4 text-xl'>Debes activar tu cuenta</h3>
+							<h3 className='text-center font-bold mb-4 text-xl'>You must activate your account</h3>
 							<img src="https://img.freepik.com/vector-premium/senal-bandeja-entrada-concepto-captura-todos-correos-electronicos-ilustracion-acciones-intercambio-correo-electronico-envio-recepcion_135661-353.jpg?w=2000" alt="Cuenta inactiva" />
-							<p>Tu cuenta esta desactivada, por favor revisa el enlace que enviamos a tu correo para proceder a activar</p>
+							<p>Your account is deactivated, please check the link we sent to your email to proceed to activate</p>
 							<div className='flex justify-around mt-6'>
 								<Link to={'/login'}
 									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-								>Ir a la pagina de login</Link>
+								>Go to login page</Link>
 								<Link to={'/'}
 									className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-								>Ir al inicio</Link>
+								>Go to Home</Link>
 							</div>
 						</div>
 						: <div className='mb-14'>

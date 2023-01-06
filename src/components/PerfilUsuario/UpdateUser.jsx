@@ -164,7 +164,7 @@ const UpdateUser = () => {
 					onChange={handleChange}
 					value={formik.values.country}
 				>
-					<option defaultValue hidden>Selecciona una opcion... </option>
+					<option defaultValue hidden>Select an option... </option>
 					{countries.map((country, index) => (
 						<option key={index} value={country.country}>{country.country}</option>)
 					)}
@@ -184,7 +184,7 @@ const UpdateUser = () => {
 					value={formik.values.city}
 					className="mb-4 shadow border rounded border-gray-500 w-full pl-2 text-gray-500 bg-white leading-tight focus:ring-blue-500 focus:border-blue-300"
 				>
-					<option defaultValue hidden>Selecciona una opcion... </option>
+					<option defaultValue hidden>Select an option... </option>
 					{cities.map((city, index) => {
 						return (<option key={index} value={city}>{city}</option>)
 					})}
