@@ -112,10 +112,7 @@ const NavBar = () => {
 						</div>
 					</div>
 				</div>
-			</nav>
-			<div>
-				<DarkMode />
-			</div>				
+			</nav>				
 
 		</>
 	)

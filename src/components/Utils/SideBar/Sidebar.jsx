@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom"
 import Swal from 'sweetalert2';
 import { logOut } from '../../../redux/Actions/actions';
+import DarkMode from '../../Darkmode/DarkMode';
 import FiltroCategoria from '../Filter/FiltroCategoria';
 import FiltroPrecios from '../Filter/FiltroPrecios';
 
@@ -97,13 +98,14 @@ const Sidebar = ({pathname, userId}) => {
                      Log Out
                   </div>
                   </Link>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-7 mb-2 hover:rounded-lg'>
+				         <DarkMode />
+			         </div>
                   </>
                   }
                   </div>
-                  
                </div>
             </div>
-
          </div>
        </>
     )
