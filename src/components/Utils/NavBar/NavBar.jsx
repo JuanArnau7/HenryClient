@@ -1,89 +1,81 @@
-import { Link } from "react-router-dom"
-
-// const NavBar = () => {
-//     return(
-//       <>
-//         <ul>
-//           <li>Order</li>
-//           <li><Link to='/login' >Login</Link></li>
-//           <li><Link to='/register'>Register</Link></li>
-//         </ul>
-//       </>
-//     )
-//   }
-  
-//   export default NavBar
-
-import { useState } from "react"
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { BsCart4 } from "react-icons/bs"
+import { useEffect } from "react"
 import SearchBar from "../SearchBar/SearchBar"
+import { useDispatch, useSelector } from "react-redux"
+import { getLengthCart } from "../../../redux/Actions/actions";
+import { FaStoreAlt, FaUserCircle } from "react-icons/fa";
+import Sidebar from "../SideBar/Sidebar";
 
 const NavBar = () => {
-  const [Menu, setMenu] = useState(false)
+	const carrito = useSelector(state => state.elementsCart)
+	const user = useSelector(state => state.userProfile)
+	const location = useLocation()
+	const { pathname } = location;
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
-  // Set menu
-  const manageMenu = () => Menu ? setMenu(false) : setMenu(true)
+	const goToCart = () => {
+		navigate('/cart')
+	}
 
-  return (
-    <>
+	useEffect(() => {
+		dispatch(getLengthCart())
+	}, [carrito, dispatch, pathname, user])
 
-      <nav className="bg-gray-900 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
-        <div className="container flex flex-wrap items-center justify-between mx-auto">
-          <Link to='/' ><a className="flex items-center">
-            <img src="https://thumbs.dreamstime.com/z/icono-del-restaurante-en-c%C3%ADrculo-128428725.jpg" className="h-6 mr-3 sm:h-9 border" alt="Henry Food Logo" />
-            <span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
-          </a></Link>
-          {!Menu ?
-            <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-search">
-              <div className="relative mt-3 md:hidden">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
-                </div>
-                <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
-              </div>
-              <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-900  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-900  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir en Local</a>
-                </li>
-                <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir Delivey</a>
-                </li>
-              </ul>
-            </div>
-            :
-            <div className="items-center justify-between block w-full md:flex md:w-auto md:order-1" id="navbar-search">
-              <div className="relative mt-3 md:hidden">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-500" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path></svg>
-                </div>
-                <input type="text" id="search-navbar" className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
-              </div>
-              <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-900  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-gray-900  dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
-                </li>
-                <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir en Local</a>
-                </li>
-                <li>
-                  <a href="#" className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pedir Delivey</a>
-                </li>
-              </ul>
-            </div>
-          }
-          <div className="flex md:order-2">
-            <SearchBar manageMenu={manageMenu}/>
-            <button data-collapse-toggle="navbar-search" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-search" aria-expanded="false" onClick={() => Menu ? setMenu(false) : setMenu(true)}>
-              <span className="sr-only">Open menu</span>
-              <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
-            </button>
-          </div>
+	const handleCreate = () => {
+		navigate(`/createFood`);
+	}
 
-        </div>
-      </nav>
+	return (
+		<>
+			<nav className="sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
+				<div className="flex flex-wrap px-6 items-center justify-between mx-auto">
+					<div className="flex flex-row items-center justify-center gap-3">
+						<Sidebar pathname={pathname} userId={user._id} />
+						<Link to='/' >
+							<span className="flex items-center">
+								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
+							</span>
+						</Link>
+						<Link to={'/local/alterHome'}
+							className="hover:border hover:border-white rounded-lg pl-1">
+							<span className="sr-only">Go to all dishes</span>
+							<FaStoreAlt className="text-white text-3xl" />
+						</Link>
+					</div>
 
+					{/* El boton para crear nuevos platos estara disponible solo para adminsitradores */}
+					{user.rol === "ROL_ADMIN" &&
+						<button onClick={() => handleCreate()} className="px-5 py-1 bg-red-600 text-white rounded hover:bg-red-800" >
+							Create
+						</button>
+					}
 
-    </>
-  )
+					<div className="flex items-center gap-2 md:gap-4">
+						<div className="hidden sm:block">
+							<SearchBar />
+						</div>
+						{pathname !== "/perfil" &&
+							<FaUserCircle
+								className="text-4xl text-white pt-1 cursor-pointer"
+								onClick={() => navigate('/perfil')} />
+						}
+
+						<div onClick={goToCart}
+							className="flex cursor-pointer hover:rounded-md mt-1">
+							<BsCart4 className="text-3xl text-white" />
+							<sup className="text-gray-600 font-bold bg-white mb-3 px-2 pt-2 rounded-full">{carrito}</sup>
+						</div>
+					</div>
+				</div>
+				<div className="block w-11/12 mx-auto my-2 sm:hidden">
+					<SearchBar />
+				</div>
+			</nav>
+		</>
+	)
 }
 
 export default NavBar

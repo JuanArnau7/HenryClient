@@ -1,3 +1,4 @@
+import React from "react";
 import Dish from "../Dish/Dish";
 
 // https://github.com/bradtraversy/simple_react_pagination
