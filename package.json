@@ -12,6 +12,7 @@
     "firebase": "^9.15.0",
     "formik": "^2.2.9",
     "react": "^18.2.0",
+    "react-crud-table": "^0.3.1",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.7.1",
