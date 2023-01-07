@@ -87,8 +87,8 @@ const UpdateUser = () => {
 			formik.setFieldValue("city", user.city || "")
 			formik.setFieldValue("address", user.address || "")
 		}
-		if(user.google){
-			formik.setFieldValue("password", "noPassword")
+		if(user.google || user.thirdAuth){
+			formik.setFieldValue("password", "noPasword")
 		}
 	}, [user])
 
@@ -133,7 +133,7 @@ const UpdateUser = () => {
 					disabled
 				/>
 
-				{!user.google &&
+				{(!user.google || user.thirdAuth !== "") &&
 					<div>
 						<label htmlFor="password"
 							className="block text-gray-700 text-sm font-bold mb-1"

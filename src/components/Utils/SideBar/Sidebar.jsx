@@ -67,16 +67,16 @@ const Sidebar = ({pathname, userId}) => {
                   </>
                   :
                   <>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>Filters <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Filtros?
                      <FiltroCategoria/>
                      :
                      <></>
                      }
                   </div>
-                  <div className='text-center text-black text-xl hover:bg-gray-200 dark:hover:bg-gray-400 cursor-pointer py-3 mb-2 hover:rounded-lg'>
-                     <button  className="text-black  text-xl bg-transparent font-medium px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <svg class="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                  <div className='text-center text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2'>
+                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>Sort <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></button>
                      {Sorts?
                      <FiltroPrecios/>
                      :

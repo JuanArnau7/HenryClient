@@ -1,19 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { IoArrowBackSharp } from "react-icons/io5";
-import {  useSelector } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
+import { getFoodsReviews } from '../../redux/Actions/actions';
 
-const ReviewsFoods = ({setReadReviews, FoodId}) => {
+const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
+  const dispatch = useDispatch()
   const AllReviews = useSelector(state=> state.reviewsDishes)
   const AllUsers = useSelector(state=> state.allUsers)
   const [Positive, setPositive] = useState(false)
   const [Negative, setNegative] = useState(false)
-  const Reviews = AllReviews.filter(r => {
-    if (r.foodId === FoodId){
-      return r
-    } else {
-      return
-    }
-  })
+  // const [Reviews, setReviews] = useState([])
+  // const establecerReviews = ()=>{
+  //   let rev = AllReviews.filter(r => {
+  //     if (r.foodId === FoodId){
+  //       return r
+  //     } else {
+  //       return
+  //     }
+  //   })
+  //   if (rev) {
+  //     setReviews(rev)
+  //   }
+  // }
   const Positives = Reviews.filter(p=>{
       if (p.score>=3) {
         return p
@@ -45,8 +53,9 @@ const ReviewsFoods = ({setReadReviews, FoodId}) => {
     return fechaFormateada;
 }
   useEffect(() => {
-    console.log(AllReviews)
-  }, [])
+    dispatch(getFoodsReviews())
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [AllReviews])
   
 
   return (
