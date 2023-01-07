@@ -1,5 +1,8 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, LOGIN_WITH_GITHUB } from './actionsTypes'
+
+
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, LOGIN_WITH_GITHUB, GET_ADMIN_BY_ID, IMG_UPDATE_USER } from './actionsTypes'
 import axios from 'axios'
+import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
@@ -21,12 +24,13 @@ export function postUserCreate(payload) {
 export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
+			console.log('DATA ', data);
+			
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
 			// console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
-				type: LOGIN_USER_JWT,
-				payload: userJWT.data
+				type: LOGIN_USER_JWT
 			})
 		} catch (error) {
 			console.log("Error Redux on login local", error.response)
@@ -212,6 +216,34 @@ export const updateUser = (id, data) => {
 		}
 	}
 }
+export const imgUpdateUser = (id, data) => {
+	return async dispatch => {
+		try {
+			const response = await axios.put(`${URL_SERVER}users/${id}`, data)
+			dispatch({
+				type: IMG_UPDATE_USER
+			})
+			return response
+		} catch (error) {
+			console.log("Error Redux action on update user", error.response);
+			return error.response
+		}
+	}
+}
+export const imgDeleteUser = (id) => {
+	return async dispatch => {
+		try {
+			const response = await axios.put(`${URL_SERVER}users/${id}/delete`)
+			dispatch({
+				type: IMG_UPDATE_USER
+			})
+			return response
+		} catch (error) {
+			console.log("Error Redux action on update user", error.response);
+			return error.response
+		}
+	}
+}
 
 export const logOut = () => {
 	return async dispatch => {
@@ -295,6 +327,22 @@ export const loginWithGitHub = (email) => {
 		} catch (error) {
 			console.log("Error redux actions on login using github", error.response);
 			return error
+		}
+	}
+}
+
+export const getAdminById = (id) => {
+	return async dispatch => {
+		try {
+			const res = await axios.get(`${URL_SERVER}admins/${id}`)			
+			return dispatch({
+				type : GET_ADMIN_BY_ID,
+				payload: res.data
+			})
+		} catch (error) {
+			console.log('Error redux actions on /Get admins');
+			return error
+			
 		}
 	}
 }
