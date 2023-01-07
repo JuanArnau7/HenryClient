@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserById, loginUserJWT } from "../../redux/Actions/actions";
+import { getAdminById, getUserById, loginWithGitHub } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -53,7 +53,6 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
-		console.log("!HOllaaaaaaaaaaaaaaaaaaaa");
 		try {
 			const res = await axios.post(`${URL_SERVER}auth/login`, user);
 			localStorage.setItem("token", res.data)			

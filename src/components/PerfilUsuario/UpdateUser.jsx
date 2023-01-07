@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../redux/Actions/actions';
+import { getUserById, imgDeleteUser, imgUpdateUser, updateUser } from '../../redux/Actions/actions';
 import Swal from "sweetalert2";
 import { useFormik } from 'formik';
 
@@ -100,9 +100,91 @@ const UpdateUser = () => {
 		}
 		getCities()
 	}
+	const [image, setImage] = useState(null)
 
+	const hadleImg = (e)=>{
+		
+		let url = URL.createObjectURL(e.target.files[0]);
+	
+		setImage({
+			url,
+			file: e.target.files[0]
+		})
+		
+	}
+
+
+	const hadnleIgmReset = ()=>{
+		setImage(null)
+	}
+
+	const hanleImgUpdate = async()=>{
+		if(image?.file){
+
+			// Create an object of formData
+			const formData = new FormData();
+     
+		  // Update the formData object
+		  formData.append(
+			"file",
+			image.file,
+			image.file.name
+			);
+			await dispatch(imgUpdateUser(user._id, formData))
+			await dispatch(getUserById(user._id))
+			alert("se actulizo la img")
+			setImage(null)
+		}
+	}
+
+	const hadnleImgDelete = async()=>{
+		if(user.img){
+
+			await dispatch(imgDeleteUser(user._id))
+			await dispatch(getUserById(user._id))
+			alert("se borro la img")
+			setImage(null)
+		}
+	}
+	
 	return (
 		<div className='mr-6'>
+
+			
+			<div>
+			
+				{/* <form action=""> */}
+
+   			 	<label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Choose images to upload (PNG, JPG, JPEG)
+
+   			 	<input
+     				type="file"
+					 accept=".jpg, .jpeg, .png"
+					 onChange={hadleImg}
+					 hidden
+					 value=""
+					 />
+					 </label>
+
+					 {user.img && !image && <img src={user.img} height={150} width={150} alt="no imgen" />}
+					 {!user.img && !image && <img src="https://static.vecteezy.com/system/resources/previews/000/379/162/non_2x/add-user-vector-icon.jpg" height={250} width={250} alt="aqui" />}
+					{image&&<img src={image.url} height={150} width={150} alt="no imag" /> }
+					<button onClick={hanleImgUpdate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">update</button>
+					<button
+					onClick={hadnleIgmReset}
+						className="bg-yellow-400 hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+						Reset
+					</button>
+					<button 
+					onClick={hadnleImgDelete}
+						className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600">
+						Delete
+					</button>
+					 {/* </form> */}
+				
+  			</div>
+
+
 			<form onSubmit={formik.handleSubmit}>
 				<label htmlFor="fullName"
 					className="block text-gray-700 text-sm font-bold mb-1"

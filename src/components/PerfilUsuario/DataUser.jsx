@@ -69,6 +69,8 @@ const DataUser = () => {
 						</div>
 						: <div className='mb-14'>
 							<h3 className='text-center font-bold mb-4 text-xl'>These are your users credentials</h3>
+							{user.img && <img src={user.img} height={250} width={250} alt="no imgen" />}
+							{!user.img && <img src="https://static.vecteezy.com/system/resources/previews/000/379/162/non_2x/add-user-vector-icon.jpg" height={250} width={250} alt="aqui" />}
 							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user?.fullName} </p>
 							<p className='mb-2'><span className='font-bold'>Email:   </span> {user?.email}</p>
 							<p className='mb-2'><span className='font-bold'>Country:     </span> {user?.country || "You have not registred your country"}</p>
