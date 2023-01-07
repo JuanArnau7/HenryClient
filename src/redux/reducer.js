@@ -45,9 +45,9 @@ const rootReducer = (state = initialState, action) => {
 				...state, reviewsDishes: action.payload
 			}
 		case POST_REVIEWS:
-		return {
-			...state, reviewsDishes: [...state.reviewsDishes, action.payload]
-		}
+			return {
+				...state, reviewsDishes: [...state.reviewsDishes, action.payload]
+			}
 		case LOGIN_USER_JWT:
 			return {
 				...state, userToken: action.payload
@@ -57,10 +57,10 @@ const rootReducer = (state = initialState, action) => {
 				...state, filterDishes: [...action.payload]
 			}
 		case GET_NAME_DISHES: 
-		return {
-			...state,
-			filterDishes: action.payload
-		}
+			return {
+				...state,
+				filterDishes: action.payload
+			}
 		case GET_LENGTH_CART:
 			return {
 				...state,
