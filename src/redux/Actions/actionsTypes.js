@@ -18,6 +18,7 @@ export const GET_FOOD_REVIEWS = "GET_FOOD_REVIEWS"
 export const GET_USERS = "GET_USERS"
 export const GET_ALL_TAGS = "GET_ALL_TAGS"
 export const LOGIN_WITH_GITHUB = "LOGIN_WITH_GITHUB"
+export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID"
 
 
 
