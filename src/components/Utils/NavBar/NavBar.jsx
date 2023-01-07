@@ -32,17 +32,17 @@ const NavBar = () => {
 		<>
 			<nav className="sm:px-4 py-2.5 bg-green-700 shadow-xl w-full sticky top-0 z-50">
 				<div className="flex flex-wrap px-6 items-center justify-between mx-auto">
-					<div className="flex flex-row items-center justify-center gap-3">
+					<div className="flex flex-row items-center gap-3">
 						<Sidebar pathname={pathname} userId={user._id} />
 						<Link to='/' >
 							<span className="flex items-center">
-								<span className="self-center text-xl text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
+								<span className="text-lg md:text-xl -ml-4 text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
 							</span>
 						</Link>
 						<Link to={'/local/alterHome'}
 							className="hover:border hover:border-white rounded-lg pl-1">
 							<span className="sr-only">Go to all dishes</span>
-							<FaStoreAlt className="text-white text-3xl" />
+							<FaStoreAlt className="text-white text-xl md:text-3xl" />
 						</Link>
 					</div>
 
@@ -59,14 +59,14 @@ const NavBar = () => {
 						</div>
 						{pathname !== "/perfil" &&
 							<FaUserCircle
-								className="text-4xl text-white pt-1 cursor-pointer"
+								className="text-2xl md:text-4xl text-white pt-1 cursor-pointer"
 								onClick={() => navigate('/perfil')} />
 						}
 
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">
-							<BsCart4 className="text-3xl text-white" />
-							<sup className="text-gray-600 font-bold bg-white mb-3 px-2 pt-2 rounded-full">{carrito}</sup>
+							<BsCart4 className="text-xl sm:text-3xl text-white" />
+							<sup className="text-gray-600 font-bold bg-white mb-1 sm:mb-3 px-2 pt-2 rounded-full">{carrito}</sup>
 						</div>
 					</div>
 				</div>

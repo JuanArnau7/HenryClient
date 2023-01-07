@@ -18,6 +18,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import PaymentStripe from "./components/Payments/PaymentStripe";
 import ReviewsFoods from "./components/Reviews/ReviewsFoods";
 import OrderAtTable from "./components/Local/OrderAtTable/OrderAtTable";
+import RecoveryPassword from "./components/Login/RecoveryPassword";
 
 function App() {
 	const dispatch = useDispatch()
@@ -56,6 +57,7 @@ function App() {
 					<Route path='/login' element={<Login />} >
 						<Route path='google' element={<LoginGoogle />} />
 					</Route>
+					<Route exact path='/recoveryPassword' element={<RecoveryPassword />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
