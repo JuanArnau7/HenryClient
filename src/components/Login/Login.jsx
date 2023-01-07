@@ -1,5 +1,5 @@
 import React from "react";
-import { getUserById, loginUserJWT, loginWithGitHub } from "../../redux/Actions/actions";
+import { getAdminById, getUserById, loginUserJWT, loginWithGitHub } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -57,11 +57,17 @@ const Login = () => {
 			text: "Welcome to our page",
 			icon: "success"
 		})
-
+		
 		const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
-		dispatch(getUserById(tokenDecoded.id))
-
-		navigate('/local/alterHome')
+		
+		if (res.payload.status === 201) {
+			dispatch(getAdminById(tokenDecoded.id))
+			navigate('/dashboard')
+		}
+		if (res.payload.status === 200){
+			dispatch(getUserById(tokenDecoded.id))
+			navigate('/local/alterHome')
+		} 
 	};
 
 	const loginUsingGitHub = async () => {
