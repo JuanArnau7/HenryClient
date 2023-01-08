@@ -53,9 +53,6 @@ const Pages = ({ data }) => {
 		navigate(`/detailDish/${dish}`)
 	}
 
-	useEffect(() => {
-console.log("data", data)
-	}, [])
 
 
 	return (
