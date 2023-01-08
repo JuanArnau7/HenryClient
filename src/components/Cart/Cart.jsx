@@ -141,7 +141,7 @@ const Cart = () => {
 {cartDishes.length > 0 && <>
 
 <div className='w-11/12 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
-	<span className='font-bold font-sans text-xl'>Total a pagar =</span>  $ {currencyFormat(total)}
+	<span className='font-bold font-sans text-xl'>Total =</span>  $ {currencyFormat(total)}
 </div>
 <div className='mt-4 w-full flex justify-around'>
 	<button
