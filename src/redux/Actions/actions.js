@@ -24,9 +24,8 @@ export function postUserCreate(payload) {
 export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
-			console.log('DATA ', data);
-			
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
+			console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
 				type: LOGIN_USER_JWT,
