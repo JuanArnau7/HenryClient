@@ -16,7 +16,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <>
       <AdminSidebar handlerSidebar={showSidebar} sidebar={sidebar}/>
       {/* className="pl-64" */}
       <div className={sidebar ? "flex pl-64 w-full" : "flex w-full"}>
@@ -28,7 +28,7 @@ const Dashboard = () => {
           <Route exact path='/tags' element={<BoardTag />} />
         </Routes>
       </div>
-    </div>
+    </>
   )
 }
 
