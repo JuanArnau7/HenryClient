@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IoArrowBackSharp } from "react-icons/io5";
 import {  useDispatch, useSelector } from 'react-redux';
 import { getFoodsReviews } from '../../redux/Actions/actions';
+import { faker } from '@faker-js/faker';
 
 const ReviewsFoods = ({setReadReviews, FoodId}) => {
   const dispatch = useDispatch()
@@ -95,7 +96,7 @@ const establecerReviews = ()=>{
     <div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
           <article className='mt-4 ml-2'>
             <div className="flex items-center mb-4 space-x-4">
-                <img className="w-10 h-10 ml-2 rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>
+                <img className="w-10 h-10 ml-2 rounded-full" src={faker.image.avatar()} alt=""/>
                 <div className="space-y-1 font-medium dark:text-white">
                     <p>{obtenerDatos(rev.userId)}</p>
                 </div>
