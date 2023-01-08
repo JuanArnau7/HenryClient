@@ -121,7 +121,7 @@ const CardFood = () => {
 						</div>
 						<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-0 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
 							{!ReadReviews ?
-								<div className='m-6 h-full flex flex-col justify-center items-center '>
+								<div className='m-6 h-full flex flex-col justify-center items-center h-full '>
 									<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
 									<p className='mx-8'>{dish?.lenguage?.en?.descripcion}</p>
 									<div className='flex justify-center items-center mt-5'>

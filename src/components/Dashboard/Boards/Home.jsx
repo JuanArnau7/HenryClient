@@ -115,8 +115,8 @@ const labels2 = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
   return (
     <>
-    <div className="bg-gray-900 h-screen w-full mt-80px">
-        <div className=" flex items-center justify-center h-2/3 w-full bg-gray-700 rounded-lg m-5">
+    <div className="bg-gray-900 h-full w-screen mt-80px flex flex-col items-center">
+        <div className=" flex items-center justify-center h-1/2 w-full bg-gray-700 rounded-lg m-5">
           <Line options={options} data={data} />
         </div>
         <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
