@@ -16,7 +16,7 @@ const ShoppingHistory = () => {
 						<h3 className='mr-3 font-bold'>No tienes compras registradas</h3>
 						<img src="https://img.freepik.com/vector-premium/pequenos-personajes-enorme-historial-transacciones-receta-pago-comprador-hombre-tarjeta-credito-pago-linea-mujer-vidrio-pago-efectivo-compras-tienda-ilustracion-vector-gente-dibujos-animados_87771-11353.jpg" alt="Sin historial de compras" />
 						<Link to={'/local/alterHome'}
-							className="bg-blue-500 text-center w-1/2 mx-auto mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+							className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black text-center w-1/2 mx-auto mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
 							Ir a la pagina de inicio
 						</Link>
 					</div>

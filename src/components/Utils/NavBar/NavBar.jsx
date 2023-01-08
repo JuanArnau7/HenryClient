@@ -94,7 +94,7 @@ const NavBar = () => {
 						) : user._id && pathname === "/perfil" ? (
               <>
                 <button
-                className="px-5 py-1 rounded-lg bg-yellow-400 text-blue-900 hover:bg-orange-600 hover:text-white shadow-lg"
+                className="px-5 py-1 rounded-lg bg-yellow-400 dark:bg-gray-400 dark:text-black dark:hover:text-white text-blue-900 hover:bg-yellow-500 hover:text-white shadow-lg"
                 onClick={handleLogOut}
 							  >
 								  Logout

@@ -76,13 +76,13 @@ const DataUser = () => {
 							<p className='mb-2'><span className='font-bold'>Address:   </span> {user?.address || "You have not registred your address"}</p>
 							<div className='flex justify-around mt-8'>
 								<button onClick={closeSesion}
-									className="rounded-md bg-yellow-400 text-blue-900 px-5 pb-1 hover:bg-yellow-500 hover:font-semibold"
+									className="rounded-md bg-yellow-400 dark:bg-gray-400 dark:text-black text-blue-900 px-5 pb-1 hover:bg-yellow-500 dark:hover:text-white font-semibold"
 								>
 									Logout
 								</button>
 
 								<button onClick={() => deleteUserById(user._id)}
-									className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600"
+									className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600 dark:bg-gray-400 dark:text-black dark:hover:text-white font-semibold"
 								>
 									Delete profile
 								</button>

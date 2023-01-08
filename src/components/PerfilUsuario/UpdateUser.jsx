@@ -211,11 +211,11 @@ const UpdateUser = () => {
 
 				<div className='flex justify-around mt-4 mb-8'>
 					<button type="submit"
-						className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+						className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
 						Update info
 					</button>
 					<button type="reset"
-						className="bg-yellow-400 hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+						className="bg-yellow-400 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
 						Reset
 					</button>
 

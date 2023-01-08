@@ -10,11 +10,25 @@ import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
 import NavBar from "../../Utils/NavBar/NavBar";
+import { getUserById, getUserOrders } from "../../../redux/Actions/actions";
 
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
 	const dispatch = useDispatch()
 	const [Visible, setVisible] = useState(true)
+	const token = localStorage.getItem("token")
+
+	useEffect(() => {
+		if(token){
+			async function perfilUser(){
+				const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
+				await dispatch(getUserById(tokenDecoded.id))
+				await dispatch(getUserOrders(tokenDecoded.id))
+			}
+			perfilUser()
+		}
+	}, [dispatch, token])
+	
 	useEffect(() => {
 		dispatch(getFilterDishes())
 	}, [dispatch])
