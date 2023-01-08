@@ -31,18 +31,6 @@ const CardFood = () => {
 			}
 		}
 	}
-	const establecerReviews = () => {
-		let rev = reviews.filter(r => {
-			if (r.foodId === id.id) {
-				return r
-			} else {
-				return
-			}
-		})
-		if (rev) {
-			setReviews(rev)
-		}
-	}
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === FoodId)
@@ -91,9 +79,8 @@ const CardFood = () => {
 		dispatch(getAllDishes())
 		dispatch(detailsDish(id))
 		establecerToken()
-		establecerReviews()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dish, reviews])
+	}, [dish])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
@@ -104,7 +91,7 @@ const CardFood = () => {
 				{/* <NavBarCreateFoods/> */}
 				<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 
-					<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg">
+					<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg h-5/6">
 						<div className="sm:w-full s:h-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 							<div className=" rounded-t-lg ">
 								<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
@@ -143,7 +130,7 @@ const CardFood = () => {
 									</div>
 								</div>
 								:
-								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} Reviews={Reviews} />
+								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} />
 							}
 						</div>
 					</div>
@@ -154,7 +141,6 @@ const CardFood = () => {
 				ModalReviewDish={ModalReviewDish}
 				setModalReviewDish={setModalReviewDish}
 				userId={userId}
-				establecerReviews={establecerReviews}
 			/>
 		</>
 	)

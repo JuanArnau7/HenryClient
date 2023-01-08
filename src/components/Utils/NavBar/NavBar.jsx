@@ -82,7 +82,7 @@ const NavBar = () => {
 						<>
 						</>
 						}
-						<SearchBar manageMenu={manageMenu} />
+						<SearchBar  />
 						
 						
 						<div onClick={goToCart}
