@@ -34,7 +34,7 @@ const CardFood = () => {
 			if (r.foodId === id.id) {
 				return r
 			} else {
-				return
+				return 0
 			}
 		})
 		if (rev) {
