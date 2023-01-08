@@ -6,7 +6,7 @@ import "./AdminSidebar.css"
 const AdminSidebar = ({sidebar, handlerSidebar}) => {
 
   return (
-    <div>
+    <div className="w-screen">
       <div className="navbar">
         <Link to="#" className="menu-bars">
           <span onClick={() => handlerSidebar()}>Abrir</span>
