@@ -66,9 +66,9 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                     <Link to={'/dashboard/Reviews'}>
                       <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reviews</span>
                     </Link>
-                    {/* <Link to={'/local/alterHome'}>
-                      <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home-Local</span>
-                    </Link> */}
+                    <Link to={'/dashboard/Tags'}>
+                      <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tags</span>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -134,9 +134,9 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
               <Link to={'/dashboard/Reviews'}>
                 <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reviews</span>
               </Link>
-              {/* <Link to={'/local/alterHome'}>
-                <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home-Local</span>
-              </Link> */}
+              <Link to={'/dashboard/Tags'}>
+                <span class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tags</span>
+              </Link>
             </div>
             <div class="border-t border-gray-700 pt-4 pb-3">
               <div class="flex items-center px-5">
@@ -159,11 +159,11 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
           </div>
         </nav>
 
-        <header class="bg-white shadow">
+        {/* <header class="bg-white shadow">
           <div class="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
           </div>
-        </header>
+        </header> */}
         {/* <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
               <div class="px-4 py-6 sm:px-0">
