@@ -1,6 +1,6 @@
 
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, DELETE_FOOD } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD } from './actionsTypes'
 import axios from 'axios'
 import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
@@ -298,11 +298,26 @@ export const getUserOrders = (id) => {
 		}
 	}
 }
+export const getAllOrders = (id) => {
+	return async dispatch => {
+		try {
+			const response = await axios(`${URL_SERVER}orders`)
+			return dispatch({
+				type: GET_All_ORDERS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error redux actions on get user's orders", error);
+			return error.response
+		}
+	}
+}
 // /foods?country=MEXICAN&food=DRINKS&fit=LOW%20IN%20FAT
 export const getAllTags = () => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}tags`)
+			console.log("response",response.data)
 			return dispatch({
 				type: GET_ALL_TAGS,
 				payload: response.data
