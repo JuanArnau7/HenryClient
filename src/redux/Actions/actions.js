@@ -350,6 +350,7 @@ export const getAdminById = (id) => {
 			return dispatch({
 				type : GET_ADMIN_BY_ID,
 				payload: res.data
+				
 			})
 		} catch (error) {
 			console.log('Error redux actions on /Get admins');
