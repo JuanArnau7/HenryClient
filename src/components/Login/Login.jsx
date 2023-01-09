@@ -68,7 +68,9 @@ const Login = () => {
 			// console.log("PAYLOAD", res)
 			if (res.status === 201) {
 			dispatch(getAdminById(tokenDecoded.id))
-			navigate('/dashboard')
+
+			navigate('/dashboard/Home')
+
 			}
 			if (res.status === 200){
 			dispatch(getUserById(tokenDecoded.id))

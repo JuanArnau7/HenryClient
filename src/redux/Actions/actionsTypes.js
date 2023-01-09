@@ -23,6 +23,7 @@ export const GET_All_ORDERS = "GET_All_ORDERS"
 
 
 export const DELETE_FOOD = "DELETE_FOOD"
+export const DELETE_REVIEW = "DELETE_REVIEW"
 
 
 

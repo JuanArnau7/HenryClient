@@ -43,6 +43,7 @@ const FiltroPrecios = () => {
   }
   useEffect(() => {
     dispatch(getAllDishes())
+    
   }, [dispatch])
   
     return(
