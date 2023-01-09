@@ -3,7 +3,6 @@ import CRUDTable,
 {
   Fields,
   Field,
-  CreateForm,
   UpdateForm,
   DeleteForm,
 } from 'react-crud-table';
@@ -11,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteUser } from '../../../redux/Actions/actions';
 // Component's Base CSS
-import './Review.css';
+import './User.css';
 
 const BoardUser = () => {
   const navigate = useNavigate()
@@ -60,7 +59,7 @@ const BoardUser = () => {
   }
 
   return (
-    <>
+    <div>
       <div style={styles.container}>
         <CRUDTable
           caption="Users"
@@ -72,6 +71,7 @@ const BoardUser = () => {
               name="id"
               label="Id"
               hideInCreateForm
+              hideInUpdateForm
               readOnly
             />
             <Field
@@ -132,7 +132,7 @@ const BoardUser = () => {
           />
         </CRUDTable>
       </div>
-    </>
+    </div>
   );
 }
 
