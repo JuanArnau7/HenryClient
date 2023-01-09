@@ -53,7 +53,7 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
-		try {
+		
 			const res = await axios.post(`${URL_SERVER}auth/login`, user);
 			localStorage.setItem("token", res.data)			
 			Swal.fire({
@@ -65,15 +65,17 @@ const Login = () => {
 			const token = localStorage.getItem("token")	
 			const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
 			
+			// console.log("PAYLOAD", res)
+			if (res.status === 201) {
+			dispatch(getAdminById(tokenDecoded.id))
+			navigate('/dashboard')
+			}
+			if (res.status === 200){
 			dispatch(getUserById(tokenDecoded.id))
-	
-			navigate('/local/alterHome')	
-		} catch (error) {
-			console.log("Error on login", error);
-			if (error.response.status === 400) return errorLoging();
-		}
+			navigate('/local/alterHome')
+			} 
 		
-	};
+	}
 
 	const loginUsingGitHub = async () => {
 		try {
