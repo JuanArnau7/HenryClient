@@ -342,8 +342,8 @@ export const deleteFood = (id) => {
 			return error.response
 		}
 	}
-} 
 
+}
 
 export const getAdminById = (id) => {
 	return async dispatch => {
@@ -363,7 +363,6 @@ export const getAdminById = (id) => {
 }
 
 
-
 export const deleteReview = (id) => {
 	return async dispatch => {
 		try {
@@ -378,3 +377,4 @@ export const deleteReview = (id) => {
 		}
 	}
 } 
+
