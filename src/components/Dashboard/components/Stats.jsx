@@ -1,9 +1,4 @@
 import React from 'react'
-import TableActivities from "../components/TableActivities";
-import Tasks from "../components/TasksQA";
-import TasksQA from "../components/TasksQA";
-import TasksToDo from "../components/TasksToDo";
-import TasksDevelopment from "../components/TasksDevelopment";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -28,7 +23,16 @@ const Stats = () => {
     const users = useSelector(state=> state.allUsers)
     const orders = useSelector(state=> state.allOrders)
 
-
+const sales = () => {
+  let Orders = orders.map(o=>o.order)
+  let suma = 0
+  for (let i = 0; i < Orders.length; i++) {
+    const element = Orders[i];
+    // eslint-disable-next-line
+    element.map(e=> suma = suma + e.price )
+  }
+  return suma
+} 
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -139,7 +143,7 @@ ChartJS.register(
           <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
           <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><FaChartLine/></div>
               <div className="flex flex-col justify-center items-end text-lg">
-                <div> $ 1247</div>
+                <div> $ {sales()}</div>
                 <div className="sm:hidden md:block lg:block">Sales</div>
 
               </div>
