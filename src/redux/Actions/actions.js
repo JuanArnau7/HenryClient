@@ -342,4 +342,19 @@ export const deleteFood = (id) => {
 			return error.response
 		}
 	}
-} 
+}
+export const getAdminById = (id) => {
+	return async dispatch => {
+		try {
+			const res = await axios.get(`${URL_SERVER}admins/${id}`)			
+			return dispatch({
+				type : GET_ADMIN_BY_ID,
+				payload: res.data
+			})
+		} catch (error) {
+			console.log('Error redux actions on /Get admins');
+			return error
+
+		}
+	}
+}
