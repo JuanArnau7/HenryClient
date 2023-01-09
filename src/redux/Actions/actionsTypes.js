@@ -19,6 +19,7 @@ export const GET_USERS = "GET_USERS"
 export const GET_ALL_TAGS = "GET_ALL_TAGS"
 export const IMG_UPDATE_USER = "IMG_UPDATE_USER"
 export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID"
+export const DELETE_FOOD = "DELETE_FOOD"
 
 
 
