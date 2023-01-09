@@ -83,10 +83,11 @@ const styles = {
 };
 
 const handleSubmit = (e) =>{
-  console.log('EEEE', e.id);
-  e.preventDefault()
+  // console.log('EEEE', e.id);
+  // e.preventDefault()
   dispatch(deleteFood(e.id))
-  // window.location.reload()
+  
+  window.location.reload()
   // alert("funciona esta porqueria")
 }
 const handleClickCreate = (e) => {
