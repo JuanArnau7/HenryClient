@@ -1,17 +1,18 @@
 import React from "react";
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { filtrar, getAllDishes, getFilterDishes } from "../../../redux/Actions/actions"
 
 const FiltroCategoria = ({Minimizado}) => {
   const dispatch = useDispatch()
-  const dishes = useSelector(state=> state.allDishes)
+  // const dishes = useSelector(state=> state.allDishes)
   const tags = useSelector(state=>state.allTags)
+console.log(tags)
 
   const filtrados = useSelector(state=>state.filterDishes)
-  const [Country, setCountry] = useState(false)
-  const [Food, setFood] = useState(false)
-  const [Fit, setFit] = useState(false)
+  // const [Country, setCountry] = useState(false)
+  // const [Food, setFood] = useState(false)
+  // const [Fit, setFit] = useState(false)
 
   const handleSubmit = (e) => {
     // e.preventDefault()
@@ -22,9 +23,9 @@ const FiltroCategoria = ({Minimizado}) => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
   const handleChangeFood = (e) => {
@@ -32,9 +33,9 @@ const FiltroCategoria = ({Minimizado}) => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
   const handleChangeFit = (e) => {
@@ -42,9 +43,9 @@ const FiltroCategoria = ({Minimizado}) => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
 

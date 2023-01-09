@@ -90,6 +90,7 @@ const UpdateUser = () => {
 		if(user.google || user.thirdAuth){
 			formik.setFieldValue("password", "noPasword")
 		}
+		
 	}, [user])
 
 	const handleChange = (e) => {

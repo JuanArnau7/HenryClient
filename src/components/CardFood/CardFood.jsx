@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { detailsDish, getFoodsReviews, getLengthCart, getAllDishes } from '../../redux/Actions/actions';
+import { detailsDish, getLengthCart, getAllDishes } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -9,31 +9,39 @@ import "./CardFood.css"
 import NavBar from "../Utils/NavBar/NavBar";
 import ModalAddReviewDish from '../Reviews/components/ModalAddReviewDish';
 import ReviewsFoods from '../Reviews/ReviewsFoods';
-import Loading from '../Utils/Loading/Loading';
 
 const CardFood = () => {
 	const dispatch = useDispatch()
 	const id = useParams()
 	const [userId, setuserId] = useState(null)
 	const dish = useSelector(state => state.detailDish);
+	const reviews = useSelector(state => state.reviewsDishes);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
-
-	const [Visible, setVisible] = useState(true)
-	const [FoodId, setFoodId] = useState(null)
+	const [Reviews, setReviews] = useState([])
 
 	const establecerToken = async () => {
 		let tk = localStorage.getItem('token');
 		if(tk){ 
-			let userToken = await JSON.parse(atob(tk.split('.')[1]));
+			let userToken = await JSON.parse(window.atob(tk.split('.')[1]));
 			if (userToken) {
 				setuserId(userToken.id)
 			}
 		}
 	}
+	const establecerReviews = () => {
+		let rev = reviews.filter([r => {
+			if (r.foodId === id.id) {
+				return r
+			}
+		}])
+		if (rev) {
+			setReviews(rev)
+		}
+	}
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
-	const findDish = cartDishes.find(dish => dish.id === FoodId)
+	const findDish = cartDishes.find(dish => dish.id === id.id)
 
 	const [dishInCart, setDishInCart] = useState(findDish ? true : false)
 
@@ -80,7 +88,8 @@ const CardFood = () => {
 		dispatch(detailsDish(id))
 		establecerToken()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dish])
+	}, [dish, reviews])
+	
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
