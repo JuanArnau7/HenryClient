@@ -13,8 +13,19 @@ BarElement
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
+import {HiOutlineUsers} from 'react-icons/hi'
+import {FaChartLine} from 'react-icons/fa'
+import {BsHandbag} from 'react-icons/bs'
+import {MdOutlineAttachMoney} from 'react-icons/md'
+import { useSelector } from "react-redux";
+
+
+
+
 
 const BoardHome = () => {
+  const users = useSelector(state=> state.allUsers)
+  const orders = useSelector(state=> state.allOrders)
 
 ChartJS.register(
   CategoryScale,
@@ -115,9 +126,49 @@ const labels2 = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
   return (
     <>
-    <div className="bg-gray-100 h-full w-screen mt-40px flex flex-col items-center">
-        <div className=" flex items-center justify-center h-2/4 w-full bg-gray-700 rounded-lg m-5">
+    <div className="bg-gray-900 w-screen mt-80px h-screen flex flex-col items-center overflow-y-auto">
+      <div className="w-full flex text-white m-5 justify-around">
+          <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
+              <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><HiOutlineUsers/></div>
+              <div className="flex flex-col justify-center items-end text-lg">
+                <div>{users.length}</div>
+                <div>Users</div>
+
+              </div>
+          </div>
+          <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
+          <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><FaChartLine/></div>
+              <div className="flex flex-col justify-center items-end text-lg">
+                <div> $ 1247</div>
+                <div className="sm:hidden md:block lg:block">Sales</div>
+
+              </div>
+          </div>          <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
+          <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><BsHandbag/></div>
+              <div className="flex flex-col justify-center items-end text-lg">
+                <div>{orders.length}</div>
+                <div>Customers</div>
+
+              </div>
+          </div>          <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
+          <div className="text-3xl text-blue-500  bg-white rounded-full p-2 font-bold"><MdOutlineAttachMoney/></div>
+              <div className="flex flex-col justify-center items-end text-lg">
+                <div> $ 1247</div>
+                <div>Balances</div>
+
+              </div>
+          </div>
+      </div>
+        <div className=" flex items-center justify-center  h-2/3 w-4/5 bg-gray-700 rounded-lg m-5">
           <Line options={options} data={data} />
+        </div>
+        <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
+          <div className="w-2/5 mx-5 bg-gray-700 rounded-lg h-full flex items-center justify-center">
+          <Bar options={options2} data={data2} />
+          </div>
+          <div className="w-2/5  bg-gray-700 rounded-lg h-full flex items-center justify-center">
+          <Bar options={options2} data={data2} />
+          </div>
         </div>
         <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
           <div className="w-2/5 mx-5 bg-gray-700 rounded-lg h-full flex items-center justify-center">
