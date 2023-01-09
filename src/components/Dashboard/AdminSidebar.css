@@ -1,5 +1,5 @@
 .navbar {
-  background-color: lightblue;
+  background-color: rgb(30, 30, 31);
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -13,7 +13,7 @@
 }
 
 .nav-menu {
-  background-color: lightblue;
+  background-color: rgb(30, 30, 31);
   width: 16rem;
   height: 100vh;
   display: flex;
@@ -21,12 +21,12 @@
   position: fixed;
   top: 0;
   left: -100%;
-  transition: 850ms;
+  /* transition: 850ms; */
 }
 
 .nav-menu.active {
   left: 0;
-  transition: 350ms;
+  /* transition: 350ms; */
 }
 
 .nav-text {
@@ -40,7 +40,7 @@
 
 .nav-text a {
   text-decoration: none;
-  color: black;
+  color: rgb(207, 205, 205);
   font-size: 18px;
   width: 95%;
   height: 100%;
@@ -59,7 +59,7 @@
 }
 
 .navbar-toggle {
-  background-color: lightblue;
+  background-color: rgb(30, 30, 31);
   width: 100%;
   height: 80px;
   display: flex;

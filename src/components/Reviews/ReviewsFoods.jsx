@@ -3,12 +3,13 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import {  useDispatch, useSelector } from 'react-redux';
 import { getFoodsReviews } from '../../redux/Actions/actions';
 
-const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
+const ReviewsFoods = ({setReadReviews, FoodId}) => {
   const dispatch = useDispatch()
   const AllReviews = useSelector(state=> state.reviewsDishes)
   const AllUsers = useSelector(state=> state.allUsers)
   const [Positive, setPositive] = useState(false)
   const [Negative, setNegative] = useState(false)
+  const [Reviews, setReviews] = useState([])
   // const [Reviews, setReviews] = useState([])
   // const establecerReviews = ()=>{
   //   let rev = AllReviews.filter(r => {
@@ -22,28 +23,46 @@ const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
   //     setReviews(rev)
   //   }
   // }
-  const Positives = Reviews.filter(p=>{
-      if (p.score>=3) {
+  const verPositives = ()=>{
+    let rev = Reviews.filter([p=>{
+        if (p.positive === true) {
+          return p
+        } 
+      }])
+      setReviews(rev) 
+    }
+    
+  const verNegatives= async () =>{
+    let rev = await Reviews.filter([p=>{
+      if (p.positive === false) {
         return p
       } 
-      return 
-  })
-  const Negatives = Reviews.filter(p=>{
-    if (p.score<3) {
-      return p
-    } 
-    return 
-})
+    }])
+    setReviews(rev) 
+}
+
   const obtenerDatos = (userId) => {
-   const user = AllUsers.find(u =>{
+   const user = AllUsers.find([u =>{
     if (u._id === userId) {
       return u
-    } else {
-      return
     }
-   })
+   }])
    return user.fullName
   }
+  const Positives = Reviews.filter([p=>{
+    if (p.score>=3) {
+        return p
+  } 
+  
+}])
+const Negatives = Reviews.filter([p=>{
+  if (p.score<3) {
+      return p
+} 
+
+}])
+
+
   const obtenerFormatoFecha = (fechaReview)=>{
     let fecha = new Date(fechaReview);
     let dia = fecha.getDate();
@@ -52,8 +71,20 @@ const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
     let fechaFormateada = `${dia}/${mes+1}/${ano}`;
     return fechaFormateada;
 }
+
+const establecerReviews = ()=>{
+  let rev = AllReviews.filter(r => {
+    if (r.foodId === FoodId){
+    return r
+    } 
+  })
+  if (rev) {
+    setReviews(rev)
+  }
+  }
   useEffect(() => {
     dispatch(getFoodsReviews())
+    establecerReviews()
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AllReviews])
   
@@ -63,10 +94,11 @@ const ReviewsFoods = ({setReadReviews, FoodId, Reviews}) => {
     <div className=' overflow-y-auto h-full gap-y-1 overflow-x-auto w-full'>
     
     <div className='flex justify-center items-center h-fit w-full bg-white sticky top-0  shadow-lg' >
-    <button type="button" className="mt-2 h-fit text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" onClick={()=>(setReadReviews(false), setNegative(false), setPositive(false))}><IoArrowBackSharp/></button>
-    <button type="button" className="mt-2 text-green-600 hover:text-white border-2 border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" onClick={()=>(setNegative(false), setPositive(true))} >Positive</button>
-    <button type="button" className=" mt-2  text-red-600 hover:text-white border-2 border-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={()=>(setNegative(true), setPositive(false))}>Negative</button>
-    <button type="button" className="mt-2 text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" onClick={()=>(setNegative(false), setPositive(false))} >All</button>
+    <button type="button" className="mt-2 h-fit text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" onClick={()=>([setReadReviews(false), setNegative(false), setPositive(false)])}><IoArrowBackSharp/></button>
+    <button type="button" className="mt-2 text-green-600 hover:text-white border-2 border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" onClick={()=>verPositives()} >Positive</button>
+    <button type="button" className=" mt-2  text-red-600 hover:text-white border-2 border-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={()=>verNegatives()}>Negative</button>
+    <button type="button" className="mt-2 text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" onClick={()=>([setNegative(false), setPositive(false)])} >All</button>
+
     
     </div>
     {Reviews.length && !Positive && !Negative?
@@ -263,22 +295,23 @@ Positives.map((rev)=>{
     </div>
     </div>
     </div>
-    
-    
+
+
       )
     })
   :
+  
 <>
 <div className='flex justify-center items center h-full w-full'>
   <h2>Esta Comida no tiene ninguna reseña</h2>
 </div>
 </>
   }
-  </>
+    </>
   }
   </>
   }
-    </div>
+  </div>
     </>
   )
 }

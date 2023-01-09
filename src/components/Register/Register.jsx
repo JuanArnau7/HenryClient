@@ -79,6 +79,7 @@ const Register = () => {
 
 	useEffect(() => {
 		setError({ ...error, ePassword: validacionPassword(pass) })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [pass])
 
 	const dispatch = useDispatch()

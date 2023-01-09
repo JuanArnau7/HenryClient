@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER  } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID  } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -10,8 +10,10 @@ const initialState = {
 	isLogged: false,
 	reviewsDishes:[],
 	userOrders: [],
+	allOrders: [],
 	allUsers : [],
-	allTags : []
+	allTags : [],
+	userToken: null 
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -44,22 +46,22 @@ const rootReducer = (state = initialState, action) => {
 				...state, reviewsDishes: action.payload
 			}
 		case POST_REVIEWS:
-		return {
-			...state, reviewsDishes: [...state.reviewsDishes, action.payload]
-		}
+			return {
+				...state, reviewsDishes: [...state.reviewsDishes, action.payload]
+			}
 		case LOGIN_USER_JWT:
 			return {
-				...state
+				...state, userToken: action.payload
 			}
 		case FILTER:
 			return {
 				...state, filterDishes: [...action.payload]
 			}
 		case GET_NAME_DISHES: 
-		return {
-			...state,
-			filterDishes: action.payload
-		}
+			return {
+				...state,
+				filterDishes: action.payload
+			}
 		case GET_LENGTH_CART:
 			return {
 				...state,
@@ -94,6 +96,11 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				userOrders: action.payload
 			}
+		case GET_All_ORDERS:
+			return {
+				...state,
+				allOrders: action.payload
+			}
 		case GET_ALL_TAGS:
 			return {
 				...state,
@@ -103,6 +110,11 @@ const rootReducer = (state = initialState, action) => {
 				return {
 					...state
 				}
+		case GET_ADMIN_BY_ID:
+			return {
+				...state,
+				
+			}
 		default:
 			return { ...state };
 	}

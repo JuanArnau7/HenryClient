@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { filtrar, getFilterDishes, getNameDishes } from "../../../redux/Actions/actions";
+import { filtrar, getFilterDishes } from "../../../redux/Actions/actions";
 
 const SearchBar = () => {
 	const dishes = useSelector(state => state.filterDishes)

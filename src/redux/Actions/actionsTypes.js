@@ -17,9 +17,13 @@ export const GET_NAME_DISHES = "GET_NAME_DISHES"
 export const GET_FOOD_REVIEWS = "GET_FOOD_REVIEWS"
 export const GET_USERS = "GET_USERS"
 export const GET_ALL_TAGS = "GET_ALL_TAGS"
-export const LOGIN_WITH_GITHUB = "LOGIN_WITH_GITHUB"
 export const IMG_UPDATE_USER = "IMG_UPDATE_USER"
 export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID"
+export const GET_All_ORDERS = "GET_All_ORDERS"
+
+
+export const DELETE_FOOD = "DELETE_FOOD"
+export const DELETE_REVIEW = "DELETE_REVIEW"
 
 
 

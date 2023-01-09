@@ -1,8 +1,8 @@
 
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, LOGIN_WITH_GITHUB, GET_ADMIN_BY_ID, IMG_UPDATE_USER } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW} from './actionsTypes'
 import axios from 'axios'
-import { async } from '@firebase/util';
+// import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
@@ -24,9 +24,8 @@ export function postUserCreate(payload) {
 export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
-			console.log('DATA ', data);
-			
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
+			console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
 				type: LOGIN_USER_JWT,
@@ -299,11 +298,26 @@ export const getUserOrders = (id) => {
 		}
 	}
 }
+export const getAllOrders = (id) => {
+	return async dispatch => {
+		try {
+			const response = await axios(`${URL_SERVER}orders`)
+			return dispatch({
+				type: GET_All_ORDERS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error redux actions on get user's orders", error);
+			return error.response
+		}
+	}
+}
 // /foods?country=MEXICAN&food=DRINKS&fit=LOW%20IN%20FAT
 export const getAllTags = () => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}tags`)
+			console.log("response",response.data)
 			return dispatch({
 				type: GET_ALL_TAGS,
 				payload: response.data
@@ -315,20 +329,20 @@ export const getAllTags = () => {
 	}
 }
 
-export const loginWithGitHub = (email) => {
-	return async dispatch =>{
+export const deleteFood = (id) => {
+	return async dispatch => {
 		try {
-			const response = await axios.post(`${URL_SERVER}auth/gitHub`, {email})
-			localStorage.setItem("token", response.data)
-			dispatch({
-				type: LOGIN_WITH_GITHUB
+			const res = await axios.delete(`${URL_SERVER}foods/${id}`)
+			return dispatch({
+				type: DELETE_FOOD,
+				payload: res
 			})
-			return response
 		} catch (error) {
-			console.log("Error redux actions on login using github", error.response);
-			return error
+			console.log('Error redux action on delete food', error);
+			return error.response
 		}
 	}
+
 }
 
 export const getAdminById = (id) => {
@@ -338,11 +352,29 @@ export const getAdminById = (id) => {
 			return dispatch({
 				type : GET_ADMIN_BY_ID,
 				payload: res.data
+				
 			})
 		} catch (error) {
 			console.log('Error redux actions on /Get admins');
 			return error
-			
+
 		}
 	}
 }
+
+
+export const deleteReview = (id) => {
+	return async dispatch => {
+		try {
+			const res = await axios.delete(`${URL_SERVER}reviews/${id}`)
+			return dispatch({
+				type: DELETE_REVIEW,
+				payload: res
+			})
+		} catch (error) {
+			console.log('Error redux action on delete food', error);
+			return error.response
+		}
+	}
+} 
+
