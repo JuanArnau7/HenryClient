@@ -50,15 +50,15 @@ const Sidebar = ({pathname, userId}) => {
                </svg>
             </button>
 
-            <div className={`${!open && "hidden" } bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm` } onClick={ () => (setOpen(false), setFiltros(false), setSorts(false) )}></div>
+            <div className={`${!open && "hidden" } bg-gray-600/50 min-h-screen w-full fixed top-0 left-0 right-0 backdrop-blur-sm` } onClick={ () => ([setOpen(false), setFiltros(false), setSorts(false) ])}></div>
 
 
-            <div className={` ${open ? 'w-80' : 'w-20' } bg-green-700 min-h-screen  fixed top-0 left-0 transition-all duration-200`} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>(setOpen(false), setFiltros(false), setSorts(false) )}>
+            <div className={` ${open ? 'w-80' : 'w-20' } bg-green-700 min-h-screen  fixed top-0 left-0 transition-all duration-200`} onMouseOver={()=>setOpen(true)} onMouseLeave={()=>([setOpen(false), setFiltros(false), setSorts(false)] )}>
                <div className={`my-3 transition-all duration-300`}>
                      {open?
                      <>
                   <div className='bg-green-700 h-12 flex items-center  justify-around transition-all duration-200'>
-                  <button className=' text-black  'onClick={ () => (setOpen(false), setFiltros(false), setSorts(false) )} >
+                  <button className=' text-black  'onClick={ () => ([setOpen(false), setFiltros(false), setSorts(false)] )} >
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
                      </svg>

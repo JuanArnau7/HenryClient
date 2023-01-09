@@ -7,6 +7,7 @@ const Login = () => {
   const handleCallbackResponse = (response) => {
     //console.log("Enconde JWT ID token" + response.credential)
     const body = { id_token: response.credential };
+    console.log(response.credential)
     // console.log(body)
     fetch("http://localhost:3001/auth/google", {
       method: "POST",
@@ -17,7 +18,7 @@ const Login = () => {
     })
       .then((resp) => resp.json())
       .then((resp) => {
-        console.log(resp);
+        // console.log(resp);
         localStorage.setItem("token", resp);
         if(localStorage.token ) return navigate(`/local/alterHome`);
       })
@@ -39,6 +40,7 @@ const Login = () => {
       theme: "outline",
       size: "large",
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 
@@ -51,6 +53,7 @@ const Login = () => {
     if (!localStorage.user_jwt)
       document.getElementById("btn-singOut").hidden = true;
     document.getElementById("singInDiv").hidden = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [localStorage]);
 
   const handleSingOut = () => {

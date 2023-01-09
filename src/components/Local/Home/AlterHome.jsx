@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getFilterDishes, getUserById, loginUserJWT } from "../../../redux/Actions/actions";
+import { getFilterDishes, getUserById } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
 import Pages from "../Pages";
-import { useNavigate } from "react-router-dom";
-import { FaFilter, FaSort } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
+// import { FaFilter, FaSort } from "react-icons/fa";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
 import NavBar from "../../Utils/NavBar/NavBar";
@@ -13,9 +13,12 @@ const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
 	const dispatch = useDispatch()
 	const [Visible, setVisible] = useState(true)
+
 	useEffect(() => {
 		dispatch(getFilterDishes())
+
 	}, [dispatch])
+
 	useEffect(() => {
 		setTimeout(() => {
 			setVisible(false)
@@ -27,6 +30,7 @@ const AlterHome = () => {
 			}
 		}
 		perfilUser()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dishes])
 	
 	const token = localStorage.getItem("token")
@@ -41,20 +45,26 @@ const AlterHome = () => {
 	const firstPostIndex = lastPostIndex - postPerPage;
 	const currentPost = dishes.length > 7 ? dishes.slice(firstPostIndex, lastPostIndex) : dishes
 
-	const tabs = [
-		{ name: "Sort", content: "precio", icon: <FaSort /> },
-		{ name: "Categories", content: "Categoria", icon: <FaFilter /> }
-	];
+	// const tabs = [
+	// 	{ name: "Sort", content: "precio", icon: <FaSort /> },
+	// 	{ name: "Categories", content: "Categoria", icon: <FaFilter /> }
+	// ];
 
 	const [toogleMenu, setToogleMenu] = useState(true)
 	const btnToogleMenu = () => setToogleMenu(prev => !prev)
 
-	const navigate = useNavigate();
+	
+	// const navigate = useNavigate();
 
 	return (
 		<>
-			
+			<div>
+				{
+					btnToogleMenu
+				}
+			</div>
 			{Visible ?
+			
 				<>
 				<NavBar></NavBar>
 					<div className="AlterHome h-fit">
