@@ -64,17 +64,17 @@ const Cart = () => {
 			{cartDishes.length > 0 &&
 				<div className="flex my-4 justify-center">
 					<h5 className="font-bold text-2xl">
-						Shopping Cart
+						Carrito de compras
 					</h5>
 				</div>
 			}
 			{cartDishes.length === 0
 				? <div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
-					<h5 className='font-bold font-sans text-xl text-center'>Your shopping cart is empty</h5>
+					<h5 className='font-bold font-sans text-xl text-center'>Tu carrito de compras esta vacio</h5>
 					<div className='flex justify-center'>
 						<img src="https://static.vecteezy.com/system/resources/thumbnails/003/857/426/small_2x/happy-man-shopping-with-cart-free-vector.jpg" alt="De compras" />
 					</div>
-					<p className='font-sans text-lg text-center'>Continue browsing our page to add your favorite products to your shopping cart</p>
+					<p className='font-sans text-lg text-center'>Continua navegando en nuestra pagina para agregar tus productos favoritos a tu carrito de compras</p>
 					<button
 						className='block mx-auto mt-6 rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 						onClick={goToHome}
@@ -101,13 +101,13 @@ const Cart = () => {
 														{el.name}
 													</p>
 													<p className="pl-4 text-sm text-gray-500 truncate">
-														Unit price ${el.price}
+														Precio unitario ${el.price}
 													</p>
 												</div>
 											</div>
 											<div className='flex flex-row justify-between w-full md:w-2/5'>
 												<div className='flex flex-col'>
-													<label htmlFor="cant" className='text-sm'>Ammount to add</label>
+													<label htmlFor="cant" className='text-sm'>Cantidad a agregar</label>
 													<input type="number"
 														id='cant'
 														name="cant"
@@ -119,7 +119,7 @@ const Cart = () => {
 												</div>
 												<div className="flex flex-col align-middle items-center pt-1">
 													<p className="text-sm font-semibold text-gray-900 truncate">
-														Subtotal
+														Sub-total
 													</p>
 													${el.price * el.cant}
 												</div>
