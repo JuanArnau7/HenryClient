@@ -47,16 +47,16 @@ const OrderAtTable = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		if (input.moment === "RESERVATION" && !user._id) {
-			Swal.fire("Debes tener sesion iniciada", "Para poder hacer una reserva tienes que iniciar sesion", "info")
+			Swal.fire("You must be logged in", "To be able to make a reservation you have to log in", "info")
 			navigate('/login')
 		}
 
 		if (input.moment === "RESERVATION" && user._id) {
 			const res = await dispatch(createOrder(user._id, dishes, "RESERVATION", null, null, input.selectedDate))
 			if(res){
-				Swal.fire("Reserva realizada con exito", `Te esperamos el ${input.selectedDate} en nuestras instalaciones`, "info")
+				Swal.fire("Reservation made successfully", `We are waiting for you ${input.selectedDate} In our instalations`, "info")
 			} else{
-				Swal.fire("Error en el proceso", "Reporta este incidente a nuestro personal e intenta de nuevo en proximos minutos", "warning")
+				Swal.fire("Error in the process", "Report this incident to our staff and try again in the next few minutes.", "warning")
 			}
 			navigate('/local/alterHome')
 
@@ -65,9 +65,9 @@ const OrderAtTable = () => {
 			!user._id && (user._id = "63b7640c3b0250ae1d856098") // este es un id con credenciales de invitado NO BORRAR DE BD
 			const res = await dispatch(createOrder(user._id, dishes, "LOCAL", input.tableNumber, null))
 			if(res){
-				Swal.fire("Hemos recibido tu pedido", `En pocos minutos estara llegan tu pedido a la mesa No ${input.tableNumber}`, "info")
+				Swal.fire("We have received your order", `In a few minutes your order will arrive at the table No ${input.tableNumber}`, "info")
 			}else{
-				Swal.fire("Error en el proceso", "Reporta este incidente a nuestro personal e intenta de nuevo en proximos minutos", "warning")
+				Swal.fire("Error in the process", "Report this incident to our staff and try again in the next few minutes.", "warning")
 			}
 			navigate('/local/alterHome')
 		}
@@ -78,12 +78,12 @@ const OrderAtTable = () => {
 			<NavBar />
 			<div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
 				<div className='text-center mb-4'>
-					<h4 className='text-2xl font-semibold'>Crea tu orden</h4>
+					<h4 className='text-2xl font-semibold'>Create your order</h4>
 				</div>
 				<form onSubmit={handleSubmit}>
 					<div className='mb-2'>
 						<label className="block text-gray-700 text-sm font-bold mb-1">
-							Cuando quieres tu orden
+							When you want your order?
 						</label>
 						<select
 							name="moment"
@@ -91,15 +91,15 @@ const OrderAtTable = () => {
 							onChange={handleChanges}
 							className="mb-4 shadow border rounded border-gray-500 w-full pl-2 text-gray-500 bg-white leading-tight focus:ring-blue-500 focus:border-blue-300"
 						>
-							<option defaultValue hidden>Selecciona...</option>
-							<option value="LOCAL">Consumir ahora</option>
-							<option value="RESERVATION">Reservar</option>
+							<option defaultValue hidden>Select...</option>
+							<option value="LOCAL">Consume now</option>
+							<option value="RESERVATION">Reserve</option>
 						</select>
 					</div>
 					{input.moment === "LOCAL" && (
 						<div>
 							<label className="block text-gray-700 text-sm font-bold mb-1">
-								Elegir mesa
+								Choose table
 							</label>
 							<select
 								name="tableNumber"
@@ -107,7 +107,7 @@ const OrderAtTable = () => {
 								onChange={handleChanges}
 								className="mb-4 shadow border rounded border-gray-500 w-full pl-2 text-gray-500 bg-white leading-tight focus:ring-blue-500 focus:border-blue-300"
 							>
-								<option defaultValue hidden>Seleccionar numero de mesa...</option>
+								<option defaultValue hidden>Select table number...</option>
 								{Array.from({ length: 10 }, (_, i) => i + 1).map((table, index) => (
 									<option key={index} value={table}>{table}</option>
 								))}
@@ -118,7 +118,7 @@ const OrderAtTable = () => {
 					{input.moment === "RESERVATION" && (
 						<div>
 							<label className="block text-gray-700 text-sm font-bold mb-1">
-								Elegir fecha <small>(Maximo 10 dias)</small>
+								Select date <small>(10 days max)</small>
 							</label>
 							<input type="date"
 								min={input.nowDate}
@@ -138,20 +138,20 @@ const OrderAtTable = () => {
 							<button type='submit'
 								className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 								disabled={!input.tableNumber}>
-								Pedir a la mesa
+								Order at the table
 							</button>
 						)}
 						{input.moment === "RESERVATION" && (
 							<button type='submit'
 								className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 								disabled={!input.selectedDate}>
-									Hacer reservacion
+									Make a reservation
 							</button>
 						)}
 
 						<button type='reset'
 							className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600' >
-							Borrar formulario
+							Reset form
 						</button>
 					</div>
 				</form>

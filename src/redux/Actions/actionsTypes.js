@@ -22,6 +22,7 @@ export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID"
 export const GET_All_ORDERS = "GET_All_ORDERS"
 
 
+export const DELETE_FOOD = "DELETE_FOOD"
 
 
 
