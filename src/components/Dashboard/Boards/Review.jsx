@@ -26,7 +26,7 @@ const BoardReview = () => {
       title: d.title,
       description: d.descriptions,
       score: d.score,
-      state: d.state
+      state: d.state.toString()
     }))
 
   ];
