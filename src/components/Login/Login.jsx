@@ -65,11 +65,12 @@ const Login = () => {
 			const token = localStorage.getItem("token")	
 			const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
 			
-			if (res.payload.status === 201) {
+			// console.log("PAYLOAD", res)
+			if (res.status === 201) {
 			dispatch(getAdminById(tokenDecoded.id))
 			navigate('/dashboard')
 			}
-			if (res.payload.status === 200){
+			if (res.status === 200){
 			dispatch(getUserById(tokenDecoded.id))
 			navigate('/local/alterHome')
 			} 
