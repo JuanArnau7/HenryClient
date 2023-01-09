@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";

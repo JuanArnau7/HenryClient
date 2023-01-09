@@ -29,6 +29,7 @@ function App() {
 		dispatch(getFilterDishes())
 		dispatch(getFoodsReviews())
 		dispatch(getUsers())
+		 // eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
 	return (

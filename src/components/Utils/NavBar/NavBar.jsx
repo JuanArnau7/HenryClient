@@ -25,7 +25,7 @@ const NavBar = () => {
 	}, [carrito, dispatch, pathname, user])
 
 	const handleCreate = () => {
-		navigate(`/createFood`);
+		navigate(`/dashboard`);
 	}
 
 	return (
@@ -51,9 +51,9 @@ const NavBar = () => {
 					</div>
 
 					{/* El boton para crear nuevos platos estara disponible solo para adminsitradores */}
-					{user.rol === "ROL_ADMIN" &&
+					{user.rol !== "ROL_ADMIN" &&
 						<button onClick={() => handleCreate()} className="px-5 py-1 bg-red-600 text-white rounded hover:bg-red-800" >
-							Create
+							Dashboard
 						</button>
 					}
 
