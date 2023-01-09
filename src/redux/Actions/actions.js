@@ -1,6 +1,6 @@
 
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER } from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, DELETE_FOOD } from './actionsTypes'
 import axios from 'axios'
 import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
@@ -313,3 +313,18 @@ export const getAllTags = () => {
 		}
 	}
 }
+
+export const deleteFood = (id) => {
+	return async dispatch => {
+		try {
+			const res = await axios.delete(`${URL_SERVER}foods/${id}`)
+			return dispatch({
+				type: DELETE_FOOD,
+				payload: res
+			})
+		} catch (error) {
+			console.log('Error redux action on delete food', error);
+			return error.response
+		}
+	}
+} 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getFilterDishes, loginUserJWT } from "../../../redux/Actions/actions";
+import { getFilterDishes, getUserById, loginUserJWT } from "../../../redux/Actions/actions";
 import Paginator from "../../Paginator/Paginator";
 import Pages from "../Pages";
 // import { useNavigate } from "react-router-dom";
@@ -15,14 +15,25 @@ const AlterHome = () => {
 	const [Visible, setVisible] = useState(true)
 	useEffect(() => {
 		dispatch(getFilterDishes())
-		dispatch(loginUserJWT())
 	}, [dispatch])
 	useEffect(() => {
 		setTimeout(() => {
 			setVisible(false)
 		}, 1500)
+		async function perfilUser(){
+			if(token){
+				const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
+				await dispatch(getUserById(tokenDecoded.id))
+			}
+		}
+		perfilUser()
 	}, [dishes])
+	
+	const token = localStorage.getItem("token")
+	// const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
+	// await dispatch(getUserById(tokenDecoded.id))
 
+	
 	// Information for paginator component
 	const [currentPage, setCurrentPage] = useState(1);
 	const postPerPage = 8
