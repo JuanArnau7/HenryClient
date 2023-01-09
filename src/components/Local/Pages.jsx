@@ -50,20 +50,20 @@ const Pages = ({ data }) => {
 	}
 
 	const moreDetails = (dish) => {
-		navigate(`/detailDish/${dish._id}`)
+		navigate(`/detailDish/${dish}`)
 	}
 
-	useEffect(() => {
-
-	}, [dispatch])
 
 
 	return (
 		<div className='flex flex-wrap justify-around'>
-			{data.length > 0 &&
-				data.map((dish, index) => (
+			{data.length?
+				data.map((dish, index) => {
+					return(
+
+					dish.state ===  true?
 					<div key={index} className="sm:w-11/12 md:w-5/12 lg:w-3/12 rounded-lg shadow-md hover:shadow-xl transition m-3 cursor-pointer hover:-translate-y-1 hover:scale-105  w-fit  justify-center bg-white ">
-						<div onClick={() => moreDetails(dish)}>
+						<div onClick={() => moreDetails(dish._id)}>
 							<img className="rounded-t-lg w-full h-56 object-cover" src={dish.img} alt={dish.lenguage.en.name} />
 							<div className="px-4 pt-2 pb-4 h-24 flex flex-col justify-center">
 								<h6 className="font-sans text-center font-semibold lowercase first-letter:capitalize">{dish.lenguage.en.name}</h6>
@@ -81,7 +81,14 @@ const Pages = ({ data }) => {
 							</button>
 						</div>
 					</div>
-				))}
+					:
+					<></>
+					)
+					
+				})
+				:
+				<></>
+				}
 		</div>
 	)
 }
