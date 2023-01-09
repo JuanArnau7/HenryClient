@@ -2,7 +2,7 @@
 
 import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER } from './actionsTypes'
 import axios from 'axios'
-// import { async } from '@firebase/util';
+import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
@@ -25,7 +25,7 @@ export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
-			// console.log(userJWT)
+			console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
 				type: LOGIN_USER_JWT,
