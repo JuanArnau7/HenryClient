@@ -5,7 +5,6 @@ const BoardTag = () => {
   return (
     <div>
       <h1>ESTA ES UNA MALDITA TAGS</h1>
-   // <Table/>
   </div>
   )
 }
