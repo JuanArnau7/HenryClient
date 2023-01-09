@@ -11,7 +11,8 @@ const initialState = {
 	reviewsDishes:[],
 	userOrders: [],
 	allUsers : [],
-	allTags : []
+	allTags : [],
+	userToken: null 
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -49,7 +50,7 @@ const rootReducer = (state = initialState, action) => {
 		}
 		case LOGIN_USER_JWT:
 			return {
-				...state
+				...state, userToken: action.payload
 			}
 		case FILTER:
 			return {

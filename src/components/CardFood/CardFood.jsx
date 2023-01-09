@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from "react-router-dom";
-import { detailsDish, getLengthCart, getAllDishes } from '../../redux/Actions/actions';
+import { detailsDish, getFoodsReviews, getLengthCart, getAllDishes } from '../../redux/Actions/actions';
 import { FaCartArrowDown } from "react-icons/fa";
 import { MdRemoveShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -9,16 +9,18 @@ import "./CardFood.css"
 import NavBar from "../Utils/NavBar/NavBar";
 import ModalAddReviewDish from '../Reviews/components/ModalAddReviewDish';
 import ReviewsFoods from '../Reviews/ReviewsFoods';
+import Loading from '../Utils/Loading/Loading';
 
 const CardFood = () => {
 	const dispatch = useDispatch()
 	const id = useParams()
 	const [userId, setuserId] = useState(null)
 	const dish = useSelector(state => state.detailDish);
-	const reviews = useSelector(state => state.reviewsDishes);
 	const [ModalReviewDish, setModalReviewDish] = useState(false);
 	const [ReadReviews, setReadReviews] = useState(false);
-	const [Reviews, setReviews] = useState([])
+
+	const [Visible, setVisible] = useState(true)
+	const [FoodId, setFoodId] = useState(null)
 
 	const establecerToken = async () => {
 		let tk = localStorage.getItem('token');
@@ -29,21 +31,9 @@ const CardFood = () => {
 			}
 		}
 	}
-	const establecerReviews = () => {
-		let rev = reviews.filter(r => {
-			if (r.foodId === id.id) {
-				return r
-			} else {
-				return
-			}
-		})
-		if (rev) {
-			setReviews(rev)
-		}
-	}
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
-	const findDish = cartDishes.find(dish => dish.id === id.id)
+	const findDish = cartDishes.find(dish => dish.id === FoodId)
 
 	const [dishInCart, setDishInCart] = useState(findDish ? true : false)
 
@@ -89,9 +79,8 @@ const CardFood = () => {
 		dispatch(getAllDishes())
 		dispatch(detailsDish(id))
 		establecerToken()
-		establecerReviews()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [dish, reviews])
+	}, [dish])
 
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
@@ -102,7 +91,7 @@ const CardFood = () => {
 				{/* <NavBarCreateFoods/> */}
 				<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 
-					<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg">
+					<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12  bg-white flex lg:flex-row justify-center  items-center rounded-lg h-5/6">
 						<div className="sm:w-full s:h-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 							<div className=" rounded-t-lg ">
 								<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
@@ -132,7 +121,7 @@ const CardFood = () => {
 						</div>
 						<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-0 lg:w-3/5 bg-white rounded-r-lg lg:m-0 w-full h-full">
 							{!ReadReviews ?
-								<div className='m-6 h-full flex flex-col justify-center items-center '>
+								<div className='m-6 h-full flex flex-col justify-center items-center h-full '>
 									<h5 className="text-xl font-semibold tracking-tight text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
 									<p className='mx-8'>{dish?.lenguage?.en?.descripcion}</p>
 									<div className='flex justify-center items-center mt-5'>
@@ -141,7 +130,7 @@ const CardFood = () => {
 									</div>
 								</div>
 								:
-								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} Reviews={Reviews} />
+								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} />
 							}
 						</div>
 					</div>
@@ -152,7 +141,6 @@ const CardFood = () => {
 				ModalReviewDish={ModalReviewDish}
 				setModalReviewDish={setModalReviewDish}
 				userId={userId}
-				establecerReviews={establecerReviews}
 			/>
 		</>
 	)
