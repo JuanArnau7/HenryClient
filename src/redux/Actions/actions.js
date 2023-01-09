@@ -1,5 +1,8 @@
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, LOGIN_WITH_GITHUB } from './actionsTypes'
+
+
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD } from './actionsTypes'
 import axios from 'axios'
+// import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
 
 export function postUserCreate(payload) {
@@ -22,9 +25,11 @@ export const loginUserJWT = (data) => {
 	return async (dispatch) => {
 		try {
 			const userJWT = await axios.post(`${URL_SERVER}auth/login`, data);
+			console.log(userJWT)
 			localStorage.setItem("token", userJWT.data)
 			return dispatch({
-				type: LOGIN_USER_JWT
+				type: LOGIN_USER_JWT,
+				payload: userJWT
 			})
 		} catch (error) {
 			console.log("Error Redux on login local", error.response)
@@ -210,6 +215,34 @@ export const updateUser = (id, data) => {
 		}
 	}
 }
+export const imgUpdateUser = (id, data) => {
+	return async dispatch => {
+		try {
+			const response = await axios.put(`${URL_SERVER}users/${id}`, data)
+			dispatch({
+				type: IMG_UPDATE_USER
+			})
+			return response
+		} catch (error) {
+			console.log("Error Redux action on update user", error.response);
+			return error.response
+		}
+	}
+}
+export const imgDeleteUser = (id) => {
+	return async dispatch => {
+		try {
+			const response = await axios.put(`${URL_SERVER}users/${id}/delete`)
+			dispatch({
+				type: IMG_UPDATE_USER
+			})
+			return response
+		} catch (error) {
+			console.log("Error Redux action on update user", error.response);
+			return error.response
+		}
+	}
+}
 
 export const logOut = () => {
 	return async dispatch => {
@@ -235,11 +268,11 @@ export function postReviewDish(payload) {
 	}
 }
 
-export const createOrder = (userid, order, typeOrder, table, address) => {
+export const createOrder = (userid, order, typeOrder, table, address, date) => {
 	return async dispatch => {
 		try {
 			await axios.post(`${URL_SERVER}orders/`, {
-				userid, order, typeOrder, table, address
+				userid, order, typeOrder, table, address, date
 			})
 			return dispatch({
 				type: CREATE_ORDER
@@ -265,11 +298,26 @@ export const getUserOrders = (id) => {
 		}
 	}
 }
+export const getAllOrders = (id) => {
+	return async dispatch => {
+		try {
+			const response = await axios(`${URL_SERVER}orders`)
+			return dispatch({
+				type: GET_All_ORDERS,
+				payload: response.data
+			})
+		} catch (error) {
+			console.log("Error redux actions on get user's orders", error);
+			return error.response
+		}
+	}
+}
 // /foods?country=MEXICAN&food=DRINKS&fit=LOW%20IN%20FAT
 export const getAllTags = () => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}tags`)
+			console.log("response",response.data)
 			return dispatch({
 				type: GET_ALL_TAGS,
 				payload: response.data
@@ -281,18 +329,17 @@ export const getAllTags = () => {
 	}
 }
 
-export const loginWithGitHub = (email) => {
-	return async dispatch =>{
+export const deleteFood = (id) => {
+	return async dispatch => {
 		try {
-			const response = await axios.post(`${URL_SERVER}auth/gitHub`, {email})
-			localStorage.setItem("token", response.data)
-			dispatch({
-				type: LOGIN_WITH_GITHUB
+			const res = await axios.delete(`${URL_SERVER}foods/${id}`)
+			return dispatch({
+				type: DELETE_FOOD,
+				payload: res
 			})
-			return response
 		} catch (error) {
-			console.log("Error redux actions on login using github", error.response);
-			return error
+			console.log('Error redux action on delete food', error);
+			return error.response
 		}
 	}
-}
+} 

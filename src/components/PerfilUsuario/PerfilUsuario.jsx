@@ -9,22 +9,22 @@ import { getUserById, getUserOrders } from '../../redux/Actions/actions';
 import NavBar from '../Utils/NavBar/NavBar';
 
 const PerfilUsuario = () => {
-	const [openTab, setOpenTab] = useState("Datos registrados")
+	const [openTab, setOpenTab] = useState("Recorded data")
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const token = localStorage.getItem("token")
 	
 	const tabs = [
-		{ name: "Datos registrados", content: <DataUser /> },
-		{ name: "Actualizar perfil", content: <UpdateUser /> },
-		{ name: "Historial compras", content: <ShoppingHistory /> },
+		{ name: "Recorded data", content: <DataUser /> },
+		{ name: "Update profile", content: <UpdateUser /> },
+		{ name: "Purchase history", content: <ShoppingHistory /> },
 	];
   
 	useEffect(() => {
 		if(!token){
 			Swal.fire({
-				title: "No haz iniciado sesion",
-				text: "Por favor inicia sesion o registrate en nuestra pagina",
+				title: "You are not logged in",
+				text: "Please login or register on our page",
 				icon: "info",
 				timer: 5000
 			})

@@ -1,17 +1,18 @@
 import React from "react";
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { filtrar, getAllDishes, getFilterDishes } from "../../../redux/Actions/actions"
 
-const FiltroCategoria = () => {
+const FiltroCategoria = ({Minimizado}) => {
   const dispatch = useDispatch()
-  const dishes = useSelector(state=> state.allDishes)
+  // const dishes = useSelector(state=> state.allDishes)
   const tags = useSelector(state=>state.allTags)
+console.log(tags)
 
   const filtrados = useSelector(state=>state.filterDishes)
-  const [Country, setCountry] = useState(false)
-  const [Food, setFood] = useState(false)
-  const [Fit, setFit] = useState(false)
+  // const [Country, setCountry] = useState(false)
+  // const [Food, setFood] = useState(false)
+  // const [Fit, setFit] = useState(false)
 
   const handleSubmit = (e) => {
     // e.preventDefault()
@@ -22,9 +23,9 @@ const FiltroCategoria = () => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
   const handleChangeFood = (e) => {
@@ -32,9 +33,9 @@ const FiltroCategoria = () => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
   const handleChangeFit = (e) => {
@@ -42,9 +43,9 @@ const FiltroCategoria = () => {
     if (e.target.value === "All") {
       dispatch(getFilterDishes())
     } else {
-      dispatch(filtrar(filtrados.filter(d => {
+      dispatch(filtrar(filtrados.filter([d => {
         if (d.tags.en?.includes(e.target.value)) return d
-      })))
+      }])))
     }
   }
 
@@ -62,7 +63,7 @@ const FiltroCategoria = () => {
       <>
       <form className="flex flex-col m-5 gap-2 ">
 
-        <select defaultValue={''} id="country" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" onChange={handleChangeCountry}>
+        <select defaultValue={''} id="country" className={` ${Minimizado && 'z-10'}bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`} onChange={handleChangeCountry}>
           <option value={''}>Options</option>
           <option value={'All'}>All</option>
           {tagCountry?
