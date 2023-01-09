@@ -73,11 +73,11 @@ const Negatives = Reviews.filter([p=>{
 }
 
 const establecerReviews = ()=>{
-  let rev = AllReviews.filter([r => {
+  let rev = AllReviews.filter(r => {
     if (r.foodId === FoodId){
     return r
     } 
-  }])
+  })
   if (rev) {
     setReviews(rev)
   }
