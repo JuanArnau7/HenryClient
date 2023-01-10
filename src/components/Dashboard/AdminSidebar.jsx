@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { SidebarData } from "./SidebarData";
+import { Link, NavLink } from "react-router-dom";
+// import { SidebarData } from "./SidebarData";
 import { FaStoreAlt } from "react-icons/fa";
 import "./AdminSidebar.css"
 
@@ -32,9 +32,9 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
         </div>
       </div> */}
 
-      <div className="min-h-full ">
+      <div className="min-h-full">
         <nav className="bg-gray-800">
-          <div className="mx-auto max-w-7xl  sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
@@ -54,21 +54,21 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                    <Link to={'/dashboard/'}>
-                      <span className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"  >Home </span>
-                    </Link>
-                    <Link to={'/dashboard/Foods'}>
-                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Foods</span>
-                    </Link>
-                    <Link to={'/dashboard/Users'}>
-                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</span>
-                    </Link>
-                    <Link to={'/dashboard/Reviews'}>
-                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Reviews</span>
-                    </Link>
-                    <Link to={'/dashboard/Tags'}>
-                      <span className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Tags</span>
-                    </Link>
+                    <NavLink to={'/dashboard/Home'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+                      Home
+                    </NavLink>
+                    <NavLink to={'/dashboard/Foods'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+                      Foods
+                    </NavLink>
+                    <NavLink to={'/dashboard/Users'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+											Users
+                    </NavLink>
+                    <NavLink to={'/dashboard/Reviews'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+											Reviews
+                    </NavLink>
+                    <NavLink to={'/dashboard/Tags'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+											Tags
+                    </NavLink>
                   </div>
                 </div>
               </div>
@@ -76,7 +76,6 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                 <div className="ml-4 flex items-center md:ml-6">
                   <button type="button" className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                     <span className="sr-only">View notifications</span>
-                    {/* <!-- Heroicon name: outline/bell --> */}
                     <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
                     </svg>

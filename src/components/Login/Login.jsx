@@ -1,5 +1,5 @@
 import React from "react";
-import { getAdminById, getUserById, loginWithGitHub } from "../../redux/Actions/actions";
+import { getAdminById, getUserById } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -53,7 +53,7 @@ const Login = () => {
 	const navigate = useNavigate();
 
 	const handleSubmit = async () => {
-		
+		try {
 			const res = await axios.post(`${URL_SERVER}auth/login`, user);
 			localStorage.setItem("token", res.data)			
 			Swal.fire({
@@ -75,7 +75,10 @@ const Login = () => {
 			if (res.status === 200){
 			dispatch(getUserById(tokenDecoded.id))
 			navigate('/local/alterHome')
-			} 
+			}			
+		} catch (error) {
+			errorLoging()
+		}
 		
 	}
 

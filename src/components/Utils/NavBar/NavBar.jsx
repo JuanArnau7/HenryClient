@@ -40,7 +40,7 @@ const NavBar = () => {
                         </>}
 						<Link to='/' >
 							<span className="flex items-center">
-								<span className="text-lg md:text-xl -ml-4 text-white font-semibold whitespace-nowrap dark:text-black">Henry's Foods</span>
+								<span className="text-lg md:text-xl ml-1 text-white font-semibold whitespace-nowrap dark:text-black">Henry's Foods</span>
 							</span>
 						</Link>
 						<Link to={'/local/alterHome'}
@@ -51,7 +51,7 @@ const NavBar = () => {
 					</div>
 
 					{/* El boton para crear nuevos platos estara disponible solo para adminsitradores */}
-					{user.rol !== "ROL_ADMIN" &&
+					{user.rol === "ADMIN_ROLE" &&
 						<button onClick={() => handleCreate()} className="px-5 py-1 bg-red-600 dark:text-black text-white rounded hover:bg-red-800 dark:bg-gray-300" >
 							Dashboard
 						</button>
@@ -74,7 +74,7 @@ const NavBar = () => {
 						</div>
 					</div>
 				</div>
-				<div className="block w-11/12 mx-auto my-2 sm:hidden">
+				<div className="w-9/12 ml-20 my-2 sm:hidden">
 					<SearchBar />
 				</div>
 			</nav>

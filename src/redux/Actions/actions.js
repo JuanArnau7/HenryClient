@@ -258,6 +258,7 @@ export const imgDeleteUser = (id) => {
 }
 
 export const logOut = () => {
+	localStorage.removeItem("token")
 	return async dispatch => {
 		dispatch({
 			type: LOGOUT,
