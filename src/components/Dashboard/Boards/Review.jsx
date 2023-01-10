@@ -3,20 +3,17 @@ import CRUDTable,
 {
   Fields,
   Field,
-  CreateForm,
-  UpdateForm,
   DeleteForm,
 } from 'react-crud-table';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { deleteFood } from '../../../redux/Actions/actions';
+import { deleteReview } from '../../../redux/Actions/actions';
 // Component's Base CSS
 import './Review.css';
 
 
 
 const BoardReview = () => {
-  const navigate = useNavigate()
+
   const dispatch = useDispatch()
   const reviews = useSelector(state => state.reviewsDishes)
   const DescriptionRenderer = ({ field }) => <textarea {...field} />;
@@ -28,7 +25,8 @@ const BoardReview = () => {
       id: d._id,
       title: d.title,
       description: d.descriptions,
-      score: d.score
+      score: d.score,
+      state: d.state.toString()
     }))
 
   ];
@@ -70,22 +68,15 @@ const BoardReview = () => {
   };
 
   const handleSubmit = (e) => {
-    dispatch(deleteFood(e.id))
+    dispatch(deleteReview(e.id))
     window.location.reload()
   }
 
-  const handleClickCreate = (e) => {
-    e.preventDefault()
-    navigate('/createFood')
-    window.location.reload()
-  }
 
   return (
     <>
       <div style={styles.container}>
-        {/* <div>
-          <button onClick={handleClickCreate} margin="30px">create new food</button>
-        </div> */}
+    
         <CRUDTable
           caption="History"
           fetchItems={payload => service.fetchItems(payload)}
@@ -114,53 +105,12 @@ const BoardReview = () => {
               label="Description"
               render={DescriptionRenderer}
             />
+             <Field
+              name="state"
+              label="State"
+              placeholder="state"
+            />
           </Fields>
-
-          <CreateForm
-        title="Reviews Creation"
-        message="Create a new Reviews!"
-        trigger="Create Reviews"
-        onSubmit={(e) => handleClickCreate(e)}
-        submitText="Create"
-        // validate={(values) => {
-        //   const errors = {};
-        //   if (!values.title) {
-        //     errors.title = 'Please, provide task\'s title';
-        //   }
-
-        //   if (!values.description) {
-        //     errors.description = 'Please, provide task\'s description';
-        //   }
-
-        //   return errors;
-        // }}
-      />
-
-
-          <UpdateForm
-            title="Task Update Process"
-            message="Update task"
-            trigger="Update"
-            onSubmit={task => service.update(task)}
-            submitText="Update"
-            validate={(values) => {
-              const errors = {};
-
-              if (!values.id) {
-                errors.id = 'Please, provide id';
-              }
-
-              if (!values.title) {
-                errors.title = 'Please, provide task\'s title';
-              }
-
-              if (!values.description) {
-                errors.description = 'Please, provide task\'s description';
-              }
-
-              return errors;
-            }}
-          />
 
           <DeleteForm
             title="Task Delete Process"

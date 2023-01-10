@@ -10,9 +10,9 @@ const SearchBar = () => {
 		if (!e.target.value) {
 			dispatch(getFilterDishes())
 		} else {
-			dispatch(filtrar(dishes.filter([d => {
+			dispatch(filtrar(dishes.filter(d => {
 				if (d.lenguage.es.name.toLowerCase().includes(e.target.value.toLowerCase()) || d.lenguage.en.name.toLowerCase().includes(e.target.value.toLowerCase())) return d
-			}])))
+			})))
 		}
 	}
 
