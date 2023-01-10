@@ -68,8 +68,8 @@ const AlterHome = () => {
 				<>
 				<NavBar></NavBar>
 					<div className="AlterHome h-fit">
-						<div className="flex flex-col w-screen mx-auto p-6  h-fit bg-white">
-							<div className="flex justify-center items-center  h-screen w-full bg-white">
+						<div className="flex  flex-col w-screen mx-auto p-6  h-fit bg-white">
+							<div className="flex justify-center items-center  h-screen w-full bg-white ">
 								<Loading Visible={Visible} />
 							</div>
 						</div>
@@ -80,7 +80,7 @@ const AlterHome = () => {
 					<NavBar></NavBar>
 					
 					<div className="AlterHome h-fit">
-						<div className="flex flex-col w-screen mx-auto px-6 shadow-xl h-fit bg-green-100">
+						<div className="flex flex-col w-screen mx-auto px-6 shadow-xl h-fit bg-green-100 dark:bg-gray-100">
 
 							<div className={toogleMenu ? "w-full" : "max-md:w-11/12 max-lg:w-11/12"}>
 								<h1 className="text-2xl font-bold tracking-tight text-gray-900 mb-4 mt-5 ml-20">

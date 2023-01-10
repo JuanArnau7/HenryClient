@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { getLengthCart } from '../../redux/Actions/actions';
 import { useDispatch } from 'react-redux';
 import NavBar from "../Utils/NavBar/NavBar";
+import Sidebar from '../Utils/SideBar/Sidebar';
 
 
 const Cart = () => {
@@ -69,14 +70,14 @@ const Cart = () => {
 				</div>
 			}
 			{cartDishes.length === 0
-				? <div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
+				? <div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto dark:bg-gray-500'>
 					<h5 className='font-bold font-sans text-xl text-center'>Tu carrito de compras esta vacio</h5>
 					<div className='flex justify-center'>
 						<img src="https://static.vecteezy.com/system/resources/thumbnails/003/857/426/small_2x/happy-man-shopping-with-cart-free-vector.jpg" alt="De compras" />
 					</div>
 					<p className='font-sans text-lg text-center'>Continua navegando en nuestra pagina para agregar tus productos favoritos a tu carrito de compras</p>
 					<button
-						className='block mx-auto mt-6 rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+						className='block mx-auto mt-6 rounded-md bg-green-500 dark:bg-gray-400 dark:text-gray-900 text-white px-4 pb-1 hover:bg-green-600'
 						onClick={goToHome}
 					>
 						Back to home
@@ -145,7 +146,7 @@ const Cart = () => {
 </div>
 <div className='mt-4 w-full flex justify-around'>
 	<button
-		className='rounded-md bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
+		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
 		onClick={()=> navigate('/orderAtTable')}
 	>
 		Order to table
@@ -155,7 +156,7 @@ const Cart = () => {
 	</button>
 
 	<button onClick={checkOutPayment}
-		className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 	>
 		Order at home
 		<div className='flex justify-center'>
@@ -164,7 +165,7 @@ const Cart = () => {
 	</button>
 
 	<button
-		className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
+		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
 		onClick={goToHome}
 	>
 		Back to home
