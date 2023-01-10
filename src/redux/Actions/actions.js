@@ -245,6 +245,7 @@ export const imgDeleteUser = (id) => {
 }
 
 export const logOut = () => {
+	localStorage.removeItem("token")
 	return async dispatch => {
 		dispatch({
 			type: LOGOUT,
@@ -317,7 +318,6 @@ export const getAllTags = () => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}tags`)
-			console.log("response",response.data)
 			return dispatch({
 				type: GET_ALL_TAGS,
 				payload: response.data
