@@ -1,5 +1,5 @@
 import React from "react";
-import { getAdminById, getUserById, loginWithGitHub } from "../../redux/Actions/actions";
+import { getAdminById, getUserById } from "../../redux/Actions/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import './Login.css'
@@ -65,15 +65,22 @@ const Login = () => {
 			const token = localStorage.getItem("token")	
 			const tokenDecoded = JSON.parse(window.atob(token.split('.')[1]))
 			
+			// console.log("PAYLOAD", res)
+			if (res.status === 201) {
+			dispatch(getAdminById(tokenDecoded.id))
+
+			navigate('/dashboard/Home')
+
+			}
+			if (res.status === 200){
 			dispatch(getUserById(tokenDecoded.id))
-	
-			navigate('/local/alterHome')	
+			navigate('/local/alterHome')
+			}			
 		} catch (error) {
-			console.log("Error on login", error);
-			if (error.response.status === 400) return errorLoging();
+			errorLoging()
 		}
 		
-	};
+	}
 
 	const loginUsingGitHub = async () => {
 		try {

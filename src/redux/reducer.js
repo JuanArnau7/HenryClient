@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS  } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID, IMG_FOOD_UPDATE  } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -85,7 +85,8 @@ const rootReducer = (state = initialState, action) => {
 		case LOGOUT:
 			return {
 				...state,
-				userProfile: {}
+				userProfile: {},
+				userOrders: []
 			}
 		case CREATE_ORDER:
 			return {
@@ -110,6 +111,15 @@ const rootReducer = (state = initialState, action) => {
 				return {
 					...state
 				}
+		case GET_ADMIN_BY_ID:
+			return {
+				...state,
+				
+			}
+		case  IMG_FOOD_UPDATE:
+			return{
+				...state
+			}
 		default:
 			return { ...state };
 	}
