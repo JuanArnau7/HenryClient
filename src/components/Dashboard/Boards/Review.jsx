@@ -78,7 +78,7 @@ const BoardReview = () => {
       <div style={styles.container}>
     
         <CRUDTable
-          caption="History"
+          caption="Reviews"
           fetchItems={payload => service.fetchItems(payload)}
           items={tasks[0]}
         // items={result}
