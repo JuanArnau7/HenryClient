@@ -46,10 +46,10 @@ const DataUser = () => {
 						<img src="https://baja.website/wp-content/uploads/2021/04/error-404-not-found.jpg" alt="No encontrado" />
 						<div className='flex justify-around mt-6'>
 							<Link to={'/login'}
-								className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+								className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 							>Go to login</Link>
 							<Link to={'/'}
-								className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+								className="bg-green-500 dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 							>Go to home</Link>
 						</div>
 					</div>
@@ -60,10 +60,10 @@ const DataUser = () => {
 							<p>Your account is deactivated, please check the link we sent to your email to proceed to activate</p>
 							<div className='flex justify-around mt-6'>
 								<Link to={'/login'}
-									className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+									className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								>Go to login page</Link>
 								<Link to={'/'}
-									className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+									className="bg-green-500 dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								>Go to Home</Link>
 							</div>
 						</div>

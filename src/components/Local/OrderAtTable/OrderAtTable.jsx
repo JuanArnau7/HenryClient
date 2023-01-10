@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { createOrder, getUserById } from '../../../redux/Actions/actions'
 import NavBar from '../../Utils/NavBar/NavBar'
+import Sidebar from '../../Utils/SideBar/Sidebar'
 
 const OrderAtTable = () => {
 	const dishes = JSON.parse(localStorage.getItem("dishes"))
@@ -76,6 +77,7 @@ const OrderAtTable = () => {
 	return (
 		<div>
 			<NavBar />
+			<Sidebar />
 			<div className='w-11/12 mt-6 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
 				<div className='text-center mb-4'>
 					<h4 className='text-2xl font-semibold'>Create your order</h4>
@@ -136,21 +138,21 @@ const OrderAtTable = () => {
 					<div className='mt-4 flex justify-around'>
 						{input.moment === "LOCAL" && (
 							<button type='submit'
-								className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+								className='rounded-md bg-green-500  dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-black text-white px-4 pb-1 hover:bg-green-600'
 								disabled={!input.tableNumber}>
 								Order at the table
 							</button>
 						)}
 						{input.moment === "RESERVATION" && (
 							<button type='submit'
-								className='rounded-md bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+								className='rounded-md bg-green-500  dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-black text-white px-4 pb-1 hover:bg-green-600'
 								disabled={!input.selectedDate}>
 									Make a reservation
 							</button>
 						)}
 
 						<button type='reset'
-							className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600' >
+							className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600' >
 							Reset form
 						</button>
 					</div>
