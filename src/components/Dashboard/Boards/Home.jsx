@@ -21,7 +21,7 @@ useEffect(() => {
     <div className="bg-gray-900 w-screen mt-80px h-full flex flex-col items-center ">
       <TabsHome Tabs={Tabs} setTabs={setTabs}/>
       {Tabs === 1?
-      <Stats Orders={Orders}/>
+      <Stats orders={Orders}/>
     :
       <TaskHome/>
       }
