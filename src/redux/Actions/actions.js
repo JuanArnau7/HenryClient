@@ -1,6 +1,6 @@
 
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW} from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW, IMG_FOOD_UPDATE} from './actionsTypes'
 import axios from 'axios'
 // import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
@@ -136,6 +136,19 @@ export function postDishCreate(payload) {
 		}
 	}
 }
+export function imgFoodUpdate(id, data) {
+	return async function (dispatch) {
+		try {
+			const res = await axios.put(`${URL_SERVER}foods/foodUpdate/${id}`, data)
+			dispatch( {type: IMG_FOOD_UPDATE});
+			return res
+		} catch (error) {
+			alert("Connection to /PUT Failed. ERROR:" + error)
+		}
+	}
+}
+
+
 
 export const filtrar = (arr) => {
 	return async dispatch => {
@@ -317,6 +330,7 @@ export const getAllTags = () => {
 	return async dispatch => {
 		try {
 			const response = await axios(`${URL_SERVER}tags`)
+			//console.log("response",response.data)
 			return dispatch({
 				type: GET_ALL_TAGS,
 				payload: response.data
