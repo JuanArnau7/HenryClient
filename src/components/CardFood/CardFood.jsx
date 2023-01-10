@@ -30,11 +30,11 @@ const CardFood = () => {
 		}
 	}
 	const establecerReviews = () => {
-		let rev = reviews.filter([r => {
+		let rev = reviews.filter(r => {
 			if (r.foodId === id.id) {
 				return r
 			}
-		}])
+		})
 		if (rev) {
 			setReviews(rev)
 		}
@@ -87,10 +87,9 @@ const CardFood = () => {
 		dispatch(getAllDishes())
 		dispatch(detailsDish(id))
 		establecerToken()
+		
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dish, reviews])
-	
-
 	const currencyFormat = (num) => num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 
 	return (

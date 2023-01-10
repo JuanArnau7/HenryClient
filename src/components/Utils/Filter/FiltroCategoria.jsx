@@ -7,7 +7,7 @@ const FiltroCategoria = ({ Minimizado }) => {
   const dispatch = useDispatch()
   // const dishes = useSelector(state=> state.allDishes)
   const tags = useSelector(state => state.allTags)
-  console.log(tags)
+  //console.log(tags)
 
   const filtrados = useSelector(state => state.filterDishes)
   // const [Country, setCountry] = useState(false)
