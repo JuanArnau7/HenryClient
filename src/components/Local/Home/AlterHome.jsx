@@ -8,7 +8,6 @@ import Pages from "../Pages";
 import "./AlterHome.css"
 import Loading from "../../Utils/Loading/Loading";
 import NavBar from "../../Utils/NavBar/NavBar";
-import { getUserById, getUserOrders } from "../../../redux/Actions/actions";
 
 const AlterHome = () => {
 	const dishes = useSelector(state => state.filterDishes)
