@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { getUserById, getUserOrders } from '../../redux/Actions/actions';
 import NavBar from '../Utils/NavBar/NavBar';
+import Sidebar from '../Utils/SideBar/Sidebar';
 
 const PerfilUsuario = () => {
 	const [openTab, setOpenTab] = useState("Recorded data")
@@ -40,20 +41,21 @@ const PerfilUsuario = () => {
 	}, [dispatch, token, navigate])
 	
 	return (
-		<div>
+		<div className='dark:bg-gray-300 '>
 			<NavBar />
-			<div className='flex flex-col mt-4 md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 shadow-md shadow-blue-300'>
+			<Sidebar />
+			<div className='flex flex-col mt-4 md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 dark:border-gray-900 shadow-md shadow-blue-300 dark:shadow-gray-800 dark:bg-gray-500'>
 				<div className='w-full md:w-1/3 md:border-r-2 border-blue-300'>
-					<ul className="flex flex-row flex-wrap justify-around md:flex-col mt-3 md:mt-6">
+					<ul className="flex flex-row flex-wrap justify-around md:flex-col mt-3 md:mt-6 ">
 						{tabs.map((tab) => (
 							<li
 								key={tab.name}
-								className="mb-3 md:mb-4 md:px-3"
+								className="mb-3 md:mb-4 md:px-3 "
 							>
 								<NavLink
 									to={tab.link}
 									onClick={() => setOpenTab(tab.name)}
-									className={tab.name === openTab ? "bg-blue-500 text-white hover:bg-blue-700 px-3 py-1 rounded-md md:m-3" : "bg-blue-300 hover:text-white hover:bg-blue-500 px-3 py-1 rounded-md md:m-3"}
+									className={tab.name === openTab ? "bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black text-white hover:bg-blue-700 px-3 py-1 rounded-md md:m-3" : "bg-blue-300 hover:text-white hover:bg-blue-500 px-3 py-1 rounded-md md:m-3"}
 								>
 									{tab.name}
 								</NavLink>
