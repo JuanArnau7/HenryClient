@@ -85,7 +85,8 @@ const rootReducer = (state = initialState, action) => {
 		case LOGOUT:
 			return {
 				...state,
-				userProfile: {}
+				userProfile: {},
+				userOrders: []
 			}
 		case CREATE_ORDER:
 			return {
