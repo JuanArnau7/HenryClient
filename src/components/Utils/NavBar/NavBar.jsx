@@ -25,7 +25,7 @@ const NavBar = () => {
 	}, [carrito, dispatch, pathname, user])
 
 	const handleCreate = () => {
-		navigate(`/dashboard/Home`);
+		navigate(`/dashboard/`);
 	}
 
 	return (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -18,21 +18,107 @@ import {FaChartLine} from 'react-icons/fa'
 import {BsHandbag} from 'react-icons/bs'
 import {MdOutlineAttachMoney} from 'react-icons/md'
 import { useSelector } from 'react-redux';
+import moment from 'moment/moment';
 
 const Stats = () => {
     const users = useSelector(state=> state.allUsers)
     const orders = useSelector(state=> state.allOrders)
+    const [LastWeek, setLastWeek] = useState([])
+    const [CurrentWeek, setCurrentWeek] = useState([])
+const OrdenesLast = () => {
 
+  let Orders = orders.filter(o=>{
+      console.log("bbbbbbbbbbbbbbbbb", moment(o.date).format('l'))
+      LastWeek.map(lw => {
+        console.log("lw", moment(lw).format('l'), "comparado", moment(o.date).format('l'))
+        if (lw === moment(o.date).format('l')) {
+          return o.valuePaid
+        }
+      })
+      // if (LastWeek.includes( moment(o.date).format('l'))) {
+      //   return o.valuePaid
+      // } 
+  })
+  console.log("ccccccccccccccc", Orders) 
+}
 const sales = () => {
-  let Orders = orders.map(o=>o.order)
-  let suma = 0
-  for (let i = 0; i < Orders.length; i++) {
-    const element = Orders[i];
-    // eslint-disable-next-line
-    element.map(e=> suma = suma + e.price )
-  }
-  return suma
+  let Orders = orders.map(o=>o.valuePaid? o.valuePaid : 0).reduce((prev, curr)=> prev+curr, 0);
+      return Orders
 } 
+const lastWeek =()=>{
+  moment.updateLocale('en', {
+    week : {
+        dow :0  // 0 to 6 sunday to saturday
+    }
+});
+
+//than get current week or get last week according to Sun -- Sat
+let current = [moment().startOf('week'), moment().endOf('week')].map(c=>moment(c._d).format('l'))
+let last = [moment().startOf('week').subtract(7,'days'), moment().endOf('week').subtract(7, 'days')].map(l=>moment(l._d).format('l'))
+console.log("current:", current)
+console.log("last:", last)
+getDatesCurrentWeek(current[0], current[1])
+getDatesLastWeek(last[0], last[1])
+
+}
+
+function getDatesLastWeek (startDate, endDate) {
+  let dates = []
+  let current = startDate.split("/")
+  let current2 = []
+  for (let i = 0; i < current.length; i++) {
+    let element = parseInt(current[i]);
+    current2.push(element)
+  }
+  let current3 = new Date(current2[2], current2[0], current2[1])
+  let end = endDate.split("/")
+  let end2 = []
+  for (let i = 0; i < end.length; i++) {
+    const element = parseInt(end[i]);
+    end2.push(element)
+  }
+let end3 = new Date(end2[2], end2[0], end2[1])
+let addDays = function (days) {
+  let date = new Date(this.valueOf())
+  date.setDate(date.getDate() )
+  return date
+}
+while (current3 <= end3) {
+  dates.push(current3)
+  current3 = addDays.call(current3, 1)
+}
+console.log("datesssssss", dates)
+  setLastWeek(dates.map(d=> moment(d).format('l')))
+}
+
+function getDatesCurrentWeek (startDate, endDate) {
+  let dates = []
+  let current = startDate.split("/")
+  let current2 = []
+  for (let i = 0; i < current.length; i++) {
+    let element = parseInt(current[i]);
+    current2.push(element)
+  }
+  let current3 = new Date(current2[2], current2[0], current2[1])
+  let end = endDate.split("/")
+  let end2 = []
+  for (let i = 0; i < end.length; i++) {
+    const element = parseInt(end[i]);
+    end2.push(element)
+  }
+let end3 = new Date(end2[2], end2[0], end2[1])
+let addDays = function (days) {
+  let date = new Date(this.valueOf())
+  date.setDate(date.getDate() + days)
+  return date
+}
+while (current3 <= end3) {
+  dates.push(current3)
+  current3 = addDays.call(current3, 1)
+}
+  setCurrentWeek(dates.map(d=> moment(d).format('l')))
+}
+
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -73,7 +159,7 @@ ChartJS.register(
       {
         tension:0.3,
         label: 'Revenue (last period)',
-        data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+        data: OrdenesLast(),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
@@ -128,10 +214,14 @@ ChartJS.register(
       },
     ],
   };
+  useEffect(() => {
+    lastWeek()
+  }, [])
+  
   
   return (
     <>
-    <div className="w-full flex text-white m-5 justify-around">
+    <div className="w-full flex text-white m-5 justify-around" onClick={()=>console.log(LastWeek, CurrentWeek)}>
           <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
               <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><HiOutlineUsers/></div>
               <div className="flex flex-col justify-center items-end text-lg">
@@ -141,7 +231,7 @@ ChartJS.register(
               </div>
           </div>
           <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
-          <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><FaChartLine/></div>
+          <div className="text-3xl text-blue-500  bg-white rounded-full p-2" ><FaChartLine/></div>
               <div className="flex flex-col justify-center items-end text-lg">
                 <div> $ {sales()}</div>
                 <div className="sm:hidden md:block lg:block">Sales</div>
@@ -154,14 +244,7 @@ ChartJS.register(
                 <div>Customers</div>
 
               </div>
-          </div>          <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
-          <div className="text-3xl text-blue-500  bg-white rounded-full p-2 font-bold"><MdOutlineAttachMoney/></div>
-              <div className="flex flex-col justify-center items-end text-lg">
-                <div> $ 1247</div>
-                <div>Balances</div>
-
-              </div>
-          </div>
+          </div>         
       </div>
         <div className=" flex items-center justify-center  h-2/3 w-4/5 bg-gray-700 rounded-lg m-5">
           <Line options={options} data={data} />
