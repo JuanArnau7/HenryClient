@@ -154,7 +154,7 @@ const UpdateUser = () => {
 			
 			<div>
 			
-				{/* <form action=""> */}
+			
 
    			 	<label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Choose images to upload (PNG, JPG, JPEG)
 
@@ -181,7 +181,7 @@ const UpdateUser = () => {
 						className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600">
 						Delete
 					</button>
-					 {/* </form> */}
+					
 				
   			</div>
 

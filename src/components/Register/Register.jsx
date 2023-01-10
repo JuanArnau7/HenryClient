@@ -108,6 +108,14 @@ const Register = () => {
 			confirmButtonText: "OK",
 		});
 	};
+	const reactivateAcc = () => {
+		Swal.fire({
+			title: "User reactivate successfully",
+			text: "",
+			icon: "success",
+			confirmButtonText: "OK",
+		});
+	};
 	const handleClickSubmit = async (e) => {
 		e.preventDefault()
 		if (captcha.current.getValue()) {
@@ -118,6 +126,12 @@ const Register = () => {
 				reset()
 				navigate("/perfil")
 			}
+			if (creacion?.payload?.status === 201) {
+				reactivateAcc()
+				reset()
+				navigate("/perfil")
+			}
+
 			if (creacion.status === 400) {
 				errorRepeat()
 			}
