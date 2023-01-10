@@ -16,7 +16,6 @@ import { faker } from '@faker-js/faker';
 import {HiOutlineUsers} from 'react-icons/hi'
 import {FaChartLine} from 'react-icons/fa'
 import {BsHandbag} from 'react-icons/bs'
-import {MdOutlineAttachMoney} from 'react-icons/md'
 import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
 
@@ -26,12 +25,6 @@ const Stats = ({orders}) => {
     const [CurrentWeek, setCurrentWeek] = useState([])
 const OrdenesCurrent = () => {
   let Orders = orders.filter(o=>{
-    //  let curr =  CurrentWeek.map(lw => {
-    //     if (lw === moment(o.date).format('l')  && o.state === true) {
-    //       return o.valuePaid
-    //     }
-    //   })
-    //   console.log("currrrrrrrrrrrrrrr", curr)
     if (CurrentWeek.includes(moment(o.date).format('l') ) ) {
       return o.valuePaid
     }
@@ -40,12 +33,6 @@ return Orders
 }
 const OrdenesLast = () => {
   let Orders = orders.filter(o=>{
-    //  let curr =  CurrentWeek.map(lw => {
-    //     if (lw === moment(o.date).format('l')  && o.state === true) {
-    //       return o.valuePaid
-    //     }
-    //   })
-    //   console.log("currrrrrrrrrrrrrrr", curr)
     if (LastWeek.includes(moment(o.date).format('l') ) ) {
       return o.valuePaid
     }
@@ -66,8 +53,6 @@ const lastWeek =()=>{
 //than get current week or get last week according to Sun -- Sat
 let current = [moment().startOf('week'), moment().endOf('week')].map(c=>moment(c._d).format('l'))
 let last = [moment().startOf('week').subtract(7,'days'), moment().endOf('week').subtract(7, 'days')].map(l=>moment(l._d).format('l'))
-console.log("current:", current)
-console.log("last:", last)
 getDatesCurrentWeek(current[0], current[1])
 getDatesLastWeek(last[0], last[1])
 
@@ -98,7 +83,6 @@ while (last3 <= end3) {
   dates.push(last3)
   last3 = addDays.call(last3, 1)
 }
-console.log("datessssss", dates)
   setLastWeek(dates.map(d=> moment(d).subtract(1,'month').format('l')))
 }
 
@@ -157,7 +141,7 @@ ChartJS.register(
           size:20
         },
         align: 'start',
-        color: '#ffff'
+        color: '#212121'
       },
     },
   };
@@ -232,7 +216,7 @@ ChartJS.register(
   
   return (
     <>
-    <div className="w-full flex text-white m-5 justify-around" onClick={()=>console.log(LastWeek, CurrentWeek)}>
+    <div className="w-full flex text-white m-5 justify-around" >
           <div className="flex justify-between items-center p-3 w-1/5 bg-blue-500 rounded-lg">
               <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><HiOutlineUsers/></div>
               <div className="flex flex-col justify-center items-end text-lg">
@@ -252,12 +236,12 @@ ChartJS.register(
           <div className="text-3xl text-blue-500  bg-white rounded-full p-2"><BsHandbag/></div>
               <div className="flex flex-col justify-center items-end text-lg">
                 <div>{orders.length}</div>
-                <div>Customers</div>
+                <div>Purchases</div>
 
               </div>
           </div>         
       </div>
-        <div className=" flex items-center justify-center  h-2/3 w-4/5 bg-gray-700 rounded-lg m-5">
+        <div className=" flex items-center justify-center  h-2/3 w-4/5 bg-blue-200 rounded-lg m-5">
           <Line options={options} data={data} />
         </div>
         <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
