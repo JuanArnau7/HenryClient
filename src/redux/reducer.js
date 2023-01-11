@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID, IMG_FOOD_UPDATE  } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID, IMG_FOOD_UPDATE, UPDATE_USER_FROM_ADMIN  } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -114,11 +114,22 @@ const rootReducer = (state = initialState, action) => {
 		case GET_ADMIN_BY_ID:
 			return {
 				...state,
-				
+				userProfile: action.payload				
 			}
 		case  IMG_FOOD_UPDATE:
 			return{
 				...state
+			}
+		case UPDATE_USER_FROM_ADMIN:
+			const indexUser = state.allUsers.findIndex(user => user._id === action.payload._id)
+			const userUpdated = state.allUsers[indexUser] = action.payload
+			const copyListUser = state.allUsers
+			copyListUser.splice(indexUser, 1)
+			copyListUser.push(userUpdated)
+
+			return {
+				...state,
+				allUsers: copyListUser
 			}
 		default:
 			return { ...state };

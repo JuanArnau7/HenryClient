@@ -25,7 +25,7 @@ export const IMG_FOOD_UPDATE = "IMG_FOOD_UPDATE"
 
 export const DELETE_FOOD = "DELETE_FOOD"
 export const DELETE_REVIEW = "DELETE_REVIEW"
-
+export const UPDATE_USER_FROM_ADMIN = "UPDATE_USER_FROM_ADMIN"
 
 
 
