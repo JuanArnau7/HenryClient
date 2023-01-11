@@ -9,6 +9,7 @@ export function postUserCreate(payload) {
 	return async function (dispatch) {
 		try {
 			const res = await axios.post(`${URL_SERVER}users`, payload)
+			console.log(res)
 			localStorage.setItem("token", res.data)
 			return dispatch({
 				type: POST_USER_CREATE,

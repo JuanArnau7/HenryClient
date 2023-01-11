@@ -16,7 +16,7 @@ const BoardHome = () => {
 
   return (
     <>
-    <div className="bg-white w-screen mt-80px h-full flex flex-col items-center ">
+    <div className="bg-white w-screen mt-80px h-full flex flex-col items-center dark:bg-gray-900 ">
       <Stats orders={Orders} users={Users}/>
     </div>
       

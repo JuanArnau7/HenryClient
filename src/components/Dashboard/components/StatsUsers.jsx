@@ -112,8 +112,6 @@ const lastWeek =()=>{
 //than get current week or get last week according to Sun -- Sat
 let current = [moment().startOf('week'), moment().endOf('week')].map(c=>moment(c._d).format('l'))
 let last = [moment().startOf('week').subtract(7,'days'), moment().endOf('week').subtract(7, 'days')].map(l=>moment(l._d).format('l'))
-console.log("curr", current)
-console.log("last", last)
 getDatesCurrentWeek(current[0], current[1])
 getDatesLastWeek(last[0], last[1])
 
@@ -191,7 +189,7 @@ ChartJS.register(
     responsive: true,
     plugins: {
       legend: {
-        position: 'bottom' ,
+        position: 'top' ,
       },
       title: {
         display: true,

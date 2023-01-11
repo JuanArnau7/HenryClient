@@ -35,7 +35,7 @@ let tasks = [
   //   title: 'Improve',
   //   description: 'Improve the component!',
   // },
-  tags.map(d=>({id: d._id, tagEN:d.tagEN, tagES:d.tagES, type:d.type, visible:d.state.toString()})) 
+  tags.map(d=>({id: d._id, tagEN:d.tagEN, tagES:d.tagES, type:d.type, visible:d.state})) 
   // mapeo
 ];
 // console.log('tasks', tasks[0]);
