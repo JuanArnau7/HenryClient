@@ -1,6 +1,10 @@
 
 
+<<<<<<< HEAD
 import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW, IMG_FOOD_UPDATE, GET_TOTAL_USERS} from './actionsTypes'
+=======
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW, IMG_FOOD_UPDATE, UPDATE_USER_FROM_ADMIN} from './actionsTypes'
+>>>>>>> origin/RubenJr
 import axios from 'axios'
 // import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
@@ -376,7 +380,7 @@ export const deleteFood = (id) => {
 export const getAdminById = (id) => {
 	return async dispatch => {
 		try {
-			const res = await axios.get(`${URL_SERVER}admins/${id}`)			
+			const res = await axios.get(`${URL_SERVER}admins/${id}`)
 			return dispatch({
 				type : GET_ADMIN_BY_ID,
 				payload: res.data
@@ -406,3 +410,20 @@ export const deleteReview = (id) => {
 	}
 } 
 
+
+export const updateUserFromAdmin = (data) =>{
+	return async dispatch => {
+		try {
+			const res = await axios.post(`${URL_SERVER}users/updateFromAdmin`, data)
+			console.log("actualizando ando... ",res.data);
+			dispatch({
+				type: UPDATE_USER_FROM_ADMIN,
+				payload: res.data
+			})
+			return res
+		} catch (error) {
+			console.log("Error on update user from admin panel", error);
+			return error.response
+		}
+	}
+}
