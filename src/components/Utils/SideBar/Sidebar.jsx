@@ -12,6 +12,9 @@ import { TbArrowsSort } from 'react-icons/tb';
 import { CgProfile } from 'react-icons/cg';
 import { BsCart4 } from 'react-icons/bs';
 import { BiMoon } from 'react-icons/bi';
+import { ImSun } from 'react-icons/im';
+
+
 
 const Sidebar = ({pathname, userId}) => { 
    const dispatch = useDispatch()
@@ -157,16 +160,33 @@ const Sidebar = ({pathname, userId}) => {
                   </div>
                   </Link>
                   <div className='text-center rounded-lg text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium flex items-center justify-center' onClick={changeMode} >
-                     { open?
+                  { open?
                      <>
-                     <BiMoon className="text-3xl mr-2 " /> DarkMode 
+                     {
+                        localStorage.getItem('theme') === 'dark'?
+                        <>
+                        <BiMoon className="text-3xl mr-2 " /> DarkMode 
+                        </>
+                        :
+                        <>
+                        <ImSun className="text-3xl mr-2 "/> LightMode
+                        </>
+                     }
                      </>
                      :
                      <>
-                     <BiMoon className="text-3xl "/>
+                     {
+                        localStorage.getItem('theme') === 'dark'?
+                        <>
+                        <BiMoon className="text-3xl "/>
+                        </>
+                        :
+                        <>
+                        <ImSun className="text-3xl"/>
+                        </>
+                     }
                      </>
                      }
-
                   </div>
                   </div>
                   </>
@@ -231,11 +251,29 @@ const Sidebar = ({pathname, userId}) => {
                   <div className='text-center rounded-lg text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 font-medium flex items-center justify-center' onClick={changeMode} >
                      { open?
                      <>
-                     <BiMoon className="text-3xl mr-2 " /> DarkMode 
+                     {
+                        localStorage.getItem('theme') === 'dark'?
+                        <>
+                        <BiMoon className="text-3xl mr-2 " /> DarkMode 
+                        </>
+                        :
+                        <>
+                        <ImSun className="text-3xl mr-2 "/> LightMode
+                        </>
+                     }
                      </>
                      :
                      <>
-                     <BiMoon className="text-3xl "/>
+                     {
+                        localStorage.getItem('theme') === 'dark'?
+                        <>
+                        <BiMoon className="text-3xl "/>
+                        </>
+                        :
+                        <>
+                        <ImSun className="text-3xl"/>
+                        </>
+                     }
                      </>
                      }
 
