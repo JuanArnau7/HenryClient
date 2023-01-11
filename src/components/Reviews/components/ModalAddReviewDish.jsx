@@ -24,9 +24,8 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
     }
     const agregado =()=>{
         Swal.fire({
-          title: 'Thanks for your review!',
-          text: '',
           icon: 'success',
+          title: 'Thanks for your review!',
           confirmButtonText: 'OK'
         })
       } 

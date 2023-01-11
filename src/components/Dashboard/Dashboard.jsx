@@ -32,7 +32,7 @@ const Dashboard = () => {
       {/* className="pl-64" */}
       <div className={sidebar ? "flex pl-64 w-full" : "flex w-full"}>
         <Routes>
-          <Route exact path='/home' element={<BoardHome />} />
+          <Route exact path='/' element={<BoardHome />} />
           <Route exact path='/foods' element={<BoardFoods />} />
           <Route exact path='/users' element={<BoardUser />} />
           <Route exact path='/reviews' element={<BoardReview />} />

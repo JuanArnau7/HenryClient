@@ -121,7 +121,7 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
           <div className="md:hidden" id="mobile-menu">
             <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-              <Link to={'/dashboard/Home'}>
+              <Link to={'/dashboard/'}>
                 <span className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page" >Home </span>
               </Link>
               <Link to={'/dashboard/Foods'}>
