@@ -51,7 +51,7 @@ const NavBar = () => {
 					</div>
 
 					{/* El boton para crear nuevos platos estara disponible solo para adminsitradores */}
-					{user.rol === "ADMIN_ROLE" &&
+					{user.rol !== "ADMIN_ROLE" &&
 						<button onClick={() => handleCreate()} className="px-5 py-1 bg-red-600 dark:text-black text-white rounded hover:bg-red-800 dark:bg-gray-300" >
 							Dashboard
 						</button>
