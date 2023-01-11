@@ -195,14 +195,14 @@ ChartJS.register(
       },
       title: {
         display: true,
-        text: ' Orders ',
+        text: ' Purchases ',
         padding: 15,
         font: {
           weight: 'bold',
           size:20
         },
         align: 'center',
-        color: '#ffff'
+        color: '#212121'
       },
     },
   };

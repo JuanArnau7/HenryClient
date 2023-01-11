@@ -202,7 +202,7 @@ ChartJS.register(
           size:20
         },
         align: 'center',
-        color: '#ffff'
+        color: '#212121'
       },
     },
   };
