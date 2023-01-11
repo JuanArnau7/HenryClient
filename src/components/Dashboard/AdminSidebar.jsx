@@ -54,7 +54,7 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                    <NavLink to={'/dashboard/Home'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+                    <NavLink to={'/dashboard/'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
                       Home
                     </NavLink>
                     <NavLink to={'/dashboard/Foods'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>

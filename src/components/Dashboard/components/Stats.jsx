@@ -18,6 +18,7 @@ import {FaChartLine} from 'react-icons/fa'
 import {BsHandbag} from 'react-icons/bs'
 import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
+import StatsUsers from './StatsUsers';
 
 const Stats = ({orders}) => {
     const users = useSelector(state=> state.allUsers)
@@ -245,8 +246,8 @@ ChartJS.register(
           <Line options={options} data={data} />
         </div>
         <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
-          <div className="w-2/5 mx-5 bg-gray-700 rounded-lg h-full flex items-center justify-center">
-          <Bar options={options2} data={data2} />
+          <div className="w-2/5 mx-5 bg-blue-200 rounded-lg h-full flex items-center justify-center">
+         <StatsUsers/>
           </div>
           <div className="w-2/5  bg-gray-700 rounded-lg h-full flex items-center justify-center">
           <Bar options={options2} data={data2} />
