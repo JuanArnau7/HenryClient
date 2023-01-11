@@ -20,7 +20,7 @@ const Cart = () => {
 
 	const handleChange = (e, index) => {
 		const data = [...cartDishes]
-		data[index].cant = e.target.value;
+		data[index].cant = parseInt(e.target.value);
 		setCartDishes(data)
 		localStorage.setItem("dishes", JSON.stringify(cartDishes))
 	}
