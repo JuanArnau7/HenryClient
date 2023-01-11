@@ -29,16 +29,7 @@ const CardFood = () => {
 			}
 		}
 	}
-	const establecerReviews = () => {
-		let rev = reviews.filter(r => {
-			if (r.foodId === id.id) {
-				return r
-			}
-		})
-		if (rev) {
-			setReviews(rev)
-		}
-	}
+
 
 	const cartDishes = JSON.parse(localStorage.getItem("dishes"))
 	const findDish = cartDishes.find(dish => dish.id === id.id)
@@ -81,12 +72,28 @@ const CardFood = () => {
 			}
 		}
 	}
+	const establecerReviews = ()=>{
+		let rev = reviews.filter(r => {
+		  if (r.foodId === id.id){
+		  return r
+		  } 
+		})
+		if (rev) {
+		  setReviews(rev)
+		}
+		}
+	const rating = () => {
+		let rat = Reviews.map(r=>r.score).reduce((prev, curr)=> prev+curr, 0)
+		let cantReviews = Reviews.length
+		return rat/cantReviews
+	}
 
 	useEffect(() => {
 		// Se incluye esta action para que no se rompa la pagina al recargar
 		dispatch(getAllDishes())
 		dispatch(detailsDish(id))
 		establecerToken()
+		establecerReviews()
 		
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [dish, reviews])
@@ -109,7 +116,7 @@ const CardFood = () => {
 									<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize">{dish?.lenguage?.en?.name}</h5>
 									<div className="flex items-center justify-center ml-4">
 										<svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-										<p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
+										<p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">{Reviews.length? rating() : 5}</p>
 										<span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
 									</div>
 								</div>
@@ -138,7 +145,7 @@ const CardFood = () => {
 									</div>
 								</div>
 								:
-								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} />
+								<ReviewsFoods setReadReviews={setReadReviews} FoodId={id.id} establecerToken={establecerToken} />
 							}
 						</div>
 					</div>
@@ -149,6 +156,7 @@ const CardFood = () => {
 				ModalReviewDish={ModalReviewDish}
 				setModalReviewDish={setModalReviewDish}
 				userId={userId}
+				establecerToken={establecerToken}
 			/>
 		</>
 	)
