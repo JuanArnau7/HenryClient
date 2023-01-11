@@ -14,12 +14,12 @@ const Dashboard = () => {
 	const user = useSelector(state => state.userProfile)
 	const navigate = useNavigate()
 
-	useEffect(() => {
-		if(user.rol !== "ADMIN_ROLE") {
-			Swal.fire("Esta ruta no existe", "Navega por nuestra pagina para adquirir tus productos favoritos", "info")
-			navigate('/local/alterHome')
-		}
-	}, [user, navigate])
+	// useEffect(() => {
+	// 	if(user.rol !== "ADMIN_ROLE") {
+	// 		Swal.fire("Esta ruta no existe", "Navega por nuestra pagina para adquirir tus productos favoritos", "info")
+	// 		navigate('/local/alterHome')
+	// 	}
+	// }, [user, navigate])
 	
 
   const showSidebar = () => {

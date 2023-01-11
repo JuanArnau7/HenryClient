@@ -35,7 +35,7 @@ let tasks = [
   //   title: 'Improve',
   //   description: 'Improve the component!',
   // },
-  tags.map(d=>({id: d._id, tagEN:d.tagEN, tagES:d.tagES, type:d.type, visible:d.state.toString()})) 
+  tags.map(d=>({id: d._id, tagEN:d.tagEN, tagES:d.tagES, type:d.type})) 
   // mapeo
 ];
 // console.log('tasks', tasks[0]);
@@ -127,11 +127,6 @@ const handleClickCreate = (e) => {
             label="Type"
             // render={DescriptionRenderer}
           />
-        <Field
-          name="visible"
-          label="Visible"
-          placeholder="Visible"
-        />
       </Fields>
       <UpdateForm
         title="Task Update Process"
