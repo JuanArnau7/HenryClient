@@ -21,8 +21,7 @@ export const IMG_UPDATE_USER = "IMG_UPDATE_USER"
 export const GET_ADMIN_BY_ID = "GET_ADMIN_BY_ID"
 export const GET_All_ORDERS = "GET_All_ORDERS"
 export const IMG_FOOD_UPDATE = "IMG_FOOD_UPDATE"
-
-
+export const GET_TOTAL_USERS = "GET_TOTAL_USERS"
 export const DELETE_FOOD = "DELETE_FOOD"
 export const DELETE_REVIEW = "DELETE_REVIEW"
 

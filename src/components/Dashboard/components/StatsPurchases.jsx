@@ -16,15 +16,15 @@ import { useSelector } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
 
 
-const StatsUsers = () => {
-    const users = useSelector(state=> state.totalUsers)
+const StatsPurchases = () => {
+    const orders = useSelector(state=> state.allOrders)
     const [LastWeek, setLastWeek] = useState([])
     const [CurrentWeek, setCurrentWeek] = useState([])
 
 
-const OrdenesCurrent = () => {
-    let Users =  users.filter(o=>{
-        if (CurrentWeek.includes(moment(o.registerDate).add(1, 'days').format('l') ) ) {
+const PurchasesCurrent = () => {
+    let Orders =  orders.filter(o=>{
+        if (CurrentWeek.includes(moment(o.date).add(1, 'days').format('l') ) ) {
     
           return o
         }
@@ -37,34 +37,34 @@ const OrdenesCurrent = () => {
       let w6 =[]
       let w7 =[]
     
-        Users.map(uf=>{
-        if (CurrentWeek[0] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        Orders.map(uf=>{
+        if (CurrentWeek[0] === moment(uf.date).add(1, 'days').format('l')) {
             w1.push(uf)
         }
-        if (CurrentWeek[1] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[1] === moment(uf.date).add(1, 'days').format('l')) {
             w2.push(uf)
         }
-        if (CurrentWeek[2] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[2] === moment(uf.date).add(1, 'days').format('l')) {
             w3.push(uf)
         }
-        if (CurrentWeek[3] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[3] === moment(uf.date).add(1, 'days').format('l')) {
             w4.push(uf)
         }
-        if (CurrentWeek[4] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[4] === moment(uf.date).add(1, 'days').format('l')) {
             w5.push(uf)
         }
-        if (CurrentWeek[5] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[5] === moment(uf.date).add(1, 'days').format('l')) {
             w6.push(uf)
         }
-        if (CurrentWeek[6] === moment(uf.registerDate).add(1, 'days').format('l')) {
+        if (CurrentWeek[6] === moment(uf.date).add(1, 'days').format('l')) {
             w7.push(uf)
         }
       })
      return [w1.length, w2.length, w3.length, w4.length, w5.length, w6.length, w7.length]
 }
-const OrdenesLast =  () => {
-  let Users =  users.filter(o=>{
-    if (LastWeek.includes(moment(o.registerDate).add(1, 'days').format('l') ) ) {
+const PurchasesLast =  () => {
+  let Orders =  orders.filter(o=>{
+    if (LastWeek.includes(moment(o.date).add(1, 'days').format('l') ) ) {
 
       return o
     }
@@ -77,26 +77,26 @@ const OrdenesLast =  () => {
   let w6 =[]
   let w7 =[]
 
-    Users.map(uf=>{
-    if (LastWeek[0] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    Orders.map(uf=>{
+    if (LastWeek[0] === moment(uf.date).add(1, 'days').format('l')) {
         w1.push(uf)
     }
-    if (LastWeek[1] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[1] === moment(uf.date).add(1, 'days').format('l')) {
         w2.push(uf)
     }
-    if (LastWeek[2] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[2] === moment(uf.date).add(1, 'days').format('l')) {
         w3.push(uf)
     }
-    if (LastWeek[3] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[3] === moment(uf.date).add(1, 'days').format('l')) {
         w4.push(uf)
     }
-    if (LastWeek[4] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[4] === moment(uf.date).add(1, 'days').format('l')) {
         w5.push(uf)
     }
-    if (LastWeek[5] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[5] === moment(uf.date).add(1, 'days').format('l')) {
         w6.push(uf)
     }
-    if (LastWeek[6] === moment(uf.registerDate).add(1, 'days').format('l')) {
+    if (LastWeek[6] === moment(uf.date).add(1, 'days').format('l')) {
         w7.push(uf)
     }
   })
@@ -195,7 +195,7 @@ ChartJS.register(
       },
       title: {
         display: true,
-        text: ' Users ',
+        text: ' Orders ',
         padding: 15,
         font: {
           weight: 'bold',
@@ -215,16 +215,16 @@ ChartJS.register(
       {
         barThickness: 20,
         maxBarThickness: 25,
-        label: ' Users (last week)',
-        data:  OrdenesLast(),
+        label: ' Purchases (last week)',
+        data:  PurchasesLast(),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
       {
   
         barThickness: 20,
         maxBarThickness: 25,
-        label: ' Users',
-        data: OrdenesCurrent(),
+        label: 'Purchases Orders',
+        data: PurchasesCurrent(),
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
@@ -235,9 +235,9 @@ ChartJS.register(
   
   return (
     <>
-    <Bar options={options2} data={data2} />
+        <Bar options={options2} data={data2} />
     </>
   )
 }
 
-export default StatsUsers
+export default StatsPurchases

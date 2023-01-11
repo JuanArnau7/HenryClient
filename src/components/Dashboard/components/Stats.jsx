@@ -16,12 +16,11 @@ import { faker } from '@faker-js/faker';
 import {HiOutlineUsers} from 'react-icons/hi'
 import {FaChartLine} from 'react-icons/fa'
 import {BsHandbag} from 'react-icons/bs'
-import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
 import StatsUsers from './StatsUsers';
+import StatsPurchases from './StatsPurchases';
 
-const Stats = ({orders}) => {
-    const users = useSelector(state=> state.allUsers)
+const Stats = ({orders, users}) => {
     const [LastWeek, setLastWeek] = useState([])
     const [CurrentWeek, setCurrentWeek] = useState([])
 const OrdenesCurrent = () => {
@@ -168,48 +167,6 @@ ChartJS.register(
       },
     ],
   };
-   const options2 = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'bottom' ,
-      },
-      title: {
-        display: true,
-        text: ' Sales this week :',
-        padding: 15,
-        font: {
-          weight: 'bold',
-          size:20
-        },
-        align: 'center',
-        color: '#ffff'
-      },
-    },
-  };
-  
-  const labels2 = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  
-   const data2 = {
-    labels,
-    datasets: [
-      {
-        barThickness: 20,
-        maxBarThickness: 25,
-        label: 'Dataset 1',
-        data: labels2.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-  
-        barThickness: 20,
-        maxBarThickness: 25,
-        label: 'Dataset 2',
-        data: labels2.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  };
   useEffect(() => {
     lastWeek()
   }, [])
@@ -247,11 +204,12 @@ ChartJS.register(
         </div>
         <div className="flex flex-wrap w-screen  my-5 items-center justify-around h-1/3 ">
           <div className="w-2/5 mx-5 bg-blue-200 rounded-lg h-full flex items-center justify-center">
-         <StatsUsers/>
+         <StatsUsers users={users}/>
           </div>
-          <div className="w-2/5  bg-gray-700 rounded-lg h-full flex items-center justify-center">
-          <Bar options={options2} data={data2} />
+          <div className="w-2/5 mx-5 bg-blue-200 rounded-lg h-full flex items-center justify-center">
+         <StatsPurchases/>
           </div>
+          
         </div>
     </>
   )
