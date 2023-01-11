@@ -30,7 +30,6 @@ const BoardUser = () => {
 	const updateUser = async (e) =>{
 		e.preventDefault()
 		const response = await dispatch(updateUserFromAdmin(userData))
-		console.log("Respuesta en el formulario", response);
 		if(response.status === 201){
 			Swal.fire("Succesfull update", "You have updated the user information correctly", "success")
 			setShowModal(false)

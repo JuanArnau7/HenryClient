@@ -12,6 +12,7 @@
     "chart.js": "^4.1.2",
     "firebase": "^9.15.0",
     "formik": "^2.2.9",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-admin": "^4.7.0",
     "react-chartjs-2": "^5.1.0",
@@ -25,7 +26,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.2",
-    "sweetalert2": "^11.4.8",
+    "sweetalert2": "^11.6.16",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

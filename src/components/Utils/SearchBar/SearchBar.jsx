@@ -8,7 +8,7 @@ const SearchBar = () => {
 
 	const handleinput = async (e) => {
 		if (!e.target.value) {
-			dispatch(getFilterDishes())
+			return dispatch(getFilterDishes())
 		} else {
 			dispatch(filtrar(dishes.filter(d => {
 				if (d.lenguage.es.name.toLowerCase().includes(e.target.value.toLowerCase()) || d.lenguage.en.name.toLowerCase().includes(e.target.value.toLowerCase())) return d
