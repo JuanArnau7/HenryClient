@@ -80,7 +80,7 @@ const Cart = () => {
 					</div>
 					<p className='font-sans text-lg text-center'>Continua navegando en nuestra pagina para agregar tus productos favoritos a tu carrito de compras</p>
 					<button
-						className='block mx-auto mt-6 rounded-md bg-green-500 dark:bg-gray-400 dark:text-gray-900 text-white px-4 pb-1 hover:bg-green-600'
+						className='block mx-auto mt-6 rounded-md bg-green-500  text-white px-4 pb-1 hover:bg-green-600'
 						onClick={goToHome}
 					>
 						Back to home

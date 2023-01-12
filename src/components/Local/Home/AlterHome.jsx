@@ -61,7 +61,7 @@ const AlterHome = () => {
 					<NavBar></NavBar>
 					
 					<div className="AlterHome h-fit w-screen">
-						<div className="flex flex-col xl:ml-16 lg:ml-16 md:ml-16 sm:ml-0 shadow-xl h-fit bg-green-100 dark:bg-gray-100">
+						<div className="flex flex-col xl:ml-16 lg:ml-16 md:ml-16 sm:ml-0 shadow-xl h-fit bg-green-100 dark:bg-teal-800">
 
 							<div className="w-full">
 								<h1 className="text-lg sm:text-2xl font-bold tracking-tight text-gray-900 ml-5 sm:ml-8 mb-4 mt-5">
