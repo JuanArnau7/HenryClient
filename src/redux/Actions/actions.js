@@ -1,6 +1,6 @@
 
 
-import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW, IMG_FOOD_UPDATE, GET_TOTAL_USERS, UPDATE_USER_FROM_ADMIN} from './actionsTypes'
+import { POST_USER_CREATE, LOGIN_USER_JWT, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_USER_WITH_JWT, FILTER, GET_LENGTH_CART, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, GET_ADMIN_BY_ID, IMG_UPDATE_USER, GET_All_ORDERS, DELETE_FOOD, DELETE_REVIEW, IMG_FOOD_UPDATE, GET_TOTAL_USERS, UPDATE_USER_FROM_ADMIN, UPDATE_ORDER} from './actionsTypes'
 import axios from 'axios'
 // import { async } from '@firebase/util';
 const URL_SERVER = process.env.REACT_APP_URL_SERVER || "http://localhost:3001/";
@@ -418,6 +418,22 @@ export const updateUserFromAdmin = (data) =>{
 			return res
 		} catch (error) {
 			console.log("Error on update user from admin panel", error);
+			return error.response
+		}
+	}
+}
+
+export const updateOrderFromAdmin = (data) =>{
+	return async dispatch => {
+		try {
+			const res = await axios.put(`${URL_SERVER}orders`, data)
+			dispatch({
+				type: UPDATE_ORDER,
+				payload: res.data
+			})
+			return res
+		} catch (error) {
+			console.log("Error on update order", error);
 			return error.response
 		}
 	}

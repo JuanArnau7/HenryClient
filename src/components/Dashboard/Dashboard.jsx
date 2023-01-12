@@ -5,8 +5,8 @@ import Swal from "sweetalert2";
 import AdminSidebar from "./AdminSidebar";
 import BoardFoods from "./Boards/Food";
 import BoardHome from "./Boards/Home";
+import Orders from "./Boards/Orders";
 import BoardReview from "./Boards/Review";
-import Tag from "./Boards/Tag";
 import BoardUser from "./Boards/User";
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
           <Route exact path='/foods' element={<BoardFoods />} />
           <Route exact path='/users' element={<BoardUser />} />
           <Route exact path='/reviews' element={<BoardReview />} />
-          <Route exact path='/tags' element={<Tag />} />
+          <Route exact path='/orders' element={<Orders />} />
         </Routes>
       </div>
     </>
