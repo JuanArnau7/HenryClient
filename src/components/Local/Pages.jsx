@@ -63,7 +63,7 @@ const Pages = ({ data }) => {
 								<img className="rounded-t-lg w-full h-56 object-cover" src={dish.img} alt={dish.lenguage.en.name} />
 								<div className="px-4 pt-2 pb-4 h-24 flex flex-col justify-center">
 									<h6 className="font-sans text-center font-semibold lowercase first-letter:capitalize">{dish.lenguage.en.name}</h6>
-									<h6 className='text-right font-mono mt-2'>$ {dish.price}</h6>
+									<h6 className='text-center font-mono mt-2'>$ {dish.price}</h6>
 								</div>
 							</div>
 							<div className="flex justify-center mb-3">
