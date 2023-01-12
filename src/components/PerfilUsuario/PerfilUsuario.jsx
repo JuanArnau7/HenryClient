@@ -41,7 +41,7 @@ const PerfilUsuario = () => {
 	}, [dispatch, token, navigate])
 	
 	return (
-		<div className=' w-screen flex flex-col  min-h-screen h-screen' id='fondo'>
+		<div className=' w-screen flex flex-col  min-h-screen h-full' id='fondo'>
 			<NavBar />
 			<div className='flex items-center justify-center h-full '>
 			<div className='bg-white flex flex-col mt-4  xl:w-1/2 lg:w-1/2 md:w-2/3 sm:w-full  md:mx-auto border-2 border-blue-300 dark:border-blue-500 shadow-md shadow-blue-300 dark:shadow-gray-800 dark:bg-gray-800 dark:text-grat-200 rounded-lg'>
