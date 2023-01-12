@@ -149,14 +149,14 @@ const UpdateUser = () => {
 	}
 	
 	return (
-		<div className='mr-6'>
+		<div className='w-full'>
 
 			
-			<div>
+			<div className='flex flex-col items-center gap-3 dark:text-gray-200'>
 			
 			
 
-   			 	<label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Choose images to upload (PNG, JPG, JPEG)
+   			 	<label className="bg-green-600 hover:bg-green-500 cursor-pointer text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">Choose images to upload (PNG, JPG, JPEG)
 
    			 	<input
      				type="file"
@@ -167,28 +167,30 @@ const UpdateUser = () => {
 					 />
 					 </label>
 
-					 {user.img && !image && <img src={user.img} height={150} width={150} alt="no imgen" />}
-					 {!user.img && !image && <img src="https://static.vecteezy.com/system/resources/previews/000/379/162/non_2x/add-user-vector-icon.jpg" height={250} width={250} alt="aqui" />}
-					{image&&<img src={image.url} height={150} width={150} alt="no imag" /> }
-					<button onClick={hanleImgUpdate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">update</button>
-					<button
-					onClick={hadnleIgmReset}
+					 {user.img && !image && <img src={user.img} height={150} width={150} alt="no imgen" className='rounded-full' />}
+					 {!user.img && !image && <img src="https://static.vecteezy.com/system/resources/previews/000/379/162/non_2x/add-user-vector-icon.jpg" height={250} width={250} alt="aqui" className='rounded-full' />}
+					{image&&<img src={image.url} height={150} width={150} alt="no imag" className='rounded-full'/> }
+					<div className='flex items-center justify-around w-full'>
+						<button onClick={hanleImgUpdate} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">update</button>
+						<button
+						onClick={hadnleIgmReset}
 						className="bg-yellow-400 hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
-						Reset
-					</button>
-					<button 
-					onClick={hadnleImgDelete}
+							Reset
+						</button>
+						<button 
+						onClick={hadnleImgDelete}
 						className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600">
-						Delete
-					</button>
+							Delete
+						</button>
+					</div>
 					
 				
   			</div>
 
 
-			<form onSubmit={formik.handleSubmit}>
+			<form onSubmit={formik.handleSubmit} className="flex flex-col gap-2 mt-2 dark:text-gray-200">
 				<label htmlFor="fullName"
-					className="block text-gray-700 text-sm font-bold mb-1"
+					className="block text-gray-700 text-sm font-bold mb-1 dark:text-gray-200 "
 				>Full Name</label>
 				<input
 					id="fullName"
@@ -204,7 +206,7 @@ const UpdateUser = () => {
 				}
 
 				<label htmlFor="email"
-					className="block text-gray-700 text-sm font-bold mb-1"
+					className="block text-gray-700 text-sm font-bold mb-1 dark:text-gray-200"
 				>Email Address <small className='font-normal'>(cannot be edited)</small></label>
 				<input
 					id="email"
@@ -219,7 +221,7 @@ const UpdateUser = () => {
 				{(!user.google) &&
 					<div>
 						<label htmlFor="password"
-							className="block text-gray-700 text-sm font-bold mb-1"
+							className="block text-gray-700 text-sm font-bold mb-1 dark:text-gray-200"
 						>Password</label>
 						<input
 							id="password"
@@ -237,7 +239,7 @@ const UpdateUser = () => {
 				}
 
 				<label htmlFor="country"
-					className="block text-gray-700 text-sm font-bold mb-1"
+					className="block text-gray-700 text-sm font-bold mb-1 dark:text-gray-20"
 				>Country</label>
 				<select
 					id='country'
@@ -256,7 +258,7 @@ const UpdateUser = () => {
 					<div className='text-red-500 -mt-4 mb-3'>{formik.errors.country}</div>
 				}
 
-				<label htmlFor="city" className="block text-gray-700 text-sm font-bold mb-2">
+				<label htmlFor="city" className="block text-gray-700 text-sm font-bold mb-2 dark:text-gray-200">
 					City
 				</label>
 				<select
@@ -277,7 +279,7 @@ const UpdateUser = () => {
 				}
 
 				<label htmlFor="address"
-					className="block text-gray-700 text-sm font-bold mb-1"
+					className="block text-gray-700 text-sm font-bold mb-1 dark:text-gray-200"
 				>Address</label>
 				<input
 					id="address"
@@ -294,11 +296,11 @@ const UpdateUser = () => {
 
 				<div className='flex justify-around mt-4 mb-8'>
 					<button type="submit"
-						className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+						className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
 						Update info
 					</button>
 					<button type="reset"
-						className="bg-yellow-400 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+						className="bg-yellow-400 hover:bg-yellow-500 font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
 						Reset
 					</button>
 

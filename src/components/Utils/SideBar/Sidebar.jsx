@@ -116,9 +116,9 @@ const Sidebar = ({pathname, userId}) => {
                      }
                   {!userId?
                   <>
-                  <div className='bg-white h-screen shadow-lg transition-all duration-300'>
+                  <div className='bg-white h-screen shadow-lg transition-all duration-300 dark:bg-gray-800'>
                   <div className='text-center rounded-lg text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 dark:text-white '>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>{open? <> <FiFilter className='text-2xl mr-2'/> Filters<svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></>: <><FiFilter className='text-2xl ml-2'/></>}</button>
+                     <button  className="text-black  dark:text-white text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center dark:focus:ring-blue-800" type="button" onClick={()=>setFiltros(Filtros? false : true)}>{open? <> <FiFilter className='text-2xl mr-2'/> Filters<svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></>: <><FiFilter className='text-2xl ml-2'/></>}</button>
                      {Filtros?
                      <FiltroCategoria/>
                      :
@@ -126,7 +126,7 @@ const Sidebar = ({pathname, userId}) => {
                      }
                   </div>
                   <div className='text-center rounded-lg text-black text-xl hover:bg-gray-200 cursor-pointer py-3 mb-2 dark:text-white'>
-                     <button  className="text-black  text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center  dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>{open? <><TbArrowsSort className='text-2xl mr-2'/> Sort  <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></> : <><TbArrowsSort className='text-2xl ml-2'/></> }</button>
+                     <button  className="text-black  dark:text-white text-xl bg-transparent   font-medium rounded-lg px-4 py-2.5 text-center inline-flex items-center  dark:focus:ring-blue-800" type="button" onClick={()=>setSorts(Sorts? false : true)}>{open? <><TbArrowsSort className='text-2xl mr-2'/> Sort  <svg className="ml-2 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg></> : <><TbArrowsSort className='text-2xl ml-2'/></> }</button>
                      {Sorts?
                      <FiltroPrecios/>
                      :
