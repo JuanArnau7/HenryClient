@@ -100,7 +100,7 @@ const FormPayment = () => {
 	const goToHome = () => navigate('/local/alterHome')
 
 	return (
-		<div className="w-10/12 md:w-8/12 mx-auto border border-blue-400 py-6 mt-6 shadow-2xl rounded-lg">
+		<div className="xl:w-1/3 lg:w-1/3 md:w-1/2 sm:w-3/4 mx-auto border border-blue-400 py-6 mt-6 shadow-2xl rounded-lg bg-white dark:bg-gray-800">
 			<h4 className="text-center mb-6 text-xl font-semibold bg-blue-500 py-3 text-white -mt-6 rounded-t-lg">Ingresa los datos de tu tarjeta</h4>
 			<form id="payment-form" onSubmit={handleSubmit}>
 				<CardElement id="card-element" />
@@ -110,9 +110,9 @@ const FormPayment = () => {
 					{message && <div id="payment-message">{message}</div>}
 				</div>
 
-				<div className="flex justify-around mt-6">
+				<div className="flex flex-col w-full justify-around mt-6 gap-5 h-1/2">
 					<button
-						className="px-5 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg"
+						className=" rounded-lg bg-blue-600 text-white hover:bg-blue-800 shadow-lg w-full h-12 font-bold"
 						disabled={isLoading || !stripe || !elements} id="submit">
 						<span id="button-text">
 							{isLoading ? <div className="spinner" id="spinner">  </div> : "Pay now"}
@@ -120,13 +120,10 @@ const FormPayment = () => {
 					</button>
 
 					<button
-						className='rounded-md bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
+						className='rounded-md bg-yellow-500 text-white font-bold hover:bg-yellow-600 w-full h-12'
 						onClick={goToHome}
 					>
 						Back to home
-						<div className='flex justify-center'>
-							<AiOutlineHome className='text-2xl' />
-						</div>
 					</button>
 
 				</div>

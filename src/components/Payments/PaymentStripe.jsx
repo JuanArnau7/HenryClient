@@ -10,12 +10,14 @@ const stripePromise = loadStripe("pk_test_51MIDLTE3EcHe9rVfm0X877Xsv8Vvogu6p1cZ3
 const PaymentStripe = () => {
 
 	return (
-		<div>
+		<>
 			<NavBar />			
+			<div className="flex  items-center justify-center h-screen w-full " id="fondo">
 			<Elements stripe={stripePromise}>
 				<FormPayment />
 			</Elements>
-		</div>
+			</div>
+		</>
 	)
 }
 
