@@ -60,12 +60,15 @@ const Cart = () => {
 	const goToHome = () => navigate('/local/alterHome')
 
 	return (
-		<div className='mx-auto'>
+		<div className='flex flex-col items-center  min-h-screen' id='fondo'>
 			<NavBar />
+			<div className='flex items-center justify-center w-full h-fit'>
+			<div className='flex flex-col items-center justify-center gap-3 m-5 border border-2 rounded-lg border-blue-500 xl:w-1/2 lg:w-1/2 md:w-3/4 sm:w-full p-5 bg-white dark:bg-gray-800 dark:text-white'>
 			{cartDishes.length > 0 &&
 				<div className="flex my-4 justify-center">
 					<h5 className="font-bold text-2xl">
-						Carrito de compras
+						
+						Shopping Cart
 					</h5>
 				</div>
 			}
@@ -85,30 +88,31 @@ const Cart = () => {
 							<AiOutlineHome className='text-4xl' />
 						</div>
 					</button>
-				</div> :
+				</div> 
+				:
 				cartDishes.map((el, index) => {
 					return (
-						<div key={index} className="w-11/12 px-4 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto">
+						<div key={index} className="w-full px-4 border rounded-lg shadow-md border-gray-700 dark:border-blue-500 mb-3 mx-auto">
 							<div className="flow-root">
 								<ul className="divide-y divide-gray-200 dark:divide-gray-700">
 									<li className="py-3">
-										<div className="flex flex-col sm:flex-row items-center">
+										<div className=" flex xl:flex-row lg:flex-row md:flex-row sm:flex-col items-center">
 											<div className='w-full md:w-3/5 flex flex-row'>
 												<div className="flex-shrink-0">
-													<img className="w-20 h-20" src={el.img} alt={el.name} />
+													<img className="w-20 h-20 rounded-lg" src={el.img} alt={el.name} />
 												</div>
 												<div className="flex flex-col justify-center">
-													<p className="pl-4 text-sm font-medium text-gray-900 lowercase first-letter:capitalize">
+													<p className="pl-4 text-sm font-medium text-gray-900  dark:text-gray-400 lowercase first-letter:capitalize">
 														{el.name}
 													</p>
-													<p className="pl-4 text-sm text-gray-500 truncate">
+													<p className="pl-4 text-sm text-gray-500 dark:text-white truncate">
 														Precio unitario ${el.price}
 													</p>
 												</div>
 											</div>
 											<div className='flex flex-row justify-between w-full md:w-2/5'>
-												<div className='flex flex-col'>
-													<label htmlFor="cant" className='text-sm'>Cantidad a agregar</label>
+												<div className='flex flex-col items-center gap-1'>
+													<label htmlFor="cant" className='text-sm'>Amount</label>
 													<input type="number"
 														id='cant'
 														name="cant"
@@ -119,7 +123,7 @@ const Cart = () => {
 														onKeyPress={justNumbers} />
 												</div>
 												<div className="flex flex-col align-middle items-center pt-1">
-													<p className="text-sm font-semibold text-gray-900 truncate">
+													<p className="text-sm font-semibold text-gray-900  dark:text-white truncate">
 														Sub-total
 													</p>
 													${el.price * el.cant}
@@ -127,7 +131,7 @@ const Cart = () => {
 												<div onClick={() => deleteFromCart(el)}
 													className="flex align-middle items-center cursor-pointer p-3">
 													<span className='sr-only'>Delete from cart</span>
-													<RiDeleteBinFill className='text-red-500 text-2xl' />
+													<RiDeleteBinFill className='text-red-500 text-2xl ' />
 												</div>
 											</div>
 										</div>
@@ -141,12 +145,12 @@ const Cart = () => {
 
 {cartDishes.length > 0 && <>
 
-<div className='w-11/12 px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
+<div className='w-full px-4 py-6 border rounded-lg shadow-md border-gray-700 mb-3 mx-auto'>
 	<span className='font-bold font-sans text-xl'>Total =</span>  $ {currencyFormat(total)}
 </div>
-<div className='mt-4 w-full flex justify-around'>
+<div className='mt-4 w-full flex justify-around  xl:flex-row lg:flex-row md:flex-row sm:flex-col sm:gap-3'>
 	<button
-		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
+		className='rounded-md  bg-blue-500 text-white px-4 pb-1 hover:bg-blue-600 '
 		onClick={()=> navigate('/orderAtTable')}
 	>
 		Order to table
@@ -156,7 +160,7 @@ const Cart = () => {
 	</button>
 
 	<button onClick={checkOutPayment}
-		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
+		className='rounded-md  bg-green-500 text-white px-4 pb-1 hover:bg-green-600'
 	>
 		Order at home
 		<div className='flex justify-center'>
@@ -165,16 +169,18 @@ const Cart = () => {
 	</button>
 
 	<button
-		className='rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
+		className='rounded-md  bg-yellow-500 text-white px-4 pb-1 hover:bg-yellow-600'
 		onClick={goToHome}
 	>
 		Back to home
-		<div className='flex justify-center'>
-			<AiOutlineHome className='text-4xl' />
+		<div className='flex justify-center '>
+			<AiOutlineHome className='text-4xl flex' />
 		</div>
 	</button>
 </div>
 </>}
+</div>
+</div>
 </div>
 )
 }
