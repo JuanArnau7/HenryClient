@@ -69,7 +69,7 @@ const Pages = ({ data }) => {
 							<div className="flex justify-center mb-3">
 								<button
 									onClick={() => addCart(dish)}
-									className={cartDishes.find(d => d.id === dish._id) ? "rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-red-500  text-white px-3 pb-1 hover:bg-red-600" : "rounded-md dark:bg-gray-400 dark:hover:bg-gray-600 dark:text-gray-900 bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
+									className={cartDishes.find(d => d.id === dish._id) ? "rounded-md  dark:text-gray-200 bg-red-500  text-white px-3 pb-1 hover:bg-red-600" : "rounded-md  dark:text-gray-200 bg-green-500 text-white px-3 pb-1 hover:bg-green-600"}
 								>{cartDishes.find(d => d.id === dish._id)
 									? <span className='inline-flex align-middle'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
 									: <span className='inline-flex align-middle'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>

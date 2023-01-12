@@ -43,7 +43,6 @@ const PerfilUsuario = () => {
 	return (
 		<div className='dark:bg-gray-300 '>
 			<NavBar />
-			
 			<div className='flex flex-col mt-4 md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 dark:border-gray-900 shadow-md shadow-blue-300 dark:shadow-gray-800 dark:bg-gray-500'>
 				<div className='w-full md:w-1/3 md:border-r-2 border-blue-300'>
 					<ul className="flex flex-row flex-wrap justify-around md:flex-col mt-3 md:mt-6 ">
