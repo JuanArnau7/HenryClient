@@ -58,7 +58,7 @@ const NavBar = () => {
 					}
 
 					<div className="flex items-center gap-2 md:gap-4">
-						<div className="hidden sm:block">
+						<div className="xl:block lg:block  md:hidden sm:hidden">
 						{pathname === '/local/alterHome'?
 						<SearchBar />
                         :
@@ -85,17 +85,9 @@ const NavBar = () => {
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">
 							<BsCart4 className="text-xl sm:text-3xl dark:text-white text-white" />
-							<sup className="text-gray-600 font-bold dark:text-black dark:bg-white bg-white mb-1 sm:mb-3 px-2 pt-2 rounded-full ">{carrito}</sup>
+							<sup className="xl:block lg:block  md:hidden sm:hidden text-gray-600 font-bold dark:text-black dark:bg-white bg-white mb-1 sm:mb-3 px-2 pt-2 rounded-full ">{carrito}</sup>
 						</div>
 					</div>
-				</div>
-				<div className="w-9/12 ml-20 my-2 sm:hidden">
-				{pathname === '/local/alterHome'?
-						<SearchBar />
-                        :
-                        <>
-                        </>}
-					
 				</div>
 			</nav>
 		</>

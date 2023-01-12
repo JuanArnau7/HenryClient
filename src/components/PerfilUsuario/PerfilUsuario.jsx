@@ -41,20 +41,21 @@ const PerfilUsuario = () => {
 	}, [dispatch, token, navigate])
 	
 	return (
-		<div className='dark:bg-gray-300 '>
+		<div className=' w-screen flex flex-col  min-h-screen h-full' id='fondo'>
 			<NavBar />
-			<div className='flex flex-col mt-4 md:flex-row w-full md:w-5/6 md:mx-auto border-2 border-blue-300 dark:border-gray-900 shadow-md shadow-blue-300 dark:shadow-gray-800 dark:bg-gray-500'>
-				<div className='w-full md:w-1/3 md:border-r-2 border-blue-300'>
-					<ul className="flex flex-row flex-wrap justify-around md:flex-col mt-3 md:mt-6 ">
+			<div className='flex items-center justify-center h-full '>
+			<div className='bg-white flex flex-col mt-4  xl:w-1/2 lg:w-1/2 md:w-2/3 sm:w-full  md:mx-auto border-2 border-blue-300 dark:border-blue-500 shadow-md shadow-blue-300 dark:shadow-gray-800 dark:bg-gray-800 dark:text-grat-200 rounded-lg'>
+				<div className='w-full  '>
+					<ul className="flex  justify-around  items-center xl:flex-row lg:flex-row md:flex-row sm:flex-col  mt-3  w-full ">
 						{tabs.map((tab) => (
 							<li
 								key={tab.name}
-								className="mb-3 md:mb-4 md:px-3 "
+								className="mb-3  px-3 w-full"
 							>
 								<NavLink
 									to={tab.link}
 									onClick={() => setOpenTab(tab.name)}
-									className={tab.name === openTab ? "bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black text-white hover:bg-blue-700 px-3 py-1 rounded-md md:m-3" : "bg-blue-300 hover:text-white hover:bg-blue-500 px-3 py-1 rounded-md md:m-3"}
+									className={tab.name === openTab ? "bg-blue-500  dark:text-white text-white hover:bg-blue-700 px-3 py-4 rounded-md  flex inline-flex w-1/4 sm:w-full font-bold" : "  font-bold w-1/4 sm:w-full flex inline-flex bg-blue-300 hover:text-white hover:bg-blue-500 px-3 py-4 rounded-md "}
 								>
 									{tab.name}
 								</NavLink>
@@ -63,7 +64,7 @@ const PerfilUsuario = () => {
 					</ul>
 				</div>
 				
-				<div className="w-full md:w-2/3 pl-6 pt-4">
+				<div className="w-full  pl-6 pt-4 flex items-center justify-center mt-5">
 					{tabs.map((tab) => (
 						<div
 							key={tab.name}
@@ -73,6 +74,7 @@ const PerfilUsuario = () => {
 						</div>
 					))}
 				</div>
+			</div>
 			</div>
 		</div>
   )

@@ -14,12 +14,12 @@ const Dashboard = () => {
 	const user = useSelector(state => state.userProfile)
 	const navigate = useNavigate()
 
-	// useEffect(() => {
-	// 	if(user.rol !== "ADMIN_ROLE") {
-	// 		Swal.fire("Esta ruta no existe", "Navega por nuestra pagina para adquirir tus productos favoritos", "info")
-	// 		navigate('/local/alterHome')
-	// 	}
-	// }, [user, navigate])
+	useEffect(() => {
+		if(user.rol !== "ADMIN_ROLE") {
+			Swal.fire("Esta ruta no existe", "Navega por nuestra pagina para adquirir tus productos favoritos", "info")
+			navigate('/local/alterHome')
+		}
+	}, [user, navigate])
 	
 
   const showSidebar = () => {
@@ -30,7 +30,7 @@ const Dashboard = () => {
     <>
       <AdminSidebar handlerSidebar={showSidebar} sidebar={sidebar}/>
       {/* className="pl-64" */}
-      <div className={sidebar ? "flex pl-64 w-full" : "flex w-full"}>
+      <div className={" min-w-screen"}>
         <Routes>
           <Route exact path='/' element={<BoardHome />} />
           <Route exact path='/foods' element={<BoardFoods />} />

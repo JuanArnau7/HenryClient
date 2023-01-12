@@ -150,7 +150,7 @@ const establecerReviews = ()=>{
   {Positives.length && Positive && !Negative?
 Positives.map((rev)=>{
   return(
-<div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
+<div className='m-6 border-2 border-indigo-600 rounded-md dark:bg-gray-700' key={rev._id}>
     <div className='m-4 w-full'>
 <div className="flex items-center mb-4 space-x-4">
     <img className="w-10 h-10 rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>
@@ -218,7 +218,7 @@ Positives.map((rev)=>{
     Negatives.length && !Positive && Negative?
     Negatives.map((rev)=>{
       return(
-    <div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
+    <div className='m-6 border-2 border-indigo-600 rounded-md dark:bg-gray-700' key={rev._id}>
         <div className='m-4 w-full'>
     <div className="flex items-center mb-4 space-x-4">
         <img className="w-10 h-10 rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>

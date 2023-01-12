@@ -107,11 +107,11 @@ const CardFood = () => {
 				<div className=' xl:h-screen lg:h-screen md:min-h-sceen sm:min-h-screen md:h-fit sm:h-fit  flex justify-center items-center BackgroundFood overflow-y-hidden dark:bg-gray-800'>
 
 					<div className="sm:flex-col md:flex-col mx-auto sm:w-full md:w-11/12 lg:w-10/12 dark:bg-gray-500 bg-white flex lg:flex-row justify-center  items-center rounded-lg h-5/6 dark:bg-gray-800">
-						<div className="sm:w-full md:w-full  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
+						<div className="sm:w-full md:w-full  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full dark:bg-gray-800 ">
 							<div className=" rounded-t-lg ">
 								<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 							</div>
-							<div className="px-5 pb-5 m-4 h-full">
+							<div className="px-5 pb-5 m-4 h-fit dark:bg-gray-800 ">
 								<div className='flex'>
 									<h5 className="text-xl font-semibold tracking-tight text-gray-900 lowercase first-letter:capitalize dark:text-gray-200">{dish?.lenguage?.en?.name}</h5>
 									<div className="flex items-center justify-center ml-4">
@@ -134,9 +134,9 @@ const CardFood = () => {
 								</div>
 							</div>
 						</div>
-						<div className="sm:w-full md:w-2/3 lg:w-3/5 dark:bg-gray-500 bg-white rounded-r-lg mx-2 w-full h-full dark:bg-gray-800">
+						<div className="sm:w-full md:w-full lg:w-3/5 dark:bg-gray-500 bg-white rounded-r-lg mx-2 w-full h-full dark:bg-gray-800">
 							{!ReadReviews ?
-								<div className='m-6 flex flex-col justify-center items-center h-full '>
+								<div className=' flex flex-col justify-center items-center h-full dark:bg-gray-800 '>
 									<h5 className="text-xl font-semibold tracking-tight dark:text-blue-600 text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
 									<p className='mx-8 dark:text-gray-200'>{dish?.lenguage?.en?.descripcion}</p>
 									<div className='flex sm:flex-col md:flex-row lg:flex-row xl:flex-row  justify-center items-center mt-5 w-full'>

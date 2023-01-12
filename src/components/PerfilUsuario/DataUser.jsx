@@ -39,7 +39,7 @@ const DataUser = () => {
 
 	return (
 		<div>
-			<div className='mb-14'>
+			<div className='mb-14 dark:text-gray-200'>
 				{!user.fullName
 					? <div>
 						<h3 className='text-center font-bold mb-4 text-xl'>You are not logged</h3>
@@ -67,24 +67,24 @@ const DataUser = () => {
 								>Go to Home</Link>
 							</div>
 						</div>
-						: <div className='mb-14'>
+						: <div className='mb-14 flex flex-col items-center justiify-center gap-2'>
 							<h3 className='text-center font-bold mb-4 text-xl'>These are your users credentials</h3>
-							{user.img && <img src={user.img} height={250} width={250} alt="no imgen" />}
+							{user.img && <img src={user.img} height={250} width={250} alt="no imgen" className='rounded-full' />}
 							{!user.img && <img src="https://static.vecteezy.com/system/resources/previews/000/379/162/non_2x/add-user-vector-icon.jpg" height={250} width={250} alt="aqui" />}
 							<p className='mb-2'><span className='font-bold'>Fullname:   </span> {user?.fullName} </p>
 							<p className='mb-2'><span className='font-bold'>Email:   </span> {user?.email}</p>
 							<p className='mb-2'><span className='font-bold'>Country:     </span> {user?.country || "You have not registred your country"}</p>
 							<p className='mb-2'><span className='font-bold'>City:   </span> {user?.city || "You have not registred your city"}</p>
 							<p className='mb-2'><span className='font-bold'>Address:   </span> {user?.address || "You have not registred your address"}</p>
-							<div className='flex justify-around mt-8'>
+							<div className='flex justify-around w-full mt-8'>
 								<button onClick={closeSesion}
-									className="rounded-md bg-yellow-400 dark:bg-gray-400 dark:text-black text-blue-900 px-5 pb-1 hover:bg-yellow-500 dark:hover:text-white font-semibold"
+									className="rounded-md bg-yellow-400  text-blue-900 px-5 pb-1 hover:bg-yellow-500  font-semibold"
 								>
 									Logout
 								</button>
 
 								<button onClick={() => deleteUserById(user._id)}
-									className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600 dark:bg-gray-400 dark:text-black dark:hover:text-white font-semibold"
+									className="rounded-md bg-red-500 text-white px-5 pb-1 hover:bg-red-600  font-semibold"
 								>
 									Delete profile
 								</button>
