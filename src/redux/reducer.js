@@ -1,4 +1,4 @@
-import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID, IMG_FOOD_UPDATE, UPDATE_USER_FROM_ADMIN, GET_TOTAL_USERS, UPDATE_ORDER    } from './Actions/actionsTypes'
+import { LOGIN_USER_JWT, POST_USER_CREATE, DETAILS_DISH, GET_ALL_DISHES, POST_DISH_CREATE, GET_LENGTH_CART, FILTER, GET_USER_BY_ID, DELETE_USER, UPDATE_USER, LOGOUT, POST_REVIEWS, CREATE_ORDER, GET_USER_ORDERS, GET_NAME_DISHES, GET_FOOD_REVIEWS, GET_USERS, GET_ALL_TAGS, IMG_UPDATE_USER,GET_All_ORDERS, GET_ADMIN_BY_ID, IMG_FOOD_UPDATE, UPDATE_USER_FROM_ADMIN, GET_TOTAL_USERS, IMG_DELETE_USER, UPDATE_ORDER , UPDATE_FOOD    } from './Actions/actionsTypes'
 
 
 const initialState = {
@@ -113,10 +113,14 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allTags: action.payload
 			}
-			case IMG_UPDATE_USER:
-				return {
-					...state
-				}
+		case IMG_UPDATE_USER:
+			return {
+				...state
+			}
+		case IMG_DELETE_USER:
+			return {
+				...state
+			}
 		case GET_ADMIN_BY_ID:
 			return {
 				...state,
@@ -137,11 +141,16 @@ const rootReducer = (state = initialState, action) => {
 				...state,
 				allUsers: copyListUser
 			}
+		case UPDATE_FOOD:
+			return {
+				...state,
+				allDishes: action.payload
+		}
 		case UPDATE_ORDER:
 			return {
 				...state,
 				allOrders: action.payload
-			}
+		}
 		default:
 			return { ...state };
 	}

@@ -133,7 +133,7 @@ const UpdateUser = () => {
 			);
 			await dispatch(imgUpdateUser(user._id, formData))
 			await dispatch(getUserById(user._id))
-			alert("se actulizo la img")
+			// alert("se actulizo la img")
 			setImage(null)
 		}
 	}
@@ -143,7 +143,7 @@ const UpdateUser = () => {
 
 			await dispatch(imgDeleteUser(user._id))
 			await dispatch(getUserById(user._id))
-			alert("se borro la img")
+			// alert("se borro la img")
 			setImage(null)
 		}
 	}

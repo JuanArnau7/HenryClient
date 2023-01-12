@@ -176,7 +176,8 @@ const Register = () => {
 		form.country.length &&
 		form.email.length &&
 		form.fullName.length &&
-		form.password.length
+		form.password.length &&
+		form.country !== "Select country"
 		&&
 		!error.eFullName.length &&
 		!error.eEmail.length &&
@@ -207,6 +208,7 @@ const Register = () => {
 							<div className="mb-5">
 								<label htmlFor="country" className="block text-base font-medium text-gray-700">Country</label>
 								<select onChange={handleChange} id="country" name="country" className="mt-1 block w-full h-10 rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm pl-3">
+									<option defaultValue="">Select country</option>
 									<option value="Argentina">Argentina</option>
 									<option value="Mexico">Mexico</option>
 									<option value="United States">United States</option>

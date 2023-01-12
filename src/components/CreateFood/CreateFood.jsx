@@ -79,7 +79,7 @@ const CreateFood = (props) => {
   };
   const agregado = () => {
     Swal.fire({
-      title: "Plato de comida Agregado Correctamente!",
+      title: "Food Dish Added Successfully!",
       text: "",
       icon: "success",
       confirmButtonText: "OK",
@@ -87,7 +87,7 @@ const CreateFood = (props) => {
   };
   const noAgregado = () => {
     Swal.fire({
-      title: "Error al agregar el Plato de Comida!",
+      title: "Error adding Food Plate!",
       text: "",
       icon: "warning",
       confirmButtonText: "OK",
@@ -95,7 +95,7 @@ const CreateFood = (props) => {
   };
   const completar = () => {
     Swal.fire({
-      title: "Complete todos los campos!",
+      title: "Fill in all fields!",
       text: "",
       icon: "warning",
       confirmButtonText: "OK",
@@ -357,13 +357,13 @@ const CreateFood = (props) => {
               <>
                 <div className="overflow-hidden shadow sm:rounded-md mt-3">
                   <div className="flex flex-col items-center justify-center">
-                    <h1 className="font-semibold">Create plate of food</h1>
+                    <h1 className="font-semibold">Create dish of food</h1>
                     <small>English version</small>
                   </div>
 
                   <div className="mb-5 mt-3">
                     <label className="block text-sm font-medium text-gray-700">
-                      Plate name <small>(on English)</small>
+                      Dish name <small>(on English)</small>
                     </label>
                     <input
                       type="text"
@@ -371,7 +371,7 @@ const CreateFood = (props) => {
                       name="lenguague.en.name"
                       onChange={handleNameEnglish}
                       className="mt-1 block w-full rounded-md  h-9 border  border-gray-900 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm pl-3"
-                      placeholder="Plate name "
+                      placeholder="Dish name "
                     />
                   </div>
 

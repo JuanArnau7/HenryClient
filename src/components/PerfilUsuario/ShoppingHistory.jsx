@@ -17,7 +17,7 @@ const ShoppingHistory = () => {
 						<img src="https://img.freepik.com/vector-premium/pequenos-personajes-enorme-historial-transacciones-receta-pago-comprador-hombre-tarjeta-credito-pago-linea-mujer-vidrio-pago-efectivo-compras-tienda-ilustracion-vector-gente-dibujos-animados_87771-11353.jpg" alt="Sin historial de compras" />
 						<Link to={'/local/alterHome'}
 							className="bg-blue-500 dark:bg-gray-400 dark:hover:bg-gray-300 dark:text-black text-center w-1/2 mx-auto mt-6 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-							Ir a la pagina de inicio
+							Go to home
 						</Link>
 					</div>
 					: historyShopping.map((dish, index) => {
@@ -51,6 +51,7 @@ const ShoppingHistory = () => {
 												</th>
 											</tr>
 										</thead>
+										{/* {console.log("DISH ORDER!!", dish.order)} */}
 										{dish.order.map((detail, index) => {
 											total += (1 * detail.price)
 
@@ -61,7 +62,7 @@ const ShoppingHistory = () => {
 															{index + 1}
 														</th>
 														<th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-wrap overflow-hidden">
-															{detail.lenguage.es.name}
+															{detail.lenguage.en.name}
 														</th>
 														<td className="py-4 px-12">
 															1
