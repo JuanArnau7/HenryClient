@@ -21,17 +21,17 @@ const FormPayment = () => {
 
 	useEffect(() => {
 		if (!elementsCart || JSON.parse(elementsCart).length === 0) {
-			Swal.fire("Tu carrito esta vacio!!", "Te invitamos a navegar por nuestra pagina para agregar productos a tu carrito de compras", "info")
+			Swal.fire("Your cart is empty!!", "We invite you to browse our page to add products to your shopping cart", "info")
 			navigate('/local/alterHome')
 		}
 		
 		if(!user.fullName){
-			Swal.fire("No se puede proceder con la compra", "Para poder atender tu solicitud primero tienes que iniciar sesion o registrarte en nuestra pagina", "info")
+			Swal.fire("Unable to proceed with the purchase", "In order to attend to your request, you first have to log in or register on our page.", "info")
 			navigate("/login")
 		}
 
 		if(!user.address){
-			Swal.fire("No se puede proceder con la compra", "Para poder atender tu domicilio primero tienes que actualizar tu direccion de residencia", "info")
+			Swal.fire("Unable to proceed with the purchase", "In order to serve your address, you must first update your residence address", "info")
 			navigate("/perfil")
 		}
 
@@ -57,10 +57,9 @@ const FormPayment = () => {
 				const { data } = await axios.post(`${URL_SERVER}payment/payment-stripe`, {
 					id, items: JSON.parse(elementsCart), user
 				})
-				console.log("Data on send form payment", data);
 				setMessage(data.message)
 				elements.getElement(CardElement).clear()
-				Swal.fire("Compra exitosa", "Todo ha salido bien en el proceso de compra. \n Gracias por tu compra", "success")
+				Swal.fire("Successful purchase", "Everything has gone well in the purchase process. \nThank you for your purchase", "success")
 				localStorage.setItem("dishes", "[]")
 				dispatch(getLengthCart())
 				dispatch(createOrder(user._id, JSON.parse(elementsCart), "DELIVERY", null, user.address))
@@ -68,16 +67,16 @@ const FormPayment = () => {
 			} catch (error) {
 				if (error.response.data) {
 					Swal.fire({
-						title: "Error en proceso de compras",
-						text: `Proceso de compras fallido debido a ${error.response.data}. Por favor intenta de nuevo`,
+						title: "Error in purchase process",
+						text: `Purchase process failed due to ${error.response.data}. Please try again`,
 						icon: "info",
 						timer: 3000
 					})
 					setMessage(error.response.data)
 				} else {
 					Swal.fire({
-						title: "Error en proceso de compras",
-						text: `Proceso de compras fallido debido a un error general. Por favor intenta de nuevo`,
+						title: "Error in purchase process",
+						text: `Purchase process failed due to a general error. please try again`,
 						icon: "warning",
 						timer: 3000
 					})
@@ -87,8 +86,8 @@ const FormPayment = () => {
 		} else {
 			console.log("Error on get payment", error);
 			Swal.fire({
-				title: "Error en proceso de compras",
-				text: `Proceso de compras fallido debido a un error de Stripe ${error.message}`,
+				title: "Error in purchase process",
+				text: `Checkout failed due to Stripe error ${error.message}`,
 				icon: "warning",
 				timer: 6000
 			})
@@ -101,7 +100,7 @@ const FormPayment = () => {
 
 	return (
 		<div className="xl:w-1/3 lg:w-1/3 md:w-1/2 sm:w-3/4 mx-auto border border-blue-400 py-6 mt-6 shadow-2xl rounded-lg bg-white dark:bg-gray-800">
-			<h4 className="text-center mb-6 text-xl font-semibold bg-blue-500 py-3 text-white -mt-6 rounded-t-lg">Ingresa los datos de tu tarjeta</h4>
+			<h4 className="text-center mb-6 text-xl font-semibold bg-blue-500 py-3 text-white -mt-6 rounded-t-lg">Enter your card details</h4>
 			<form id="payment-form" onSubmit={handleSubmit}>
 				<CardElement id="card-element" />
 
