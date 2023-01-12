@@ -48,8 +48,9 @@ const BoardUser = () => {
 		})
 		if(confirm.isConfirmed){
 			dispatch(deleteUser(idUser))
-			Swal("User deleted correctly", "", "success")
+			new Swal("User deleted correctly", "", "success")
 		}
+		window.location.reload()
 	}
 
 	return (
