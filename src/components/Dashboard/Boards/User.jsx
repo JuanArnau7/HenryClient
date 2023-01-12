@@ -33,6 +33,7 @@ const BoardUser = () => {
 		if(response.status === 201){
 			Swal.fire("Succesfull update", "You have updated the user information correctly", "success")
 			setShowModal(false)
+			window.location.reload()
 		} else {
 			Swal.fire("Something was wrong", "Cannot update user information, please try again later", "success")
 		}
