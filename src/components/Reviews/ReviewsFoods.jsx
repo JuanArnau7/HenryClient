@@ -38,7 +38,7 @@ const ReviewsFoods = ({setReadReviews, FoodId, establecerToken}) => {
 
   const obtenerDatos = (userId) => {
    const user = AllUsers.find(u =>u._id === userId)
-   return user.fullName
+   return user?.fullName
   }
 
 
@@ -72,9 +72,9 @@ const establecerReviews = ()=>{
 
   return (
 <>
-    <div className=' overflow-y-auto h-full gap-y-1 overflow-x-auto w-full '>
+    <div className=' overflow-y-auto h-full gap-y-1 overflow-x-auto w-full dark:bg-gray-800 '>
     
-    <div className='flex justify-center items-center h-fit w-full bg-white sticky top-0  shadow-lg xl:gap-3 lg:gap-3 md:gap-2 sm:gap-1 mb-2' >
+    <div className='flex justify-center items-center h-fit w-full bg-white sticky top-0  shadow-lg xl:gap-3 lg:gap-3 md:gap-2 sm:gap-1 mb-2 dark:bg-gray-700' >
     <button type="button" className="mt-2 h-fit text-blue-700 hover:text-white border-2 border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800" onClick={()=>([setReadReviews(false), setNegative(false), setPositive(false)])}><IoArrowBackSharp/></button>
     <button type="button" className="mt-2 text-green-600 hover:text-white border-2 border-green-700 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800" onClick={()=>(setNegative(false, setPositive(true)))} >Positive</button>
     <button type="button" className=" mt-2  text-red-600 hover:text-white border-2 border-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900" onClick={()=>(setPositive(false), setNegative(true))}>Negative</button>
@@ -85,7 +85,7 @@ const establecerReviews = ()=>{
     {Reviews.length && !Positive && !Negative?
     Reviews.map((rev)=>{
       return(
-    <div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
+    <div className='m-6 border-2 border-indigo-600 rounded-md dark:bg-gray-700' key={rev._id}>
           <div className='m-4 w-full'>
             <div className="flex items-center mb-4 space-x-4">
                 <img className="w-10 h-10  rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>
