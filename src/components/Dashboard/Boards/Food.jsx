@@ -103,19 +103,19 @@ const BoardFood = () => {
 		  return false;
 		}
 		return true;
-	  };
+	};
 	const handleSubmit = async (e) =>{
 		e.preventDefault()		
 		const response = await dispatch(updateFood(dishesData._id, dishesData))
 		if(response.payload.status === 200){
-			new Swal.fire("Succesfull update", "You have updated the user information correctly", "success")
+			Swal.fire("Succesfull update", "You have updated the user information correctly", "success")
 			setShowModal(false)
 			// if(confirm.isConfirmed){
+				// }
+			} else {
+				Swal.fire("Something was wrong", "Cannot update user information, please try again later", "success")
+			}
 			window.location.reload()
-			// }
-		} else {
-			new Swal.fire("Something was wrong", "Cannot update user information, please try again later", "success")
-		}
 	}
 
 	const handleDeleteFood = async (e, idFood) => {
@@ -127,9 +127,9 @@ const BoardFood = () => {
 		})
 		if(confirm.isConfirmed){
 			await dispatch(deleteFood(idFood))
-            window.location.reload()
 			new Swal("User deleted correctly", "", "success")
 		}
+		window.location.reload()
 	}
   const handleClickCreate = async (e) => {
     e.preventDefault()
@@ -172,7 +172,7 @@ const BoardFood = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{dishes?.map((u, i) => (
+					{dishes.length > 0 && dishes.map((u, i) => (
 						<tr key={i} className="bg-white border border-gray-400 dark:bg-gray-800 dark:border-gray-700">
 							<th scope="row" className="px-6 py-4 border border-gray-400 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 								{u._id}

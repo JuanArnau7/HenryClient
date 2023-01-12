@@ -18,13 +18,13 @@ const BoardReview = () => {
 	const deleteAnReview = async (idReview) => {		
 		const confirm = await Swal.fire({
 			title: "Are you sure",
-			text: "Do you want continue with the procces of delete user?",
+			text: "Do you want continue with the procces of delete Review?",
 			icon: "question",
 			showCancelButton: true
 		})
 		if(confirm.isConfirmed){
 			dispatch(deleteReview(idReview))
-			new Swal("User deleted correctly", "", "success")
+			new Swal("Review deleted correctly", "", "success")
 			window.location.reload()
 		}
 	}

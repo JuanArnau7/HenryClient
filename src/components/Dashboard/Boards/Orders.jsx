@@ -12,7 +12,7 @@ const Orders = () => {
 	const dispatch = useDispatch()
 	const [showModal, setShowModal] = useState(false)
 	const [infoOrder, setInfoOrder] = useState({ _id: "", fullName: "", stateOrder: "" })
-	const statusOrder = ["DESPACHADO", "ENPROCESO", "RECHAZADO", "ENTREGADO"]
+	const statusOrder = ["FINISH", "IN PROCESS", "REJECT", "DISPATCHED"]
 
 	const handleChanges = (e) => {
 		console.log("cambios", e.target.name, e.target.value);
@@ -37,7 +37,7 @@ const Orders = () => {
 			setShowModal(false)
 			setTimeout(() => {
 				window.location.reload()
-			}, "5000")
+			}, "2000")
 						
 		} else {
 			Swal.fire("Something was wrong", "Cannot update user information, please try again later", "error")
@@ -92,20 +92,25 @@ const Orders = () => {
 								}
 							</td>
 							<td className="text-center border border-gray-400">
-								{order.stateOrder === "ENPROCESO" ?
+								{order.stateOrder === "IN PROCESS" ?
 									<div className="flex-col">
 										<GiCook className="text-yellow-500 mx-auto text-xl"/>
 										<p>Proccesing order</p>
 									</div> :
-									order.stateOrder === "DESPACHADO" ?
+									order.stateOrder === "REJECT" ?
+										<div>
+											<GiRun className="text-blue-500 mx-auto text-xl" />
+											<p>Order rejected</p>
+										</div> :
+									order.stateOrder === "DISPATCHED" ?
 										<div>
 											<GiRun className="text-blue-500 mx-auto text-xl" />
 											<p>Order dispatched</p>
 										</div> :
-										order.stateOrder === "ENTREGADO" ?
+										order.stateOrder === "FINISH" ?
 										<div>
 											<GiHappySkull className="text-green-500 mx-auto text-xl"/>
-											<p>Order delivered</p>
+											<p>Order finished</p>
 										</div> : "Proccess"
 								}
 							</td>
@@ -117,15 +122,15 @@ const Orders = () => {
 									</ul>
 								))}
 							</td>
-							<td className="flex flex-col gap-3 pt-6 px-4">
+							<td className="flex m-3 px-4">
 								<button onClick={() => loadOrder(order._id, order.userid?.fullName )}
 									className="focus:outline-none text-white md:text-center bg-blue-500 hover:bg-blue-700 focus:ring-4  font-medium rounded-lg text-sm px-5 py-1 dark:text-gray-900 dark:bg-gray-400 dark:hover:bg-gray-600">
 									Update
 								</button>
-								<button onClick={() => deleteAnOrder(order._id)}
+								{/* <button onClick={() => deleteAnOrder(order._id)}
 									className="focus:outline-none text-white md:text-center bg-red-500 hover:bg-red-700 focus:ring-4 font-medium rounded-lg text-sm px-5 py-1 dark:text-gray-900 dark:bg-gray-400 dark:hover:bg-gray-600">
 									Delete
-								</button>
+								</button> */}
 							</td>
 						</tr>
 					))}
