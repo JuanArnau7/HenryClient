@@ -104,10 +104,10 @@ const CardFood = () => {
 			<div className='BackgroundFood h-screen w-screen overflow-y'>
 				<NavBar></NavBar>
 				{/* <NavBarCreateFoods/> */}
-				<div className=' h-screen  flex justify-center items-center BackgroundFood overflow-y-hidden'>
+				<div className=' xl:h-screen lg:h-screen md:min-h-sceen sm:min-h-screen md:h-fit sm:h-fit  flex justify-center items-center BackgroundFood overflow-y-hidden'>
 
-					<div className="max-sm:flex-col md:flex-row mx-auto sm:w-full md:w-11/12 lg:w-10/12 dark:bg-gray-500 bg-white flex lg:flex-row justify-center  items-center rounded-lg h-5/6">
-						<div className="sm:w-full s:h-full md:w-1/3  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
+					<div className="sm:flex-col md:flex-col mx-auto sm:w-full md:w-11/12 lg:w-10/12 dark:bg-gray-500 bg-white flex lg:flex-row justify-center  items-center rounded-lg h-5/6">
+						<div className="sm:w-full md:w-full  lg:w-2/5 border border-gray-300 rounded-l-lg lg:m-0 md:m-0 sm:m-0 h-full">
 							<div className=" rounded-t-lg ">
 								<img className="max-sm:w-full max-md:w-full object-fit rounded-tl-lg lg:w-full" src={dish?.img} alt={dish?.lenguage?.en?.name} />
 							</div>
@@ -123,25 +123,25 @@ const CardFood = () => {
 								<p className="text-lg font-semibold text-blue-500 dark:text-blue-800">Before <span className="ml-2 line-through font-light text-black"> $ {currencyFormat(dish?.price * 1.25)}</span></p>
 								<p className="text-xl font-bold text-emerald-600">Now ✳️✅ 🤩 <span className="block text-orange-500 text-2xl">$ {currencyFormat(dish?.price * 1)}</span></p>
 
-								<div className="flex justify-between md:flex-col md:gap-3 lg:flex-row mt-4">
-									<Link to="/local/alterHome" className="text-white md:text-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-400 dark:text-gray-900  dark:hover:bg-gray-600 focus:outline-none dark:focus:ring-blue-800">Home</Link>
+								<div className="flex justify-between md:flex-col sm:flex-col md:gap-3 lg:flex-row mt-4 items-center sm:gap-3">
+									<Link to="/local/alterHome" className=" sm:w-full md:w-1/2 text-white md:text-center sm:text-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-400 dark:text-gray-900  dark:hover:bg-gray-600 focus:outline-none dark:focus:ring-blue-800">Home</Link>
 									
 									<button type="button" onClick={() => addOrRemoveFromCart(dish._id)}
-										className={dishInCart ? "focus:outline-none text-white dark:text-gray-900 md:text-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-400 dark:hover:bg-red-700 dark:focus:ring-red-900" : "focus:outline-none text-white md:text-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:text-gray-900 dark:bg-gray-400 dark:hover:bg-gray-600 dark:focus:ring-green-800"}>{dishInCart
-											? <span className='flex items-center'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
-											: <span className='flex items-center'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
+										className={dishInCart ? "sm:w-full md:w-1/2  focus:outline-none text-white dark:text-gray-900 md:text-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-400 dark:hover:bg-red-700 dark:focus:ring-red-900" : "sm:w-full md:w-1/2  focus:outline-none text-white md:text-center bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:text-gray-900 dark:bg-gray-400 dark:hover:bg-gray-600 dark:focus:ring-green-800"}>{dishInCart
+											? <span className='flex items-center justify-center'>Remove from Cart <MdRemoveShoppingCart className='mt-1 mx-2 text-lg' /></span>
+											: <span className='flex items-center justify-center'>Add to Cart <FaCartArrowDown className='mt-1 mx-2 text-xl' /></span>
 										}</button>									
 								</div>
 							</div>
 						</div>
-						<div className="sm:w-full sm:mt-4 md:w-2/3 md:mt-0 lg:w-3/5 dark:bg-gray-500 bg-white rounded-r-lg lg:m-0 w-full h-full">
+						<div className="sm:w-full md:w-2/3 lg:w-3/5 dark:bg-gray-500 bg-white rounded-r-lg mx-2 w-full h-full">
 							{!ReadReviews ?
 								<div className='m-6 flex flex-col justify-center items-center h-full '>
 									<h5 className="text-xl font-semibold tracking-tight dark:text-blue-800 text-blue-500 text-center mb-4">Detail of <span className='lowercase'>{dish?.lenguage?.en?.name}</span></h5>
 									<p className='mx-8'>{dish?.lenguage?.en?.descripcion}</p>
-									<div className='flex justify-center items-center mt-5'>
-										<button type="button" className="text-white dark:text-gray-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-blue-800" data-modal-toggle="authentication-modal" onClick={() => setModalReviewDish(true)}>Add Review</button>
-										<button type="button" className= 'text-white dark:text-gray-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-blue-800' onClick={() => setReadReviews(true)}>Read Reviews</button>
+									<div className='flex sm:flex-col md:flex-row lg:flex-row xl:flex-row  justify-center items-center mt-5 w-full'>
+										<button type="button" className="sm:w-full md:w-3/4 lg:w-1/3 xl:w-1/4 text-white dark:text-gray-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-blue-800" data-modal-toggle="authentication-modal" onClick={() => setModalReviewDish(true)}>Add Review</button>
+										<button type="button" className= 'sm:w-full md:w-3/4 lg:w-1/3 xl:w-1/4  text-white dark:text-gray-900 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-blue-800' onClick={() => setReadReviews(true)}>Read Reviews</button>
 									</div>
 								</div>
 								:
