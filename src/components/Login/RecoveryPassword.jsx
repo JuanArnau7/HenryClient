@@ -15,19 +15,19 @@ const RecoveryPassword = () => {
 	const validateFields = (field) => {
 		const errors = {}
 		if (!field.password.match(/[a-z]/g)) {
-			errors.password = "El campo de contraseña debe contener una minuscula"
+			errors.password = "The password field must contain a lowercase letter"
 		}
 		if (!field.password.match(/[A-Z]/g)) {
-			errors.password = "El campo de contraseña debe contener una mayuscula"
+			errors.password = "The password field must contain a capital letter"
 		}
 		if (!field.password.match(/[0-9]/g)) {
-			errors.password = "El campo de contraseña debe contener al menos un numero"
+			errors.password = "The password field must contain at least one number"
 		}
 		if (field.password.length < 5) {
-			errors.password = "El campo de contraseña debe contener al menos 5 caracteres"
+			errors.password = "The password field must contain at least 5 characters"
 		}
 		if (field.password !== field.reTypePassword) {
-			errors.noMatchPass = "Las contraseñas no coinciden"
+			errors.noMatchPass = "Passwords do not match"
 		}
 		return errors
 	}
@@ -42,11 +42,11 @@ const RecoveryPassword = () => {
 		e.preventDefault()
 		try {
 			const response = await axios.post(`${URL_SERVER}users/setNewPassword`, { password: input.password, token })
-			console.log("respuesta recover password", response);
+			// console.log("answer recover password", response);
 			if (response.status === 200) {
 				localStorage.removeItem("tokenRestorePasswd")
 				Swal.fire({
-					title: "Proceso exitoso",
+					title: "successful process",
 					text: response.data,
 					icon: "success"
 				})
@@ -55,17 +55,17 @@ const RecoveryPassword = () => {
 		} catch (error) {
 			if (error.response.data) {
 				Swal.fire({
-					title: 'Oops... No se pudo reestablecer contraseña',
+					title: 'Oops... Failed to reset password',
 					text: error.response.data,
 					icon: 'error'
 				})
 			} else {
 				Swal.fire({
-					title: 'Error al tratar de recuperar contraseña',
-					text: "Oops... No se pudo reestablecer contraseña, por favor intentelo mas tarde o contacte con el administrador",
+					title: 'Error trying to recover password',
+					text: "Oops... Failed to reset password, please try again later or contact administrator",
 					icon: 'error'
 				})
-				console.log("Error general al reset password", error);
+				// console.log("Error general al reset password", error);
 			}
 		}
 	}
@@ -75,17 +75,17 @@ const RecoveryPassword = () => {
 			<div className='flex justify-center py-6 mb-40'>
 				<div className="w-11/12 md:w-8/12 border-blue-300 shadow-md shadow-blue-300 rounded px-8 pt-6 pb-8 mb-4">
 					<div className='text-base text-center font-bold md:text-2xl pb-4'>
-						<h3>Recuperacion de contraseña</h3>
+						<h3>Password recovery</h3>
 					</div>
 					<form onSubmit={handleSubmit}>
 						<div className="mb-4">
 							<label className="block text-gray-700 text-xs md:text-sm font-bold mb-2" htmlFor="">
-								Asignar nueva contraseña
+								Assign new password
 							</label>
 							<input
 								type="password"
 								className="shadow appearance-none border rounded border-gray-500 text-xs w-full py-1 md:py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								placeholder="Ingresa tu nueva contraseña"
+								placeholder="Enter your new password"
 								name='password'
 								value={input.password}
 								onChange={handleChanges}
@@ -97,12 +97,12 @@ const RecoveryPassword = () => {
 						</div>
 						<div className="mb-6">
 							<label className="block text-gray-700 text-xs md:text-sm font-bold mb-2" htmlFor="">
-								Repite la nueva contraseña
+								Repeat the new password
 							</label>
 							<input
 								type="password"
 								className="shadow appearance-none border rounded border-gray-500 text-xs w-full py-1 md:py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-								placeholder="Repite la contraseña"
+								placeholder="Repeat password"
 								name='reTypePassword'
 								value={input.reTypePassword}
 								onChange={handleChanges}
@@ -114,13 +114,13 @@ const RecoveryPassword = () => {
 
 						<div className="flex flex-col sm:flex-row gap-3 justify-center sm:justify-around">
 							<button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 sm:py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-								Cambiar contraseña
+							Change Password
 							</button>
 
 							<button type='button'
 								className="bg-yellow-400 hover:bg-yellow-500 font-bold py-1 sm:py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 								onClick={() => navigate('/')} >
-								Cancelar
+								Cancel
 							</button>
 						</div>
 

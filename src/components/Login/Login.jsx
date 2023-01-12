@@ -102,11 +102,11 @@ const Login = () => {
 			const response = await axios.post(`${URL_SERVER}auth/gitHub`, { userData })
 			localStorage.setItem("token", response.data)
 			if (response.status === 200) {
-				Swal.fire("Autenticacion con GitHub exitosa", "Bienvenido a nuestra pagina", "success")
+				Swal.fire("Authentication with GitHub successful", "Welcome to our page", "success")
 				navigate('/local/alterHome')
 			}
 			if (response.status === 201) {
-				Swal.fire("Registro con GitHub exitosa", "Te has registrado en nuestra pagina correctamente, Bienvenido!!! ", "success")
+				Swal.fire("Registration with GitHub successful", "You have registered on our page correctly, Welcome! ", "success")
 				navigate('/local/alterHome')
 			}
 			if (response.data) {
@@ -115,11 +115,11 @@ const Login = () => {
 
 			} else if (response.response.status === 400) {
 				console.log("Error 400 auth github", response.response.data);
-				Swal.fire("Error en autenticacion", "No se pudo autenticar con GitHub, intente de otra manera", "info")
+				Swal.fire("Authentication error", "Failed to authenticate with GitHub, please try another way", "info")
 			}
 		} catch (error) {
-			console.log("Error en auth con github", error);
-			Swal.fire("Error en general en proceso", "Error inesperado. Firebase no puede autenticar usuario con Github", "error")
+			console.log("Auth error with github", error);
+			Swal.fire("General error in process", "Unexpected error. Firebase can't authenticate user with Github", "error")
 		}
 	}
 
@@ -139,12 +139,12 @@ const Login = () => {
 			localStorage.setItem("token", response.data)
 			console.log("response", response);
 			if (response.status === 200) {
-				Swal.fire("Inicio de sesion correcto", `Bienvenido a nuestra pagina ${userData.fullName}`, "success")
+				Swal.fire("login successful", `Welcome to our page ${userData.fullName}`, "success")
 				navigate('/local/alterHome')
 			}
 
 			if (response.status === 201) {
-				Swal.fire("Haz creado tu usuario correctamente", `Bienvenido a nuestra pagina ${userData.fullName}`, "success")
+				Swal.fire("You have created your user correctly", `Welcome to our page ${userData.fullName}`, "success")
 				navigate('/local/alterHome')
 			}
 
@@ -154,31 +154,31 @@ const Login = () => {
 
 			} else if (response.response.status === 400) {
 				console.log("Error 400 auth github", response.response.data);
-				Swal.fire("Error en autenticacion", "Tu correo ya esta registrado, debes iniciar sesion con tu correo y contraseña", "info")
+				Swal.fire("Authentication error", "Your email is already registered, you must log in with your email and password", "info")
 			}
 		} catch (error) {
-			console.log("Error en auth con firebase google", error);
+			console.log("Error in auth with firebase google", error);
 			error.code
-				? Swal.fire('Error en proceso de autenticacion', `Proceso fallido con error ${error.code}`, 'info')
+				? Swal.fire('Error in authentication process', `Process failed with error ${error.code}`, 'info')
 				: error.message
-					? Swal.fire("Autenticacion fallida ", error.message, "error")
+					? Swal.fire("Autenticacion failed ", error.message, "error")
 					: error.customData.email
-						? Swal.fire("Error autenticacion", error.customData.email, "error")
-						: Swal.fire("Error general ", "Error general al utilizar firebase auth", "error")
+						? Swal.fire("Error authentication", error.customData.email, "error")
+						: Swal.fire("General error ", "General error when using firebase auth", "error")
 		}
 	}
 
 	const recoveryPassword = async () => {
 		const data = await Swal.fire({
-			title: 'Ingresa tu correo',
+			title: 'Enter your email',
 			input: 'text',
 			value: 'email',
 			inputAttributes: {
 				autocapitalize: 'off'
 			},
 			showCancelButton: true,
-			confirmButtonText: 'Enviar',
-			cancelButtonText: 'Cancelar',
+			confirmButtonText: 'Send',
+			cancelButtonText: 'Cancel',
 			showLoaderOnConfirm: true,
 		})
 
@@ -187,10 +187,10 @@ const Login = () => {
 			if (response.status === 200) {
 				await Swal.fire({
 					icon: 'success',
-					title: 'Proceso exitoso',
+					title: 'successful process',
 					text: response.data.message,
 					showCancelButton: false,
-					confirmButtonText: "Aceptar"
+					confirmButtonText: "Accept"
 				})
 				localStorage.setItem('tokenRestorePasswd', response.data.token)
 			}
@@ -205,12 +205,12 @@ const Login = () => {
 			} else {
 				Swal.fire({
 					icon: 'error',
-					title: 'Oops... Intenta de nuevo',
-					text: "Error al tratar de recuperar tu contraseña"
+					title: 'Oops... Try again',
+					text: "Error trying to recover your password"
 				})
 
 			}
-			console.log("Captura error", error);
+			// console.log("Captura error", error);
 		}
 	}
 
