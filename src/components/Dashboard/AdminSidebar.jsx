@@ -1,11 +1,15 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 // import { SidebarData } from "./SidebarData";
 import { FaStoreAlt, FaUserCircle } from "react-icons/fa";
 import "./AdminSidebar.css"
+import { FaUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 
 const AdminSidebar = ({ sidebar, handlerSidebar }) => {
+  const user = useSelector(state => state.userProfile)
+  const navigate = useNavigate()
   return (
     <>
       {/* <div className="w-screen">
@@ -37,9 +41,6 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  {/* <img className="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" /> */}
-                </div>
                 <Link to='/' >
                 <span className="flex items-center">
                   <span className="text-lg md:text-xl -ml-4 text-white font-semibold whitespace-nowrap dark:text-white">Henry's Foods</span>
@@ -54,7 +55,7 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                    <NavLink to={'/dashboard/Home'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+                    <NavLink to={'/dashboard/'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
                       Home
                     </NavLink>
                     <NavLink to={'/dashboard/Foods'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
@@ -86,9 +87,18 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                     <div>
                       <button type="button" className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                         <span className="sr-only">Open user menu</span>
-                        <FaUserCircle
-                            className="text-2xl md:text-4xl text-white dark:text-black pt-1 cursor-pointer"
-                             />
+                        {user.img?
+                            <>
+                            <img src={user.img}
+                            alt="not found"
+                              className="  w-10 h-10 text-white dark:text-black  cursor-pointer rounded-full"
+                              onClick={() => navigate('/perfil')} />
+                            </>
+                          :
+                          <FaUserCircle
+                          className="text-2xl md:text-4xl text-white dark:text-black pt-1 cursor-pointer"
+                          onClick={() => navigate('/perfil')} />
+                        }
                       </button>
                     </div>
                   </div>

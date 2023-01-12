@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
 import { postReviewDish } from '../../../redux/Actions/actions';
 
-const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId, establecerReviews}) => {
+const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId}) => {
     const dispatch = useDispatch()
     const [Description, setDescription] = useState("")
     const [Title, setTitle] = useState("")
@@ -58,6 +58,7 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
         console.log(review)
         if (validar() === true) {
             let add = await dispatch(postReviewDish(review))
+            console.log(add)
             if (add) {
                agregado()
                reset()
@@ -91,7 +92,6 @@ const ModalAddReviewDish = ({setModalReviewDish, ModalReviewDish, DishId, userId
         s5 : false,
         });
         setModalReviewDish(false)
-        establecerReviews()
     }
   return (
     <>

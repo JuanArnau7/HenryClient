@@ -7,7 +7,7 @@ import Register from './components/Register/Register'
 import LoginGoogle from "./components/Login/LoginGoogle";
 import CardFood from './components/CardFood/CardFood';
 import { useDispatch } from 'react-redux';
-import { getAllDishes, getAllTags, getAllOrders, getFilterDishes, getUsers, getFoodsReviews } from "./redux/Actions/actions";
+import { getAllDishes, getAllTags, getAllOrders, getFilterDishes, getUsers, getFoodsReviews, getAllUsers } from "./redux/Actions/actions";
 import AlterHome from "./components/Local/Home/AlterHome";
 import Login from './components/Login/Login';
 import Cart from "./components/Cart/Cart";
@@ -31,6 +31,7 @@ function App() {
 		dispatch(getUsers())
 		dispatch(getAllTags())
 		dispatch(getAllOrders())
+		dispatch(getAllUsers())
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 

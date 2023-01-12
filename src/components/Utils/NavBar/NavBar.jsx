@@ -59,23 +59,43 @@ const NavBar = () => {
 
 					<div className="flex items-center gap-2 md:gap-4">
 						<div className="hidden sm:block">
-							<SearchBar />
+						{pathname === '/local/alterHome'?
+						<SearchBar />
+                        :
+                        <>
+                        </>}
 						</div>
 						{pathname !== "/perfil" &&
-							<FaUserCircle
-								className="text-2xl md:text-4xl text-white dark:text-black pt-1 cursor-pointer"
+						<>
+						{user.img?
+							<>
+							<img src={user.img}
+							alt="not found"
+								className="  w-10 h-10 text-white dark:text-black  cursor-pointer rounded-full"
 								onClick={() => navigate('/perfil')} />
+							</>
+						:
+						<FaUserCircle
+						className="text-2xl md:text-4xl text-white dark:text-black pt-1 cursor-pointer"
+						onClick={() => navigate('/perfil')} />
+					}
+					</>
 						}
 
 						<div onClick={goToCart}
 							className="flex cursor-pointer hover:rounded-md mt-1">
 							<BsCart4 className="text-xl sm:text-3xl dark:text-black text-white" />
-							<sup className="text-gray-600 font-bold dark:text-white dark:bg-black bg-white mb-1 sm:mb-3 px-2 pt-2 rounded-full">{carrito}</sup>
+							<sup className="text-gray-600 font-bold dark:text-white dark:bg-black bg-white mb-1 sm:mb-3 px-2 pt-2 rounded-full ">{carrito}</sup>
 						</div>
 					</div>
 				</div>
 				<div className="w-9/12 ml-20 my-2 sm:hidden">
-					<SearchBar />
+				{pathname === '/local/alterHome'?
+						<SearchBar />
+                        :
+                        <>
+                        </>}
+					
 				</div>
 			</nav>
 		</>

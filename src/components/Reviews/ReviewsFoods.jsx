@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { IoArrowBackSharp } from "react-icons/io5";
 import {  useDispatch, useSelector } from 'react-redux';
-import { getFoodsReviews } from '../../redux/Actions/actions';
+import { getAllDishes, getFoodsReviews } from '../../redux/Actions/actions';
 
-const ReviewsFoods = ({setReadReviews, FoodId}) => {
+const ReviewsFoods = ({setReadReviews, FoodId, establecerToken}) => {
   const dispatch = useDispatch()
   const AllReviews = useSelector(state=> state.reviewsDishes)
-  const AllUsers = useSelector(state=> state.allUsers)
+  const AllUsers = useSelector(state=> state.totalUsers)
   const [Positive, setPositive] = useState(false)
   const [Negative, setNegative] = useState(false)
   const [Reviews, setReviews] = useState([])
@@ -37,11 +37,7 @@ const ReviewsFoods = ({setReadReviews, FoodId}) => {
       })
 
   const obtenerDatos = (userId) => {
-   const user = AllUsers.find(u =>{
-    if (u._id === userId) {
-      return u
-    }
-   })
+   const user = AllUsers.find(u =>u._id === userId)
    return user.fullName
   }
 
@@ -67,9 +63,10 @@ const establecerReviews = ()=>{
   }
   }
   useEffect(() => {
+    establecerToken()
     dispatch(getFoodsReviews())
     establecerReviews()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AllReviews])
   
 
@@ -89,9 +86,9 @@ const establecerReviews = ()=>{
     Reviews.map((rev)=>{
       return(
     <div className='m-6 border-2 border-indigo-600 rounded-md' key={rev._id}>
-          <article className='mt-4 ml-2'>
+          <div className='m-4 w-full'>
             <div className="flex items-center mb-4 space-x-4">
-                <img className="w-10 h-10 ml-2 rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>
+                <img className="w-10 h-10  rounded-full" src="https://cdn-icons-png.flaticon.com/512/5987/5987462.png" alt=""/>
                 <div className="space-y-1 font-medium dark:text-white">
                     <p>{obtenerDatos(rev.userId)}</p>
                 </div>
@@ -142,7 +139,7 @@ const establecerReviews = ()=>{
             </div>
             <footer className="mb-5 text-sm text-black dark:text-black"><p>Reviewed  on <b>{obtenerFormatoFecha(rev.reviewsDate)}</b></p></footer>
             <p className="mb-2 font-light text-black dark:text-black">{rev.descriptions}</p>
-          </article>
+          </div>
     </div>
     
 
@@ -205,7 +202,7 @@ Positives.map((rev)=>{
     }
         <h3 className="ml-2 text-sm font-semibold text-black dark:text-white">{rev.title}</h3>
     </div>
-<footer className="mb-5 text-sm text-black dark:text-black"><p>Reviewed  on {obtenerFormatoFecha(rev.reviewsDate)}</p></footer>
+<footer className="mb-5 text-sm text-black dark:text-black"><p>Reviewed  on <b>{obtenerFormatoFecha(rev.reviewsDate)}</b></p></footer>
 <div className='w-full'>
 <p className="mb-2 font-light text-black dark:text-black max-w-96">{rev.descriptions}</p>
 </div>
@@ -273,7 +270,7 @@ Positives.map((rev)=>{
     }
         <h3 className="ml-2 text-sm font-semibold text-black dark:text-white">{rev.title}</h3>
     </div>
-    <footer className="mb-5 text-sm text-black dark:text-black"><p>Reviewed  on {obtenerFormatoFecha(rev.reviewsDate)}</p></footer>
+    <footer className="mb-5 text-sm text-black dark:text-black"><p>Reviewed  on <b>{obtenerFormatoFecha(rev.reviewsDate)}</b></p></footer>
     <div className='w-full'>
     <p className="mb-2 font-light text-black dark:text-black max-w-96">{rev.descriptions}</p>
     </div>
