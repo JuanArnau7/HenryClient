@@ -45,8 +45,8 @@ const AdminSidebar = ({ sidebar, handlerSidebar }) => {
                     <NavLink to={'/dashboard/Reviews'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
 											Reviews
                     </NavLink>
-                    <NavLink to={'/dashboard/Tags'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
-											Tags
+                    <NavLink to={'/dashboard/Orders'} className={({isActive}) => isActive ? "bg-gray-900 shadow-sm shadow-slate-400 text-white px-5 py-2 rounded-md text-sm font-bold" : "text-white hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"}>
+											Orders
                     </NavLink>
                   </div>
                 </div>
